@@ -16,6 +16,7 @@ const state = {
   savedLocations: [defaultLocation],
   cache: null,
   newsCache: null,
+  eventNotes: [],
 };
 
 const views = {
@@ -44,6 +45,12 @@ const refreshNews = document.querySelector("#refresh-news");
 const newsUpdated = document.querySelector("#news-updated");
 const newsStatus = document.querySelector("#news-status");
 const newsList = document.querySelector("#news-list");
+const eventForm = document.querySelector("#event-form");
+const eventTitle = document.querySelector("#event-title");
+const eventDate = document.querySelector("#event-date");
+const eventNote = document.querySelector("#event-note");
+const eventStatus = document.querySelector("#event-status");
+const eventList = document.querySelector("#event-list");
 const searchForm = document.querySelector("#search-form");
 const placeQuery = document.querySelector("#place-query");
 const placeStatus = document.querySelector("#place-status");
@@ -106,11 +113,13 @@ function loadState() {
     if (parsed.activeLocationId) state.activeLocationId = parsed.activeLocationId;
     if (parsed.cache) state.cache = parsed.cache;
     if (parsed.newsCache) state.newsCache = parsed.newsCache;
+    if (Array.isArray(parsed.eventNotes)) state.eventNotes = normalizeEventNotes(parsed.eventNotes);
   } catch {
     state.activeLocationId = defaultLocation.id;
     state.savedLocations = [defaultLocation];
     state.cache = null;
     state.newsCache = null;
+    state.eventNotes = [];
   }
 }
 
@@ -122,6 +131,7 @@ function saveState() {
       savedLocations: state.savedLocations,
       cache: state.cache,
       newsCache: state.newsCache,
+      eventNotes: state.eventNotes,
     }),
   );
 }
@@ -405,6 +415,97 @@ function renderNewsCard(item) {
       </div>
     </article>
   `;
+}
+
+function createEventId() {
+  return window.crypto?.randomUUID?.() || `event-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
+function normalizeEventNotes(items) {
+  return items
+    .map((item) => ({
+      id: item.id || createEventId(),
+      title: String(item.title || "").trim(),
+      date: String(item.date || "").slice(0, 10),
+      note: String(item.note || "").trim(),
+      createdAt: item.createdAt || new Date().toISOString(),
+    }))
+    .filter((item) => item.title || item.note);
+}
+
+function addEventNote(event) {
+  event.preventDefault();
+
+  const title = eventTitle.value.trim();
+  const date = eventDate.value;
+  const note = eventNote.value.trim();
+
+  if (!title) {
+    eventStatus.textContent = "イベント名を入力してください。";
+    return;
+  }
+
+  state.eventNotes.push({
+    id: createEventId(),
+    title,
+    date,
+    note,
+    createdAt: new Date().toISOString(),
+  });
+
+  saveState();
+  eventForm.reset();
+  eventStatus.textContent = "イベントメモを保存しました。";
+  renderEventNotes();
+}
+
+function renderEventNotes() {
+  const notes = [...state.eventNotes].sort((a, b) => {
+    const aDate = a.date || "9999-12-31";
+    const bDate = b.date || "9999-12-31";
+    if (aDate !== bDate) return aDate.localeCompare(bDate);
+    return String(a.createdAt || "").localeCompare(String(b.createdAt || ""));
+  });
+
+  eventList.innerHTML = notes.length
+    ? notes.map(renderEventNote).join("")
+    : emptyState("気になるイベントを見つけたら、ここにメモできます。");
+}
+
+function renderEventNote(item) {
+  const note = item.note ? `<p>${escapeHtml(item.note)}</p>` : "";
+  return `
+    <article class="event-note-item" data-event-id="${escapeHtml(item.id)}">
+      <div>
+        <strong>${escapeHtml(item.title)}</strong>
+        <span>${escapeHtml(formatEventDate(item.date))}</span>
+        ${note}
+      </div>
+      <button class="event-delete" type="button" data-event-action="delete" aria-label="${escapeHtml(item.title)}を削除">
+        <svg><use href="#icon-trash"></use></svg>
+      </button>
+    </article>
+  `;
+}
+
+function formatEventDate(value) {
+  if (!value) return "日付未設定";
+  const date = new Date(`${value}T00:00:00`);
+  return Number.isNaN(date.getTime()) ? value : formatDate(date);
+}
+
+function handleEventAction(event) {
+  const button = event.target.closest("[data-event-action]");
+  if (!button) return;
+  const item = event.target.closest("[data-event-id]");
+  if (!item) return;
+
+  if (button.dataset.eventAction === "delete") {
+    state.eventNotes = state.eventNotes.filter((note) => note.id !== item.dataset.eventId);
+    saveState();
+    renderEventNotes();
+    eventStatus.textContent = "イベントメモを削除しました。";
+  }
 }
 
 function renderLoading(location) {
@@ -823,6 +924,7 @@ function getBackupPayload() {
     data: {
       activeLocationId: state.activeLocationId,
       savedLocations: state.savedLocations,
+      eventNotes: state.eventNotes,
     },
   };
 }
@@ -864,7 +966,7 @@ function importBackup() {
     return;
   }
 
-  const confirmed = window.confirm("現在の保存地点を、貼り付けたバックアップで置き換えます。実行しますか？");
+  const confirmed = window.confirm("現在の保存地点とイベントメモを、貼り付けたバックアップで置き換えます。実行しますか？");
   if (!confirmed) {
     backupStatus.textContent = "復元をキャンセルしました。";
     return;
@@ -872,8 +974,10 @@ function importBackup() {
 
   state.savedLocations = dedupeLocations([defaultLocation, ...data.savedLocations.map(normalizeLocation)]);
   state.activeLocationId = data.activeLocationId || defaultLocation.id;
+  state.eventNotes = Array.isArray(data.eventNotes) ? normalizeEventNotes(data.eventNotes) : state.eventNotes;
   saveState();
   renderPlaceLists();
+  renderEventNotes();
   fetchWeather();
   backupStatus.textContent = "バックアップから復元しました。";
 }
@@ -904,6 +1008,8 @@ function switchView(name) {
 function bindEvents() {
   refreshNow.addEventListener("click", fetchWeather);
   refreshNews.addEventListener("click", () => fetchNews(true));
+  eventForm.addEventListener("submit", addEventNote);
+  eventList.addEventListener("click", handleEventAction);
   searchForm.addEventListener("submit", handleSearch);
   searchResults.addEventListener("click", handlePlaceAction);
   savedPlaces.addEventListener("click", handlePlaceAction);
@@ -928,6 +1034,7 @@ function init() {
   loadState();
   bindEvents();
   renderPlaceLists();
+  renderEventNotes();
   if (state.newsCache) renderNews(state.newsCache, true);
 
   if (state.cache) renderWeather(state.cache, true);
