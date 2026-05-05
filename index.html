@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1f7a61" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="外出コンパス" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>外出コンパス</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icons/icon-180.png" />
+    <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <svg aria-hidden="true" class="svg-sprite">
+      <symbol id="icon-refresh" viewBox="0 0 24 24">
+        <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8" />
+        <path d="M4 4v4h4" />
+        <path d="M4 13a8 8 0 0 0 14.3 4.9L20 16" />
+        <path d="M16 16h4v4" />
+      </symbol>
+      <symbol id="icon-pin" viewBox="0 0 24 24">
+        <path d="M12 21s7-5.4 7-12a7 7 0 1 0-14 0c0 6.6 7 12 7 12Z" />
+        <circle cx="12" cy="9" r="2.5" />
+      </symbol>
+      <symbol id="icon-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="7" />
+        <circle cx="12" cy="12" r="2.5" />
+        <path d="M12 2v3" />
+        <path d="M12 19v3" />
+        <path d="M2 12h3" />
+        <path d="M19 12h3" />
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m16.5 16.5 4 4" />
+      </symbol>
+      <symbol id="icon-trash" viewBox="0 0 24 24">
+        <path d="M4 7h16" />
+        <path d="M10 11v6" />
+        <path d="M14 11v6" />
+        <path d="M6 7l1 14h10l1-14" />
+        <path d="M9 7V4h6v3" />
+      </symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24">
+        <rect x="8" y="8" width="11" height="11" rx="2" />
+        <path d="M5 16H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+      </symbol>
+    </svg>
+
+    <div class="phone-app">
+      <header class="top-bar">
+        <div class="title-block">
+          <p id="today-label" class="date-label">今日</p>
+          <h1>外出コンパス</h1>
+        </div>
+        <button id="refresh-now" class="icon-button" type="button" aria-label="最新の天気を取得">
+          <svg><use href="#icon-refresh"></use></svg>
+        </button>
+      </header>
+
+      <main>
+        <section id="view-dashboard" class="view active" aria-labelledby="dashboard-title">
+          <div class="score-panel">
+            <div class="location-row">
+              <div>
+                <span class="section-kicker">Current</span>
+                <h2 id="dashboard-title">外出判断</h2>
+              </div>
+              <p id="active-location" class="location-pill">
+                <svg><use href="#icon-pin"></use></svg>
+                東広島市
+              </p>
+            </div>
+
+            <div class="score-layout">
+              <div id="score-ring" class="score-ring" style="--score: 0">
+                <div>
+                  <strong id="score-value">--</strong>
+                  <span>score</span>
+                </div>
+              </div>
+              <div class="score-copy">
+                <p id="condition-label" class="condition-label">取得待ち</p>
+                <p id="condition-summary">天気データを取得すると、外出しやすさを表示します。</p>
+                <p id="updated-label" class="updated-label">未取得</p>
+              </div>
+            </div>
+
+            <div id="advice-list" class="advice-list"></div>
+          </div>
+
+          <div id="metric-grid" class="metric-grid" aria-live="polite"></div>
+
+          <div class="section-heading">
+            <span class="section-kicker">Modes</span>
+            <h2>用途別の見立て</h2>
+          </div>
+          <div id="activity-grid" class="activity-grid"></div>
+        </section>
+
+        <section id="view-timeline" class="view" aria-labelledby="timeline-title">
+          <div class="section-heading">
+            <span class="section-kicker">Next hours</span>
+            <h2 id="timeline-title">このあと12時間</h2>
+          </div>
+          <div id="hourly-list" class="hourly-list"></div>
+
+          <div class="section-heading">
+            <span class="section-kicker">3 days</span>
+            <h2>今日から3日</h2>
+          </div>
+          <div id="daily-list" class="daily-list"></div>
+        </section>
+
+        <section id="view-places" class="view" aria-labelledby="places-title">
+          <div class="section-heading">
+            <span class="section-kicker">Places</span>
+            <h2 id="places-title">地点</h2>
+          </div>
+
+          <form id="search-form" class="search-form">
+            <label for="place-query">地名検索</label>
+            <div class="search-row">
+              <input id="place-query" type="search" inputmode="search" autocomplete="off" placeholder="例: 福山、三原、広島" />
+              <button class="icon-text-button primary" type="submit">
+                <svg><use href="#icon-search"></use></svg>
+                検索
+              </button>
+            </div>
+          </form>
+
+          <button id="use-gps" class="full-button subtle" type="button">
+            <svg><use href="#icon-target"></use></svg>
+            現在地を使う
+          </button>
+
+          <p id="place-status" class="helper-text" aria-live="polite"></p>
+          <div id="search-results" class="place-list"></div>
+
+          <div class="section-heading">
+            <span class="section-kicker">Saved</span>
+            <h2>保存地点</h2>
+          </div>
+          <div id="saved-places" class="place-list"></div>
+        </section>
+
+        <section id="view-settings" class="view" aria-labelledby="settings-title">
+          <div class="section-heading">
+            <span class="section-kicker">Standalone</span>
+            <h2 id="settings-title">単独運用</h2>
+          </div>
+
+          <div class="info-panel">
+            <div class="info-row">
+              <strong>API</strong>
+              <span>Open-Meteo Forecast / Geocoding / Air Quality</span>
+            </div>
+            <div class="info-row">
+              <strong>保存</strong>
+              <span>地点と前回取得データは、このブラウザ内に保存</span>
+            </div>
+            <div class="info-row">
+              <strong>オフライン</strong>
+              <span>通信できない場合は前回取得データを表示</span>
+            </div>
+            <div class="info-row">
+              <strong>公開</strong>
+              <span>HTTPS公開後はホーム画面追加とPWAキャッシュに対応</span>
+            </div>
+          </div>
+
+          <div class="backup-panel">
+            <div class="section-heading compact">
+              <span class="section-kicker">Backup</span>
+              <h2>地点データ</h2>
+            </div>
+            <div class="button-row">
+              <button id="export-data" class="full-button subtle" type="button">書き出す</button>
+              <button id="copy-data" class="full-button subtle" type="button">
+                <svg><use href="#icon-copy"></use></svg>
+                コピー
+              </button>
+            </div>
+            <label class="backup-label">
+              <span>バックアップJSON</span>
+              <textarea id="backup-text" rows="7" placeholder="保存地点のバックアップをここに表示します。"></textarea>
+            </label>
+            <button id="import-data" class="full-button primary" type="button">貼り付けた内容で復元</button>
+            <p id="backup-status" class="helper-text" aria-live="polite"></p>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="画面切り替え">
+        <button class="nav-button active" type="button" data-view="dashboard">
+          <span>判断</span>
+        </button>
+        <button class="nav-button" type="button" data-view="timeline">
+          <span>時間</span>
+        </button>
+        <button class="nav-button" type="button" data-view="places">
+          <span>地点</span>
+        </button>
+        <button class="nav-button" type="button" data-view="settings">
+          <span>設定</span>
+        </button>
+      </nav>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
