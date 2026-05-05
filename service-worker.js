@@ -1,10 +1,11 @@
-const cacheName = "outdoor-compass-v6";
+const cacheName = "outdoor-compass-v7";
 
 const appShell = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
+  "./data/events.json",
   "./manifest.webmanifest",
   "./icons/icon.svg",
   "./icons/icon-180.png",
@@ -34,6 +35,21 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+
+  if (url.pathname.endsWith("/data/events.json")) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(cacheName).then((cache) => cache.put(request, copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request)),
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(request).then((cached) => {

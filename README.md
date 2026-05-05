@@ -12,12 +12,26 @@ Open-Meteoの公開APIを使い、天気、雨、風、PM2.5、UVから外出し
 - 前回取得データを端末内に保存
 - 通信できない場合は前回データを表示
 - GitHub Pagesなどの静的ホスティングで公開可能
+- 情報タブで地域ニュース、地域イベント、公式リンクを確認
+- GitHub Actionsでヒガシルのイベント情報をJSON化して表示
 
 ## 使用API
 
 - Open-Meteo Forecast API
 - Open-Meteo Geocoding API
 - Open-Meteo Air Quality API
+- GDELT Doc API
+- 東広島おでかけ観光サイト「ヒガシル」
+
+## イベント情報の更新
+
+`scripts/update-events.mjs` がヒガシルのイベントページから表示用JSONを生成します。
+
+```bash
+node scripts/update-events.mjs
+```
+
+GitHub Actionsでは毎日5:15頃（日本時間）に `data/events.json` を更新します。
 
 ## ローカル確認
 

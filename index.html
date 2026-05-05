@@ -174,6 +174,24 @@
             <span class="section-kicker">Events</span>
             <h2>地域イベント</h2>
           </div>
+
+          <div class="event-feed-panel">
+            <div class="news-toolbar">
+              <div>
+                <strong>自動取得イベント</strong>
+                <span id="auto-events-updated">未取得</span>
+              </div>
+              <button id="refresh-events" class="small-icon-button" type="button" aria-label="イベント情報を更新">
+                <svg><use href="#icon-refresh"></use></svg>
+              </button>
+            </div>
+            <p id="events-status" class="helper-text" aria-live="polite">
+              ヒガシルのイベント情報をもとに、GitHub Pages上のJSONから表示します。
+            </p>
+          </div>
+
+          <div id="auto-event-list" class="auto-event-list"></div>
+
           <div class="event-link-list">
             <a class="event-link-card" href="https://www.city.higashihiroshima.lg.jp/calendar.html" target="_blank" rel="noopener">
               <strong>東広島市イベントカレンダー</strong>

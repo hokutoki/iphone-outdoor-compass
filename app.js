@@ -1,5 +1,6 @@
 const storageKey = "iphone-outdoor-compass-v1";
 const cacheVersion = 1;
+const eventFeedUrl = "./data/events.json";
 
 const defaultLocation = {
   id: "higashihiroshima",
@@ -16,6 +17,7 @@ const state = {
   savedLocations: [defaultLocation],
   cache: null,
   newsCache: null,
+  eventFeedCache: null,
   eventNotes: [],
 };
 
@@ -45,6 +47,10 @@ const refreshNews = document.querySelector("#refresh-news");
 const newsUpdated = document.querySelector("#news-updated");
 const newsStatus = document.querySelector("#news-status");
 const newsList = document.querySelector("#news-list");
+const refreshEvents = document.querySelector("#refresh-events");
+const autoEventsUpdated = document.querySelector("#auto-events-updated");
+const eventsStatus = document.querySelector("#events-status");
+const autoEventList = document.querySelector("#auto-event-list");
 const eventForm = document.querySelector("#event-form");
 const eventTitle = document.querySelector("#event-title");
 const eventDate = document.querySelector("#event-date");
@@ -113,12 +119,14 @@ function loadState() {
     if (parsed.activeLocationId) state.activeLocationId = parsed.activeLocationId;
     if (parsed.cache) state.cache = parsed.cache;
     if (parsed.newsCache) state.newsCache = parsed.newsCache;
+    if (parsed.eventFeedCache) state.eventFeedCache = normalizeEventFeed(parsed.eventFeedCache);
     if (Array.isArray(parsed.eventNotes)) state.eventNotes = normalizeEventNotes(parsed.eventNotes);
   } catch {
     state.activeLocationId = defaultLocation.id;
     state.savedLocations = [defaultLocation];
     state.cache = null;
     state.newsCache = null;
+    state.eventFeedCache = null;
     state.eventNotes = [];
   }
 }
@@ -131,6 +139,7 @@ function saveState() {
       savedLocations: state.savedLocations,
       cache: state.cache,
       newsCache: state.newsCache,
+      eventFeedCache: state.eventFeedCache,
       eventNotes: state.eventNotes,
     }),
   );
@@ -415,6 +424,115 @@ function renderNewsCard(item) {
       </div>
     </article>
   `;
+}
+
+function isEventFeedFresh() {
+  if (!state.eventFeedCache?.fetchedAt) return false;
+  const ageMs = Date.now() - new Date(state.eventFeedCache.fetchedAt).getTime();
+  return ageMs < 12 * 60 * 60 * 1000;
+}
+
+function maybeFetchEvents() {
+  if (state.eventFeedCache) renderAutoEvents(state.eventFeedCache, true);
+  if (!state.eventFeedCache || !isEventFeedFresh()) fetchEvents();
+}
+
+async function fetchEvents(force = false) {
+  if (!force && state.eventFeedCache && isEventFeedFresh()) {
+    renderAutoEvents(state.eventFeedCache, true);
+    return;
+  }
+
+  eventsStatus.textContent = "イベント情報を取得しています。";
+
+  try {
+    const response = await fetch(eventFeedUrl, { cache: force ? "reload" : "default" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const feed = normalizeEventFeed(await response.json());
+    state.eventFeedCache = feed;
+    saveState();
+    renderAutoEvents(feed, false);
+  } catch (error) {
+    if (state.eventFeedCache) {
+      renderAutoEvents(state.eventFeedCache, true, error);
+      return;
+    }
+    autoEventsUpdated.textContent = "未取得";
+    eventsStatus.textContent = `イベント情報を取得できませんでした。${error.message}`;
+    autoEventList.innerHTML = emptyState("イベント自動取得はまだ使えません。公式リンクから確認できます。");
+  }
+}
+
+function normalizeEventFeed(feed) {
+  const items = Array.isArray(feed?.items) ? feed.items : [];
+  return {
+    version: feed?.version || cacheVersion,
+    source: feed?.source || "東広島おでかけ観光サイト「ヒガシル」",
+    sourceUrl: feed?.sourceUrl || "https://higashihiroshima-kanko.jp/event/",
+    fetchedAt: feed?.fetchedAt || new Date().toISOString(),
+    items: items
+      .map((item) => ({
+        id: String(item.id || item.url || item.title || createEventId()),
+        title: String(item.title || "").trim(),
+        summary: String(item.summary || "").trim(),
+        url: String(item.url || "").trim(),
+        dateLabel: String(item.dateLabel || "").trim(),
+        startDate: String(item.startDate || "").slice(0, 10),
+        endDate: String(item.endDate || "").slice(0, 10),
+        area: String(item.area || "").trim(),
+        location: String(item.location || "").trim(),
+        status: String(item.status || "").trim(),
+        tags: Array.isArray(item.tags) ? item.tags.map((tag) => String(tag).trim()).filter(Boolean).slice(0, 3) : [],
+        source: String(item.source || feed?.source || "ヒガシル").trim(),
+      }))
+      .filter((item) => item.title && item.url)
+      .slice(0, 12),
+  };
+}
+
+function renderAutoEvents(feed, isCached, error) {
+  const items = Array.isArray(feed.items) ? feed.items : [];
+  autoEventsUpdated.textContent = isCached ? `保存済み: ${formatUpdated(feed.fetchedAt)}` : formatUpdated(feed.fetchedAt);
+
+  if (error) {
+    eventsStatus.textContent = `前回取得分を表示しています。${error.message}`;
+  } else {
+    eventsStatus.textContent = items.length
+      ? `${feed.source || "ヒガシル"}から取得した候補を表示しています。`
+      : "自動取得できるイベント候補はありません。公式リンクから確認できます。";
+  }
+
+  autoEventList.innerHTML = items.length
+    ? items.map(renderAutoEventCard).join("")
+    : emptyState("自動取得イベントはありません。");
+}
+
+function renderAutoEventCard(item) {
+  const details = [formatAutoEventDate(item), item.area, item.status].filter(Boolean).join(" / ");
+  const location = item.location ? `<small>${escapeHtml(item.location)}</small>` : "";
+  const summary = item.summary ? `<p>${escapeHtml(item.summary)}</p>` : "";
+  const tags = item.tags.length ? `<div class="auto-event-tags">${item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : "";
+  return `
+    <article class="auto-event-card">
+      <div>
+        <p class="auto-event-meta">${escapeHtml(details || item.source || "イベント")}</p>
+        <h3>${escapeHtml(item.title)}</h3>
+        ${summary}
+        ${location}
+        ${tags}
+        <a class="news-open-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">詳細を開く</a>
+      </div>
+    </article>
+  `;
+}
+
+function formatAutoEventDate(item) {
+  if (item.dateLabel) return item.dateLabel;
+  if (item.startDate && item.endDate && item.startDate !== item.endDate) {
+    return `${formatEventDate(item.startDate)} - ${formatEventDate(item.endDate)}`;
+  }
+  if (item.startDate) return formatEventDate(item.startDate);
+  return "";
 }
 
 function createEventId() {
@@ -1002,12 +1120,16 @@ function switchView(name) {
   viewButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.view === name);
   });
-  if (name === "info") maybeFetchNews();
+  if (name === "info") {
+    maybeFetchNews();
+    maybeFetchEvents();
+  }
 }
 
 function bindEvents() {
   refreshNow.addEventListener("click", fetchWeather);
   refreshNews.addEventListener("click", () => fetchNews(true));
+  refreshEvents.addEventListener("click", () => fetchEvents(true));
   eventForm.addEventListener("submit", addEventNote);
   eventList.addEventListener("click", handleEventAction);
   searchForm.addEventListener("submit", handleSearch);
@@ -1036,6 +1158,7 @@ function init() {
   renderPlaceLists();
   renderEventNotes();
   if (state.newsCache) renderNews(state.newsCache, true);
+  if (state.eventFeedCache) renderAutoEvents(state.eventFeedCache, true);
 
   if (state.cache) renderWeather(state.cache, true);
   fetchWeather();

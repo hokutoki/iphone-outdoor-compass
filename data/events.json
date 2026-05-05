@@ -1,0 +1,201 @@
+{
+  "app": "外出コンパス",
+  "version": 1,
+  "source": "東広島おでかけ観光サイト「ヒガシル」",
+  "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
+  "fetchedAt": "2026-05-05T18:36:28.235Z",
+  "items": [
+    {
+      "id": "fumufumu-garalley31",
+      "title": "第36回ふむふむギャラリー「いのちのサバイバル展」",
+      "summary": "攻める力と守る工夫。いのちをつなぐサバイバルの世界へ！",
+      "url": "https://higashihiroshima-kanko.jp/event/fumufumu-garalley31/",
+      "dateLabel": "2026/04/01（水） ～ 2026/06/13（土）",
+      "startDate": "2026-04-01",
+      "endDate": "2026-06-13",
+      "area": "中央部 / 西条",
+      "location": "広島大学総合博物館本館",
+      "status": "開催中",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "collection-exhibition",
+      "title": "コレクション展第Ⅰ期「細やかな美 版で魅せる／暮らしと器 西洋と日本」",
+      "summary": "静かに味わう、版と美の世界",
+      "url": "https://higashihiroshima-kanko.jp/event/collection-exhibition/",
+      "dateLabel": "2026/04/11（土） ～ 2026/07/12（日）",
+      "startDate": "2026-04-11",
+      "endDate": "2026-07-12",
+      "area": "中央部 / 西条",
+      "location": "東広島市立美術館 3階展示室",
+      "status": "開催中",
+      "tags": [
+        "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "line-stamprally",
+      "title": "LINEで巡る「ヒガシル」デジタルスタンプラリー",
+      "summary": "東広島の「おいしい・たのしい」を巡って、ステキな特産品を当てよう！",
+      "url": "https://higashihiroshima-kanko.jp/event/line-stamprally/",
+      "dateLabel": "2026/04/15（水） ～ 2026/06/30（火）",
+      "startDate": "2026-04-15",
+      "endDate": "2026-06-30",
+      "area": "複数エリア / 西条、安芸津…",
+      "location": "東広島市内の各スポット",
+      "status": "開催中",
+      "tags": [
+        "#キャンペーン・おトク"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "iwc2026_sns_campaign",
+      "title": "IWC2026×東広島 応援コメントキャンペーン",
+      "summary": "東広島を一緒に盛り上げ、酒スイーツ詰め合わせを当てよう！",
+      "url": "https://higashihiroshima-kanko.jp/event/iwc2026_sns_campaign/",
+      "dateLabel": "2026/04/27（月） ～ 2026/05/25（月）",
+      "startDate": "2026-04-27",
+      "endDate": "2026-05-25",
+      "area": "中央部 / 西条",
+      "location": "",
+      "status": "開催中",
+      "tags": [
+        "#キャンペーン・おトク"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "himawari_pj_tanemaki",
+      "title": "ひまわりプロジェクト2026「種まきイベント」",
+      "summary": "ひまわり畑の“株主”となって、一緒にひまわりを育ててみませんか？",
+      "url": "https://higashihiroshima-kanko.jp/event/himawari_pj_tanemaki/",
+      "dateLabel": "2026/05/09（土）",
+      "startDate": "2026-05-09",
+      "endDate": "2026-05-09",
+      "area": "北部 / 福富",
+      "location": "東広島市福富町下竹仁",
+      "status": "開催間近",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "opera-concert",
+      "title": "オペラ「ヘンゼルとグレーテル」",
+      "summary": "家族で楽しむ、本格オペラの世界",
+      "url": "https://higashihiroshima-kanko.jp/event/opera-concert/",
+      "dateLabel": "2026/05/10（日）",
+      "startDate": "2026-05-10",
+      "endDate": "2026-05-10",
+      "area": "中央部 / 西条",
+      "location": "東広島芸術文化ホールくらら 小ホール",
+      "status": "開催間近",
+      "tags": [
+        "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "sakekasu-labo",
+      "title": "SAKEKASU LABOー酒粕トースト体験会ー",
+      "summary": "酒粕でアレンジ！つくって食べる体験イベント",
+      "url": "https://higashihiroshima-kanko.jp/event/sakekasu-labo/",
+      "dateLabel": "2026/05/16（土）",
+      "startDate": "2026-05-16",
+      "endDate": "2026-05-16",
+      "area": "中央部 / 西条",
+      "location": "町家",
+      "status": "開催間近",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "field_navi",
+      "title": "第115回フィールドナビ「ネイチャーゲームで遊ぼう！春編」",
+      "summary": "春のキャンパスで、自然とあそぼう！",
+      "url": "https://higashihiroshima-kanko.jp/event/field_navi/",
+      "dateLabel": "2026/05/16（土）",
+      "startDate": "2026-05-16",
+      "endDate": "2026-05-16",
+      "area": "中央部 / 西条",
+      "location": "広島大学 東広島キャンパス",
+      "status": "開催間近",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "iwc2026-shinsakai-tour",
+      "title": "IWC2026「SAKE部門」審査会特別公開ツアー",
+      "summary": "世界最高峰の舞台を間近で見学できるツアー",
+      "url": "https://higashihiroshima-kanko.jp/event/iwc2026-shinsakai-tour/",
+      "dateLabel": "2026/05/19（火）",
+      "startDate": "2026-05-19",
+      "endDate": "2026-05-19",
+      "area": "中央部 / 西条",
+      "location": "東広島芸術文化ホールくらら",
+      "status": "",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "iwc2026-sakefes",
+      "title": "IWC2026「SAKE部門」開催記念｜IWC2026 HIROSHIMA SAKE Fes in東広島",
+      "summary": "〜 世界に挑戦したSAKEを呑む 〜",
+      "url": "https://higashihiroshima-kanko.jp/event/iwc2026-sakefes/",
+      "dateLabel": "2026/05/23（土） ～ 2026/05/24（日）",
+      "startDate": "2026-05-23",
+      "endDate": "2026-05-24",
+      "area": "中央部 / 西条",
+      "location": "西条駅前にぎわい広場 他",
+      "status": "",
+      "tags": [
+        "#マルシェ・グルメ・物産"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "kurose_riceplanting",
+      "title": "黒瀬みのり農園「田植え体験会」",
+      "summary": "お子さんも初めての方も大歓迎！楽しみながら田植えを体験♪",
+      "url": "https://higashihiroshima-kanko.jp/event/kurose_riceplanting/",
+      "dateLabel": "2026/05/23（土） ～ 2026/05/24（日）",
+      "startDate": "2026-05-23",
+      "endDate": "2026-05-24",
+      "area": "中央部 / 黒瀬",
+      "location": "黒瀬みのり農園（広島国際大学から安浦方面へ車で1分）",
+      "status": "",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "hhtoshokan-hirosimasake",
+      "title": "日銀が調査した大正から昭和初期の広島の酒 ～『廣島酒ニ關スル調査 廣島酒の現状に就て』を読む～",
+      "summary": "大正・昭和初期、広島の酒のリアルをひもとく！",
+      "url": "https://higashihiroshima-kanko.jp/event/hhtoshokan-hirosimasake/",
+      "dateLabel": "2026/06/06（土） ～ 2026/07/18（土） ※6/6・6/20・7/4・7/18に開催",
+      "startDate": "2026-06-06",
+      "endDate": "2026-07-18",
+      "area": "中央部 / 西条",
+      "location": "東広島商工会議所4階文化ホール",
+      "status": "",
+      "tags": [
+        "#その他イベント"
+      ],
+      "source": "ヒガシル"
+    }
+  ]
+}
