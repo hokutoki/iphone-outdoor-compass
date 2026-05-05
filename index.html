@@ -73,6 +73,13 @@
         <path d="M4.9 19.1 7 17" />
         <path d="m17 7 2.1-2.1" />
       </symbol>
+      <symbol id="icon-news" viewBox="0 0 24 24">
+        <path d="M4 5h13a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2Z" />
+        <path d="M19 8h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-1" />
+        <path d="M7 9h7" />
+        <path d="M7 13h8" />
+        <path d="M7 16h5" />
+      </symbol>
     </svg>
 
     <div class="phone-app">
@@ -138,6 +145,53 @@
             <h2>今日から3日</h2>
           </div>
           <div id="daily-list" class="daily-list"></div>
+        </section>
+
+        <section id="view-info" class="view" aria-labelledby="info-title">
+          <div class="section-heading">
+            <span class="section-kicker">Local info</span>
+            <h2 id="info-title">地域情報</h2>
+          </div>
+
+          <div class="news-panel">
+            <div class="news-toolbar">
+              <div>
+                <strong>広島・東広島ニュース</strong>
+                <span id="news-updated">未取得</span>
+              </div>
+              <button id="refresh-news" class="small-icon-button" type="button" aria-label="地域ニュースを更新">
+                <svg><use href="#icon-refresh"></use></svg>
+              </button>
+            </div>
+            <p id="news-status" class="helper-text" aria-live="polite">
+              情報タブを開くと、地域ニュースの見出しを取得します。
+            </p>
+          </div>
+
+          <div id="news-list" class="news-list"></div>
+
+          <div class="section-heading">
+            <span class="section-kicker">Official links</span>
+            <h2>公式・確認リンク</h2>
+          </div>
+          <div class="official-link-list">
+            <a class="official-link-card" href="https://news.google.com/search?q=%E6%9D%B1%E5%BA%83%E5%B3%B6&hl=ja&gl=JP&ceid=JP%3Aja" target="_blank" rel="noopener">
+              <strong>Google News 東広島</strong>
+              <span>地域ニュース検索</span>
+            </a>
+            <a class="official-link-card" href="https://www.city.higashihiroshima.lg.jp/" target="_blank" rel="noopener">
+              <strong>東広島市</strong>
+              <span>行政・暮らし・イベント</span>
+            </a>
+            <a class="official-link-card" href="https://www.pref.hiroshima.lg.jp/" target="_blank" rel="noopener">
+              <strong>広島県</strong>
+              <span>県内のお知らせ</span>
+            </a>
+            <a class="official-link-card" href="https://www.jma.go.jp/bosai/warning/#area_type=class20s&area_code=3421200&lang=ja" target="_blank" rel="noopener">
+              <strong>気象庁 警報・注意報</strong>
+              <span>東広島市の防災確認</span>
+            </a>
+          </div>
         </section>
 
         <section id="view-places" class="view" aria-labelledby="places-title">
@@ -227,6 +281,10 @@
         <button class="nav-button" type="button" data-view="timeline">
           <svg><use href="#icon-clock"></use></svg>
           <span>時間</span>
+        </button>
+        <button class="nav-button" type="button" data-view="info">
+          <svg><use href="#icon-news"></use></svg>
+          <span>情報</span>
         </button>
         <button class="nav-button" type="button" data-view="places">
           <svg><use href="#icon-map"></use></svg>

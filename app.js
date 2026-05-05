@@ -15,11 +15,13 @@ const state = {
   activeLocationId: defaultLocation.id,
   savedLocations: [defaultLocation],
   cache: null,
+  newsCache: null,
 };
 
 const views = {
   dashboard: document.querySelector("#view-dashboard"),
   timeline: document.querySelector("#view-timeline"),
+  info: document.querySelector("#view-info"),
   places: document.querySelector("#view-places"),
   settings: document.querySelector("#view-settings"),
 };
@@ -38,6 +40,10 @@ const metricGrid = document.querySelector("#metric-grid");
 const activityGrid = document.querySelector("#activity-grid");
 const hourlyList = document.querySelector("#hourly-list");
 const dailyList = document.querySelector("#daily-list");
+const refreshNews = document.querySelector("#refresh-news");
+const newsUpdated = document.querySelector("#news-updated");
+const newsStatus = document.querySelector("#news-status");
+const newsList = document.querySelector("#news-list");
 const searchForm = document.querySelector("#search-form");
 const placeQuery = document.querySelector("#place-query");
 const placeStatus = document.querySelector("#place-status");
@@ -99,10 +105,12 @@ function loadState() {
     }
     if (parsed.activeLocationId) state.activeLocationId = parsed.activeLocationId;
     if (parsed.cache) state.cache = parsed.cache;
+    if (parsed.newsCache) state.newsCache = parsed.newsCache;
   } catch {
     state.activeLocationId = defaultLocation.id;
     state.savedLocations = [defaultLocation];
     state.cache = null;
+    state.newsCache = null;
   }
 }
 
@@ -113,6 +121,7 @@ function saveState() {
       activeLocationId: state.activeLocationId,
       savedLocations: state.savedLocations,
       cache: state.cache,
+      newsCache: state.newsCache,
     }),
   );
 }
@@ -221,6 +230,19 @@ function buildGeocodingUrl(query) {
   return `https://geocoding-api.open-meteo.com/v1/search?${params.toString()}`;
 }
 
+function buildGdeltUrl() {
+  const query = '("Hiroshima" OR "Higashihiroshima" OR "Hiroshima Prefecture")';
+  const params = new URLSearchParams({
+    query,
+    mode: "artlist",
+    format: "json",
+    maxrecords: "8",
+    sort: "datedesc",
+    timespan: "1month",
+  });
+  return `https://api.gdeltproject.org/api/v2/doc/doc?${params.toString()}`;
+}
+
 async function fetchJson(url, timeoutMs = 12000) {
   const controller = new AbortController();
   const timer = window.setTimeout(() => controller.abort(), timeoutMs);
@@ -259,6 +281,130 @@ async function fetchWeather() {
     }
     renderError(error);
   }
+}
+
+function isNewsCacheFresh() {
+  if (!state.newsCache?.fetchedAt) return false;
+  const ageMs = Date.now() - new Date(state.newsCache.fetchedAt).getTime();
+  return ageMs < 30 * 60 * 1000;
+}
+
+function maybeFetchNews() {
+  if (state.newsCache) renderNews(state.newsCache, true);
+  if (!state.newsCache || !isNewsCacheFresh()) fetchNews();
+}
+
+async function fetchNews(force = false) {
+  if (!force && state.newsCache && isNewsCacheFresh()) {
+    renderNews(state.newsCache, true);
+    return;
+  }
+
+  newsStatus.textContent = "地域ニュースの見出しを取得しています。";
+
+  try {
+    const data = await fetchNewsJson(buildGdeltUrl(), 15000);
+    const items = normalizeNewsItems(data.articles || data.items || []);
+    state.newsCache = {
+      version: cacheVersion,
+      fetchedAt: new Date().toISOString(),
+      items,
+    };
+    saveState();
+    renderNews(state.newsCache, false);
+  } catch (error) {
+    if (state.newsCache) {
+      renderNews(state.newsCache, true, error);
+      return;
+    }
+    newsUpdated.textContent = "未取得";
+    newsStatus.textContent = getNewsErrorMessage(error);
+    newsList.innerHTML = emptyState("ニュースを取得できませんでした。公式リンクから確認できます。");
+  }
+}
+
+async function fetchNewsJson(url, timeoutMs = 15000) {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    const text = await response.text();
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    if (text.includes("Please limit requests")) throw new Error("429");
+    if (!text.trim().startsWith("{")) throw new Error(text.trim().slice(0, 90));
+    return JSON.parse(text);
+  } finally {
+    window.clearTimeout(timer);
+  }
+}
+
+function normalizeNewsItems(items) {
+  return items
+    .map((item) => ({
+      title: item.title || item.name || "無題の記事",
+      url: item.url_mobile || item.url || item.id || "",
+      domain: item.domain || getDomain(item.url || item.id || ""),
+      seenDate: item.seendate || item.date_published || item.date_modified || "",
+      image: item.socialimage || item.image || "",
+      language: item.language || "",
+      sourceCountry: item.sourcecountry || "",
+    }))
+    .filter((item) => item.url)
+    .slice(0, 8);
+}
+
+function getDomain(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return "news";
+  }
+}
+
+function formatNewsDate(value) {
+  if (!value) return "";
+  if (/^\d{8}T\d{6}Z$/.test(value)) {
+    const normalized = `${value.slice(0, 4)}-${value.slice(4, 6)}-${value.slice(6, 8)}T${value.slice(9, 11)}:${value.slice(11, 13)}:${value.slice(13, 15)}Z`;
+    return `${formatDate(new Date(normalized))} ${formatTime(new Date(normalized))}`;
+  }
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? value : `${formatDate(date)} ${formatTime(date)}`;
+}
+
+function renderNews(cache, isCached, error) {
+  const items = Array.isArray(cache.items) ? cache.items : [];
+  newsUpdated.textContent = isCached ? `保存済み: ${formatUpdated(cache.fetchedAt)}` : formatUpdated(cache.fetchedAt);
+
+  if (error) {
+    newsStatus.textContent = `前回取得分を表示しています。${getNewsErrorMessage(error)}`;
+  } else {
+    newsStatus.textContent = items.length
+      ? "見出しとリンクのみを表示します。本文は元サイトで確認します。"
+      : "該当するニュースが見つかりませんでした。公式リンクから確認できます。";
+  }
+
+  newsList.innerHTML = items.length ? items.map(renderNewsCard).join("") : emptyState("地域ニュースの候補はありません。");
+}
+
+function getNewsErrorMessage(error) {
+  const message = String(error?.message || "");
+  if (message.includes("429")) return "ニュースAPIの取得間隔制限に当たりました。少し待ってから更新してください。";
+  if (message.includes("Failed to fetch")) return "ニュースAPIに接続できませんでした。時間を置くか、公式リンクから確認してください。";
+  if (message.includes("specified query")) return "ニュースAPIの検索条件が受け付けられませんでした。公式リンクから確認してください。";
+  return `ニュースを取得できませんでした。${message}`;
+}
+
+function renderNewsCard(item) {
+  const date = formatNewsDate(item.seenDate);
+  return `
+    <article class="news-card">
+      <div>
+        <p class="news-meta">${escapeHtml([item.domain, date].filter(Boolean).join(" / "))}</p>
+        <h3>${escapeHtml(item.title)}</h3>
+        <a class="news-open-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">元記事を開く</a>
+      </div>
+    </article>
+  `;
 }
 
 function renderLoading(location) {
@@ -752,10 +898,12 @@ function switchView(name) {
   viewButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.view === name);
   });
+  if (name === "info") maybeFetchNews();
 }
 
 function bindEvents() {
   refreshNow.addEventListener("click", fetchWeather);
+  refreshNews.addEventListener("click", () => fetchNews(true));
   searchForm.addEventListener("submit", handleSearch);
   searchResults.addEventListener("click", handlePlaceAction);
   savedPlaces.addEventListener("click", handlePlaceAction);
@@ -780,6 +928,7 @@ function init() {
   loadState();
   bindEvents();
   renderPlaceLists();
+  if (state.newsCache) renderNews(state.newsCache, true);
 
   if (state.cache) renderWeather(state.cache, true);
   fetchWeather();

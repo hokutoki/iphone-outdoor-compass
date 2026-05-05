@@ -145,6 +145,9 @@ h2 {
 .day-card,
 .search-form,
 .place-card,
+.news-panel,
+.news-card,
+.official-link-card,
 .info-panel,
 .backup-panel,
 .empty-state {
@@ -494,6 +497,106 @@ h2 {
   line-height: 1.45;
 }
 
+.news-panel {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-color: transparent;
+}
+
+.news-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.news-toolbar strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.news-toolbar span {
+  color: var(--muted-2);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.small-icon-button {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: #f5f6f8;
+  color: var(--blue);
+  font-weight: 900;
+}
+
+.news-list,
+.official-link-list {
+  display: grid;
+  gap: 9px;
+}
+
+.news-card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-color: transparent;
+}
+
+.news-card h3 {
+  margin: 0 0 10px;
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+.news-meta {
+  margin-bottom: 7px;
+  color: var(--muted-2);
+  font-size: 0.74rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.news-open-link,
+.official-link-card {
+  color: inherit;
+  text-decoration: none;
+}
+
+.news-open-link {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  color: var(--blue);
+  font-size: 0.86rem;
+  font-weight: 950;
+}
+
+.official-link-card {
+  display: grid;
+  gap: 5px;
+  padding: 14px;
+  border-color: transparent;
+}
+
+.official-link-card strong {
+  color: var(--ink);
+  font-size: 0.96rem;
+  line-height: 1.3;
+}
+
+.official-link-card span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
 .search-form {
   display: grid;
   gap: 9px;
@@ -678,7 +781,7 @@ textarea:focus-visible {
   left: 50%;
   z-index: 10;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 4px;
   max-width: 490px;
   width: 100%;
@@ -700,13 +803,13 @@ textarea:focus-visible {
   gap: 3px;
   background: transparent;
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   line-height: 1.1;
 }
 
 .nav-button svg {
-  width: 22px;
-  height: 22px;
+  width: 21px;
+  height: 21px;
   stroke-width: 2.2;
 }
 
