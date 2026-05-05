@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#1f7a61" />
+    <meta name="theme-color" content="#f2f2f7" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="外出コンパス" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -47,6 +47,31 @@
       <symbol id="icon-copy" viewBox="0 0 24 24">
         <rect x="8" y="8" width="11" height="11" rx="2" />
         <path d="M5 16H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+      </symbol>
+      <symbol id="icon-gauge" viewBox="0 0 24 24">
+        <path d="M4 14a8 8 0 1 1 16 0" />
+        <path d="M12 14 16 9" />
+        <path d="M8 14h8" />
+      </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8" />
+        <path d="M12 8v5l3 2" />
+      </symbol>
+      <symbol id="icon-map" viewBox="0 0 24 24">
+        <path d="m4 6 5-2 6 2 5-2v14l-5 2-6-2-5 2Z" />
+        <path d="M9 4v14" />
+        <path d="M15 6v14" />
+      </symbol>
+      <symbol id="icon-settings" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 2v3" />
+        <path d="M12 19v3" />
+        <path d="M4.9 4.9 7 7" />
+        <path d="m17 17 2.1 2.1" />
+        <path d="M2 12h3" />
+        <path d="M19 12h3" />
+        <path d="M4.9 19.1 7 17" />
+        <path d="m17 7 2.1-2.1" />
       </symbol>
     </svg>
 
@@ -196,15 +221,19 @@
 
       <nav class="bottom-nav" aria-label="画面切り替え">
         <button class="nav-button active" type="button" data-view="dashboard">
+          <svg><use href="#icon-gauge"></use></svg>
           <span>判断</span>
         </button>
         <button class="nav-button" type="button" data-view="timeline">
+          <svg><use href="#icon-clock"></use></svg>
           <span>時間</span>
         </button>
         <button class="nav-button" type="button" data-view="places">
+          <svg><use href="#icon-map"></use></svg>
           <span>地点</span>
         </button>
         <button class="nav-button" type="button" data-view="settings">
+          <svg><use href="#icon-settings"></use></svg>
           <span>設定</span>
         </button>
       </nav>
