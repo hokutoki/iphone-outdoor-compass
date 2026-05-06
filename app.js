@@ -42,6 +42,10 @@ const metricGrid = document.querySelector("#metric-grid");
 const activityGrid = document.querySelector("#activity-grid");
 const hourlyList = document.querySelector("#hourly-list");
 const dailyList = document.querySelector("#daily-list");
+const calendarConnectionLabel = document.querySelector("#calendar-connection-label");
+const calendarStatus = document.querySelector("#calendar-status");
+const calendarPreviewList = document.querySelector("#calendar-preview-list");
+const connectCalendar = document.querySelector("#connect-calendar");
 const refreshNews = document.querySelector("#refresh-news");
 const newsUpdated = document.querySelector("#news-updated");
 const newsStatus = document.querySelector("#news-status");
@@ -61,6 +65,27 @@ const copyData = document.querySelector("#copy-data");
 const importData = document.querySelector("#import-data");
 const backupText = document.querySelector("#backup-text");
 const backupStatus = document.querySelector("#backup-status");
+
+const calendarPreviewItems = [
+  {
+    label: "今日",
+    title: "本日の予定",
+    time: "--:--",
+    text: "接続後に今日の予定を開始時刻順で表示",
+  },
+  {
+    label: "Next",
+    title: "このあと",
+    time: "--:--",
+    text: "次の予定、場所、移動前の天気を確認",
+  },
+  {
+    label: "7 days",
+    title: "今後7日間",
+    time: "準備中",
+    text: "外出予定を天気・イベント情報と並べて確認",
+  },
+];
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -412,6 +437,26 @@ function renderNewsCard(item) {
         <h3>${escapeHtml(item.title)}</h3>
         <a class="news-open-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">元記事を開く</a>
       </div>
+    </article>
+  `;
+}
+
+function renderCalendarPreview() {
+  calendarConnectionLabel.textContent = "未接続";
+  calendarStatus.textContent = "予定表示の枠だけ先に用意しています。";
+  connectCalendar.disabled = true;
+  calendarPreviewList.innerHTML = calendarPreviewItems.map(renderCalendarPreviewCard).join("");
+}
+
+function renderCalendarPreviewCard(item) {
+  return `
+    <article class="calendar-preview-card">
+      <div class="calendar-preview-date">${escapeHtml(item.label)}</div>
+      <div>
+        <h3>${escapeHtml(item.title)}</h3>
+        <p>${escapeHtml(item.text)}</p>
+      </div>
+      <div class="calendar-preview-time">${escapeHtml(item.time)}</div>
     </article>
   `;
 }
@@ -1059,6 +1104,7 @@ function init() {
   todayLabel.textContent = formatDate(new Date());
   loadState();
   bindEvents();
+  renderCalendarPreview();
   renderPlaceLists();
   if (state.newsCache) renderNews(state.newsCache, true);
   if (state.eventFeedCache) renderAutoEvents(state.eventFeedCache, true);
