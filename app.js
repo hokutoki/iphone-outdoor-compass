@@ -798,43 +798,68 @@ function renderCalendarEvents() {
 }
 
 function renderCalendarEventCard(item) {
-  const label = getCalendarDateLabel(item.start);
+  const dateBadge = getCalendarDateBadge(item.start);
   const time = getCalendarTimeLabel(item);
   const text = item.location || (item.allDay ? "終日予定" : "Googleカレンダー");
+  const typeLabel = item.location ? "場所あり" : item.allDay ? "終日" : "予定";
   const link = item.htmlLink
-    ? `<a class="news-open-link" href="${escapeHtml(item.htmlLink)}" target="_blank" rel="noopener">カレンダーで開く</a>`
+    ? `<a class="news-open-link calendar-event-link" href="${escapeHtml(item.htmlLink)}" target="_blank" rel="noopener">カレンダーで開く</a>`
     : "";
   return `
     <article class="calendar-preview-card calendar-event-card">
-      <div class="calendar-preview-date">${escapeHtml(label)}</div>
-      <div>
-        <h3>${escapeHtml(item.title)}</h3>
-        <p>${escapeHtml(text)}</p>
+      <div class="calendar-event-date-badge" aria-label="${escapeHtml(dateBadge.accessibleLabel)}">
+        <strong>${escapeHtml(dateBadge.primary)}</strong>
+        <span>${escapeHtml(dateBadge.secondary)}</span>
+      </div>
+      <div class="calendar-event-body">
+        <div class="calendar-event-title-row">
+          <h3>${escapeHtml(item.title)}</h3>
+          <span class="calendar-event-time-pill">${escapeHtml(time)}</span>
+        </div>
+        <div class="calendar-event-meta-row">
+          <span class="calendar-event-type-chip">${escapeHtml(typeLabel)}</span>
+          <p>${escapeHtml(text)}</p>
+        </div>
         ${link}
       </div>
-      <div class="calendar-preview-time">${escapeHtml(time)}</div>
     </article>
   `;
 }
 
-function getCalendarDateLabel(value) {
+function getCalendarDateBadge(value) {
   const date = new Date(value.length === 10 ? `${value}T00:00:00` : value);
-  if (Number.isNaN(date.getTime())) return "予定";
+  if (Number.isNaN(date.getTime())) {
+    return {
+      primary: "予定",
+      secondary: "--/--",
+      accessibleLabel: "予定日不明",
+    };
+  }
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const target = new Date(date);
   target.setHours(0, 0, 0, 0);
   const diff = Math.round((target.getTime() - today.getTime()) / 86400000);
-  if (diff === 0) return "今日";
-  if (diff === 1) return "明日";
-  return formatDate(date);
+  const weekday = new Intl.DateTimeFormat("ja-JP", { weekday: "short" }).format(date);
+  const monthDay = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric" }).format(date);
+  const primary = diff === 0 ? "今日" : diff === 1 ? "明日" : weekday;
+
+  return {
+    primary,
+    secondary: monthDay,
+    accessibleLabel: `${primary} ${monthDay}`,
+  };
 }
 
 function getCalendarTimeLabel(item) {
   if (item.allDay) return "終日";
   const start = new Date(item.start);
   if (Number.isNaN(start.getTime())) return "--:--";
+  const end = new Date(item.end);
+  if (!Number.isNaN(end.getTime()) && end > start) {
+    return `${formatTime(start)}-${formatTime(end)}`;
+  }
   return formatTime(start);
 }
 

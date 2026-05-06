@@ -654,7 +654,99 @@ h2 {
 }
 
 .calendar-event-card {
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 12px;
   align-items: start;
+  min-height: auto;
+  padding: 14px;
+  border-color: #e7ece9;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
+}
+
+.calendar-event-date-badge {
+  display: grid;
+  min-height: 60px;
+  place-items: center;
+  align-content: center;
+  gap: 3px;
+  border-radius: 8px;
+  background: var(--green-soft);
+  color: var(--green-dark);
+  text-align: center;
+}
+
+.calendar-event-date-badge strong {
+  font-size: 0.8rem;
+  font-weight: 950;
+  line-height: 1.1;
+}
+
+.calendar-event-date-badge span {
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.calendar-event-body {
+  display: grid;
+  gap: 8px;
+}
+
+.calendar-event-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.calendar-event-title-row h3 {
+  min-width: 0;
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.32;
+}
+
+.calendar-event-time-pill {
+  flex: 0 0 auto;
+  max-width: 116px;
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 0.7rem;
+  font-weight: 950;
+  line-height: 1.15;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.calendar-event-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.calendar-event-type-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: #f0f7f4;
+  color: var(--green-dark);
+  font-size: 0.68rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.calendar-event-meta-row p {
+  flex: 1 1 150px;
+}
+
+.calendar-event-link {
+  width: fit-content;
 }
 
 .small-icon-button {
@@ -1073,6 +1165,25 @@ textarea:focus-visible {
 
   .calendar-preview-card {
     grid-template-columns: 50px minmax(0, 1fr);
+  }
+
+  .calendar-event-card {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .calendar-event-date-badge {
+    min-height: 56px;
+  }
+
+  .calendar-event-title-row {
+    display: grid;
+    gap: 7px;
+  }
+
+  .calendar-event-time-pill {
+    width: fit-content;
+    max-width: 100%;
   }
 
   .calendar-preview-time {
