@@ -15,6 +15,7 @@ Open-Meteoの公開APIを使い、天気、雨、風、PM2.5、UVから外出し
 - 情報タブで地域ニュース、地域イベント、公式リンクを確認
 - GitHub Actionsでヒガシルのイベント情報をJSON化して表示
 - Google Calendar APIのClient IDを内蔵し、iPhone単独で予定の読み取り接続を開始可能
+- Googleカレンダー予定を今日、明日、今後7日間で切り替え表示
 
 ## 使用API
 

@@ -5,6 +5,33 @@ const calendarScope = "https://www.googleapis.com/auth/calendar.events.readonly"
 const calendarApiBaseUrl = "https://www.googleapis.com/calendar/v3";
 const googleIdentityScriptUrl = "https://accounts.google.com/gsi/client";
 const defaultCalendarClientId = "176925321769-f8r8ic1bvbd84tn1co66bl3ibeuqo4ai.apps.googleusercontent.com";
+const defaultCalendarRangeMode = "week";
+const calendarRangeOptions = {
+  today: {
+    label: "今日",
+    statusLabel: "今日",
+    startOffsetDays: 0,
+    daySpan: 1,
+    maxResults: 10,
+    emptyText: "今日の予定はありません。",
+  },
+  tomorrow: {
+    label: "明日",
+    statusLabel: "明日",
+    startOffsetDays: 1,
+    daySpan: 1,
+    maxResults: 10,
+    emptyText: "明日の予定はありません。",
+  },
+  week: {
+    label: "7日間",
+    statusLabel: "今後7日間",
+    startOffsetDays: 0,
+    daySpan: 7,
+    maxResults: 30,
+    emptyText: "今後7日間の予定はありません。",
+  },
+};
 
 const defaultLocation = {
   id: "higashihiroshima",
@@ -27,6 +54,7 @@ const state = {
   calendarTokenExpiresAt: 0,
   calendarEvents: [],
   calendarFetchedAt: "",
+  calendarRangeMode: defaultCalendarRangeMode,
 };
 
 const views = {
@@ -56,6 +84,7 @@ const calendarStatus = document.querySelector("#calendar-status");
 const calendarPreviewList = document.querySelector("#calendar-preview-list");
 const connectCalendar = document.querySelector("#connect-calendar");
 const disconnectCalendar = document.querySelector("#disconnect-calendar");
+const calendarRangeButtons = document.querySelectorAll("[data-calendar-range]");
 const refreshNews = document.querySelector("#refresh-news");
 const newsUpdated = document.querySelector("#news-updated");
 const newsStatus = document.querySelector("#news-status");
@@ -156,6 +185,7 @@ function loadState() {
     if (parsed.newsCache) state.newsCache = parsed.newsCache;
     if (parsed.eventFeedCache) state.eventFeedCache = normalizeEventFeed(parsed.eventFeedCache);
     if (parsed.calendarClientId) state.calendarClientId = String(parsed.calendarClientId).trim();
+    if (isCalendarRangeMode(parsed.calendarRangeMode)) state.calendarRangeMode = parsed.calendarRangeMode;
   } catch {
     state.activeLocationId = defaultLocation.id;
     state.savedLocations = [defaultLocation];
@@ -163,6 +193,7 @@ function loadState() {
     state.newsCache = null;
     state.eventFeedCache = null;
     state.calendarClientId = "";
+    state.calendarRangeMode = defaultCalendarRangeMode;
     clearCalendarSession();
   }
 }
@@ -177,6 +208,7 @@ function saveState() {
       newsCache: state.newsCache,
       eventFeedCache: state.eventFeedCache,
       calendarClientId: state.calendarClientId,
+      calendarRangeMode: state.calendarRangeMode,
     }),
   );
 }
@@ -463,6 +495,8 @@ function renderNewsCard(item) {
 }
 
 function renderCalendarPreview() {
+  renderCalendarRangeControls();
+
   if (hasUsableCalendarToken()) {
     renderCalendarEvents();
     return;
@@ -549,6 +583,22 @@ function isValidGoogleClientId(value) {
   return /^\d+-[A-Za-z0-9_-]+\.apps\.googleusercontent\.com$/.test(String(value || "").trim());
 }
 
+function isCalendarRangeMode(value) {
+  return Object.prototype.hasOwnProperty.call(calendarRangeOptions, value);
+}
+
+function getCalendarRangeOption() {
+  return calendarRangeOptions[state.calendarRangeMode] || calendarRangeOptions[defaultCalendarRangeMode];
+}
+
+function renderCalendarRangeControls() {
+  calendarRangeButtons.forEach((button) => {
+    const active = button.dataset.calendarRange === state.calendarRangeMode;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+}
+
 function hasUsableCalendarToken() {
   return Boolean(state.calendarAccessToken && Date.now() < state.calendarTokenExpiresAt - 60 * 1000);
 }
@@ -567,10 +617,12 @@ async function handleCalendarConnect() {
     return;
   }
 
+  const range = getCalendarRangeOption();
+
   try {
     connectCalendar.disabled = true;
     calendarStatus.textContent = hasUsableCalendarToken()
-      ? "Googleカレンダーの予定を更新しています。"
+      ? `${range.statusLabel}の予定を更新しています。`
       : "Google認証を開いています。";
 
     if (!hasUsableCalendarToken()) {
@@ -584,8 +636,37 @@ async function handleCalendarConnect() {
     calendarConnectionLabel.textContent = "接続エラー";
     calendarStatus.textContent = getCalendarErrorMessage(error);
     connectCalendar.innerHTML = `<svg><use href="#icon-calendar"></use></svg>Google接続`;
-    disconnectCalendar.disabled = true;
+    disconnectCalendar.disabled = !hasUsableCalendarToken();
     calendarPreviewList.innerHTML = calendarPreviewItems.map(renderCalendarPreviewCard).join("");
+  } finally {
+    connectCalendar.disabled = false;
+  }
+}
+
+async function handleCalendarRangeChange(event) {
+  const nextRangeMode = event.currentTarget.dataset.calendarRange;
+  if (!isCalendarRangeMode(nextRangeMode) || state.calendarRangeMode === nextRangeMode) return;
+
+  state.calendarRangeMode = nextRangeMode;
+  saveState();
+  renderCalendarRangeControls();
+
+  if (!hasUsableCalendarToken()) {
+    renderCalendarPreview();
+    return;
+  }
+
+  const range = getCalendarRangeOption();
+  try {
+    connectCalendar.disabled = true;
+    calendarStatus.textContent = `${range.statusLabel}の予定を読み込んでいます。`;
+    await fetchCalendarEvents();
+  } catch (error) {
+    calendarConnectionLabel.textContent = "接続エラー";
+    calendarStatus.textContent = getCalendarErrorMessage(error);
+    connectCalendar.innerHTML = `<svg><use href="#icon-refresh"></use></svg>予定を更新`;
+    disconnectCalendar.disabled = !hasUsableCalendarToken();
+    calendarPreviewList.innerHTML = emptyState(`${range.statusLabel}の予定を更新できませんでした。`);
   } finally {
     connectCalendar.disabled = false;
   }
@@ -660,19 +741,22 @@ async function fetchCalendarEvents() {
 }
 
 function buildCalendarEventsUrl() {
+  const range = getCalendarRangeOption();
   const timeMin = new Date();
   timeMin.setHours(0, 0, 0, 0);
+  timeMin.setDate(timeMin.getDate() + range.startOffsetDays);
 
   const timeMax = new Date(timeMin);
-  timeMax.setDate(timeMax.getDate() + 7);
+  timeMax.setDate(timeMax.getDate() + range.daySpan);
 
   const params = new URLSearchParams({
     timeMin: timeMin.toISOString(),
     timeMax: timeMax.toISOString(),
+    timeZone: getActiveLocation().timezone || defaultLocation.timezone,
     singleEvents: "true",
     orderBy: "startTime",
     showDeleted: "false",
-    maxResults: "20",
+    maxResults: String(range.maxResults),
   });
 
   return `${calendarApiBaseUrl}/calendars/primary/events?${params.toString()}`;
@@ -695,20 +779,22 @@ function normalizeCalendarEvents(items) {
       };
     })
     .filter((item) => item.start)
-    .slice(0, 20);
+    .slice(0, getCalendarRangeOption().maxResults);
 }
 
 function renderCalendarEvents() {
+  renderCalendarRangeControls();
+  const range = getCalendarRangeOption();
   calendarConnectionLabel.textContent = "接続中";
   calendarStatus.textContent = state.calendarFetchedAt
-    ? `予定を表示中: ${formatUpdated(state.calendarFetchedAt)}`
+    ? `${range.statusLabel}の予定を表示中: ${formatUpdated(state.calendarFetchedAt)}`
     : "予定を表示中です。";
   connectCalendar.disabled = false;
   connectCalendar.innerHTML = `<svg><use href="#icon-refresh"></use></svg>予定を更新`;
   disconnectCalendar.disabled = false;
   calendarPreviewList.innerHTML = state.calendarEvents.length
     ? state.calendarEvents.map(renderCalendarEventCard).join("")
-    : emptyState("今後7日間の予定はありません。");
+    : emptyState(range.emptyText);
 }
 
 function renderCalendarEventCard(item) {
@@ -1400,6 +1486,9 @@ function bindEvents() {
   refreshNow.addEventListener("click", fetchWeather);
   connectCalendar.addEventListener("click", handleCalendarConnect);
   disconnectCalendar.addEventListener("click", disconnectGoogleCalendar);
+  calendarRangeButtons.forEach((button) => {
+    button.addEventListener("click", handleCalendarRangeChange);
+  });
   saveCalendarClient.addEventListener("click", saveCalendarClientId);
   clearCalendarClient.addEventListener("click", clearCalendarClientId);
   refreshNews.addEventListener("click", () => fetchNews(true));

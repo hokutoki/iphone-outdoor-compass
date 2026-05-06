@@ -570,6 +570,36 @@ h2 {
   cursor: default;
 }
 
+.calendar-range-control {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border-radius: 10px;
+  background: #f2f5f3;
+}
+
+.calendar-range-control button {
+  min-height: 34px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.calendar-range-control button.active {
+  background: #ffffff;
+  color: var(--green-dark);
+  box-shadow: 0 6px 16px rgba(41, 74, 59, 0.1);
+}
+
+.calendar-range-control button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
 .calendar-preview-list {
   display: grid;
   gap: 9px;
