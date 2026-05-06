@@ -130,6 +130,19 @@
               </div>
             </div>
 
+            <div class="transport-mode-panel">
+              <div class="transport-mode-heading">
+                <span class="section-kicker">Move</span>
+                <strong>移動手段</strong>
+              </div>
+              <div class="transport-mode-control" role="group" aria-label="外出判断の移動手段">
+                <button type="button" data-transport-mode="walk" aria-pressed="true">徒歩</button>
+                <button type="button" data-transport-mode="bike" aria-pressed="false">自転車</button>
+                <button type="button" data-transport-mode="car" aria-pressed="false">車</button>
+              </div>
+              <p id="transport-mode-note" class="helper-text">徒歩移動を基準に、雨・風・暑さを重めに見ます。</p>
+            </div>
+
             <div id="advice-list" class="advice-list"></div>
           </div>
 

@@ -6,6 +6,7 @@ const calendarApiBaseUrl = "https://www.googleapis.com/calendar/v3";
 const googleIdentityScriptUrl = "https://accounts.google.com/gsi/client";
 const defaultCalendarClientId = "176925321769-f8r8ic1bvbd84tn1co66bl3ibeuqo4ai.apps.googleusercontent.com";
 const defaultCalendarRangeMode = "week";
+const defaultTransportMode = "walk";
 const calendarRangeOptions = {
   today: {
     label: "今日",
@@ -32,6 +33,23 @@ const calendarRangeOptions = {
     emptyText: "今後7日間の予定はありません。",
   },
 };
+const transportModeOptions = {
+  walk: {
+    label: "徒歩",
+    statusLabel: "徒歩移動",
+    note: "徒歩移動を基準に、雨・風・暑さを重めに見ます。",
+  },
+  bike: {
+    label: "自転車",
+    statusLabel: "自転車移動",
+    note: "自転車移動を基準に、雨と風を特に厳しめに見ます。",
+  },
+  car: {
+    label: "車",
+    statusLabel: "車移動",
+    note: "車移動を基準に、視界・雨・横風を中心に見ます。",
+  },
+};
 
 const defaultLocation = {
   id: "higashihiroshima",
@@ -55,6 +73,7 @@ const state = {
   calendarEvents: [],
   calendarFetchedAt: "",
   calendarRangeMode: defaultCalendarRangeMode,
+  transportMode: defaultTransportMode,
 };
 
 const views = {
@@ -75,6 +94,8 @@ const conditionLabel = document.querySelector("#condition-label");
 const conditionSummary = document.querySelector("#condition-summary");
 const updatedLabel = document.querySelector("#updated-label");
 const adviceList = document.querySelector("#advice-list");
+const transportModeButtons = document.querySelectorAll("[data-transport-mode]");
+const transportModeNote = document.querySelector("#transport-mode-note");
 const scheduleWeatherPanel = document.querySelector("#schedule-weather-panel");
 const metricGrid = document.querySelector("#metric-grid");
 const activityGrid = document.querySelector("#activity-grid");
@@ -193,6 +214,7 @@ function loadState() {
     if (parsed.eventFeedCache) state.eventFeedCache = normalizeEventFeed(parsed.eventFeedCache);
     if (parsed.calendarClientId) state.calendarClientId = String(parsed.calendarClientId).trim();
     if (isCalendarRangeMode(parsed.calendarRangeMode)) state.calendarRangeMode = parsed.calendarRangeMode;
+    if (isTransportMode(parsed.transportMode)) state.transportMode = parsed.transportMode;
   } catch {
     state.activeLocationId = defaultLocation.id;
     state.savedLocations = [defaultLocation];
@@ -201,6 +223,7 @@ function loadState() {
     state.eventFeedCache = null;
     state.calendarClientId = "";
     state.calendarRangeMode = defaultCalendarRangeMode;
+    state.transportMode = defaultTransportMode;
     clearCalendarSession();
   }
 }
@@ -216,6 +239,7 @@ function saveState() {
       eventFeedCache: state.eventFeedCache,
       calendarClientId: state.calendarClientId,
       calendarRangeMode: state.calendarRangeMode,
+      transportMode: state.transportMode,
     }),
   );
 }
@@ -605,6 +629,39 @@ function renderCalendarRangeControls() {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", active ? "true" : "false");
   });
+}
+
+function isTransportMode(value) {
+  return Object.prototype.hasOwnProperty.call(transportModeOptions, value);
+}
+
+function getTransportModeOption() {
+  return transportModeOptions[state.transportMode] || transportModeOptions[defaultTransportMode];
+}
+
+function renderTransportModeControls() {
+  const option = getTransportModeOption();
+  transportModeButtons.forEach((button) => {
+    const active = button.dataset.transportMode === state.transportMode;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+  transportModeNote.textContent = option.note;
+}
+
+function handleTransportModeChange(event) {
+  const nextMode = event.currentTarget.dataset.transportMode;
+  if (!isTransportMode(nextMode) || state.transportMode === nextMode) return;
+
+  state.transportMode = nextMode;
+  saveState();
+  renderTransportModeControls();
+
+  if (state.cache) {
+    renderWeather(state.cache, false);
+  } else {
+    renderScheduleWeatherPanel();
+  }
 }
 
 function hasUsableCalendarToken() {
@@ -1045,13 +1102,15 @@ function renderWeather(cache, isStale, error) {
   const airCurrent = air.current || {};
   const hours = getNextHours(forecast, air);
   const scores = computeScores(current, airCurrent, hours);
+  const transport = getTransportModeOption();
 
+  renderTransportModeControls();
   activeLocationLabel.innerHTML = `<svg><use href="#icon-pin"></use></svg>${escapeHtml(location.name)}`;
   scoreRing.style.setProperty("--score", scores.outdoor);
   scoreRing.style.setProperty("--score-color", getScoreColor(scores.outdoor));
   scoreValue.textContent = String(scores.outdoor);
-  conditionLabel.textContent = getScoreLabel(scores.outdoor);
-  conditionSummary.textContent = getWeatherName(current.weather_code);
+  conditionLabel.textContent = getTransportScoreLabel(scores.outdoor, state.transportMode);
+  conditionSummary.textContent = `${getWeatherName(current.weather_code)} / ${transport.statusLabel}基準`;
   updatedLabel.textContent = isStale
     ? `前回データ: ${formatUpdated(fetchedAt)}`
     : formatUpdated(fetchedAt);
@@ -1211,16 +1270,17 @@ function renderScheduleWeatherNoForecast(event) {
 
 function renderScheduleWeatherDecision(event, weatherMatch) {
   const { hour } = weatherMatch;
-  const score = computeHourScore(hour);
+  const transport = getTransportModeOption();
+  const score = computeTransportHourScore(hour, state.transportMode);
   const tone = score >= 72 ? "good" : score >= 48 ? "warn" : "bad";
-  const title = scoreText(score, "予定どおり動きやすい", "準備して出る", "時間変更も候補");
+  const title = getTransportDecisionTitle(score, state.transportMode);
   const eventTime = formatCalendarEventTimeForWeather(event);
   const location = event.location || "場所情報なし";
   const rain = round(hour.rainProbability);
   const temp = round(hour.temperature, 1);
   const wind = round(hour.wind, 1);
   const weather = getWeatherName(hour.weatherCode);
-  const advice = buildScheduleWeatherAdvice(hour, score);
+  const advice = buildScheduleWeatherAdvice(hour, score, state.transportMode);
 
   return `
     <div class="schedule-weather-header">
@@ -1235,7 +1295,7 @@ function renderScheduleWeatherDecision(event, weatherMatch) {
       <p class="schedule-weather-time">${escapeHtml(eventTime)} / ${escapeHtml(location)}</p>
       <div class="schedule-weather-summary">
         <span class="${tone}">${escapeHtml(title)}</span>
-        <small>${escapeHtml(weather)} / 雨 ${rain ?? "--"}% / 気温 ${temp ?? "--"}度 / 風 ${wind ?? "--"}km/h</small>
+        <small>${escapeHtml(transport.statusLabel)}基準 / ${escapeHtml(weather)} / 雨 ${rain ?? "--"}% / 気温 ${temp ?? "--"}度 / 風 ${wind ?? "--"}km/h</small>
       </div>
       <div class="schedule-weather-advice">
         ${advice.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}
@@ -1252,13 +1312,34 @@ function formatCalendarEventTimeForWeather(event) {
   return `${dateLabel} ${getCalendarTimeLabel(event)}`;
 }
 
-function buildScheduleWeatherAdvice(hour, score) {
+function buildScheduleWeatherAdvice(hour, score, mode = state.transportMode) {
   const advice = [];
   const rain = Number(hour.rainProbability || 0);
   const wind = Number(hour.wind || 0);
   const gust = Number(hour.gust || wind);
   const temp = Number(hour.apparent ?? hour.temperature ?? 20);
   const uv = Number(hour.uv || 0);
+
+  if (mode === "car") {
+    if (rain >= 60 || Number(hour.precipitation || 0) >= 1) advice.push("視界と路面に注意");
+    else if (rain >= 35) advice.push("乗降時の雨具を確認");
+    else advice.push("雨の影響は小さめ");
+
+    if (gust >= 40 || wind >= 28) advice.push("横風とドア開閉に注意");
+    else advice.push(score >= 72 ? "通常運転で動きやすい" : "時間に余裕を足す");
+    return advice.slice(0, 2);
+  }
+
+  if (mode === "bike") {
+    if (rain >= 45 || Number(hour.precipitation || 0) >= 0.5) advice.push("雨具か徒歩・車も候補");
+    else if (rain >= 25) advice.push("路面変化に注意");
+    else advice.push("雨の心配は小さめ");
+
+    if (gust >= 30 || wind >= 20) advice.push("風でふらつきやすい");
+    else if (temp >= 30) advice.push("暑さと水分を優先");
+    else advice.push(score >= 72 ? "自転車でも動きやすい" : "短距離中心が無難");
+    return advice.slice(0, 2);
+  }
 
   if (rain >= 60 || Number(hour.precipitation || 0) >= 1) advice.push("傘か雨具を先に用意");
   else if (rain >= 35) advice.push("折りたたみ傘があると安心");
@@ -1305,6 +1386,32 @@ function valueAt(values, index) {
   return values[index] ?? null;
 }
 
+function computeTransportCompositeScore(values, mode = state.transportMode) {
+  const transportMode = isTransportMode(mode) ? mode : defaultTransportMode;
+  const tempScore = Number(values.tempScore ?? 70);
+  const rainScore = Number(values.rainScore ?? 70);
+  const windScore = Number(values.windScore ?? 70);
+  const airScore = Number(values.airScore ?? 70);
+  const uvScore = Number(values.uvScore ?? 70);
+  const rainProbability = Number(values.nextRainProbability ?? values.rainProbability ?? 0);
+  const precipitation = Number(values.nextPrecipitation ?? values.precipitation ?? 0);
+  const gust = Number(values.gust || values.wind || 0);
+
+  if (transportMode === "car") {
+    const visibilityPenalty = Math.max(0, rainProbability - 55) * 0.18 + Math.max(0, precipitation - 2) * 4;
+    const gustPenalty = Math.max(0, gust - 40) * 1.8;
+    return Math.round(clamp(rainScore * 0.46 + windScore * 0.32 + tempScore * 0.08 + airScore * 0.08 + uvScore * 0.02 + 8 - visibilityPenalty - gustPenalty, 0, 100));
+  }
+
+  if (transportMode === "bike") {
+    const wetRoadPenalty = Math.max(0, rainProbability - 35) * 0.28 + Math.max(0, precipitation - 0.5) * 7;
+    const gustPenalty = Math.max(0, gust - 28) * 2.4;
+    return Math.round(clamp(tempScore * 0.18 + rainScore * 0.34 + windScore * 0.3 + airScore * 0.1 + uvScore * 0.08 - wetRoadPenalty - gustPenalty, 0, 100));
+  }
+
+  return Math.round(clamp(tempScore * 0.26 + rainScore * 0.3 + windScore * 0.18 + airScore * 0.16 + uvScore * 0.1, 0, 100));
+}
+
 function computeScores(current, airCurrent, hours) {
   const nextRainProbability = Math.max(...hours.map((hour) => Number(hour.rainProbability || 0)), 0);
   const nextPrecipitation = hours.reduce((total, hour) => total + Number(hour.precipitation || 0), 0);
@@ -1320,21 +1427,28 @@ function computeScores(current, airCurrent, hours) {
   const windScore = clamp(100 - Math.max(0, wind - 12) * 3.2 - Math.max(0, gust - 28) * 2, 0, 100);
   const airScore = clamp(100 - Math.max(0, pm25 - 12) * 2.8, 0, 100);
   const uvScore = clamp(100 - Math.max(0, uv - 5) * 12, 0, 100);
+  const components = {
+    tempScore,
+    rainScore,
+    windScore,
+    airScore,
+    uvScore,
+    nextRainProbability,
+    nextPrecipitation,
+    apparent,
+    wind,
+    gust,
+    pm25,
+    uv,
+  };
+  const outdoor = computeTransportCompositeScore(components, state.transportMode);
 
-  const outdoor = Math.round(
-    tempScore * 0.26 +
-      rainScore * 0.3 +
-      windScore * 0.18 +
-      airScore * 0.16 +
-      uvScore * 0.1,
-  );
-
-  const walk = Math.round(outdoor);
+  const walk = computeTransportCompositeScore(components, "walk");
   const laundry = Math.round(clamp(rainScore * 0.45 + (100 - cloud) * 0.25 + windScore * 0.15 + tempScore * 0.15, 0, 100));
   const shopping = Math.round(clamp(outdoor * 0.75 + rainScore * 0.15 + windScore * 0.1, 0, 100));
-  const drive = Math.round(clamp(100 - nextRainProbability * 0.45 - Math.max(0, gust - 35) * 2.4, 0, 100));
+  const drive = computeTransportCompositeScore(components, "car");
 
-  const advice = buildAdvice({ apparent, nextRainProbability, nextPrecipitation, wind, gust, pm25, uv, outdoor });
+  const advice = buildAdvice({ ...components, outdoor, transportMode: state.transportMode });
 
   return {
     outdoor,
@@ -1350,14 +1464,17 @@ function computeScores(current, airCurrent, hours) {
 
 function buildAdvice(values) {
   const advice = [];
+  const mode = isTransportMode(values.transportMode) ? values.transportMode : defaultTransportMode;
   if (values.nextRainProbability >= 60 || values.nextPrecipitation >= 2) {
-    advice.push("雨の可能性が高めです。外出するなら傘と短い用事中心が無難です。");
+    advice.push(mode === "car" ? "雨が強い時間帯があります。運転は視界と路面を優先してください。" : "雨の可能性が高めです。外出するなら傘と短い用事中心が無難です。");
   } else if (values.nextRainProbability <= 25) {
-    advice.push("雨の心配は小さめです。短い外出や散歩を入れやすい条件です。");
+    advice.push(mode === "bike" ? "雨の心配は小さめです。風が弱ければ自転車も選びやすい条件です。" : "雨の心配は小さめです。短い外出や散歩を入れやすい条件です。");
   }
 
   if (values.gust >= 35 || values.wind >= 24) {
-    advice.push("風が強めです。自転車、洗濯物、傘の扱いに注意してください。");
+    advice.push(mode === "car" ? "風が強めです。橋や開けた道では横風に注意してください。" : "風が強めです。自転車、洗濯物、傘の扱いに注意してください。");
+  } else if (mode === "bike" && (values.gust >= 28 || values.wind >= 18)) {
+    advice.push("自転車では風を受けやすい条件です。短距離中心が無難です。");
   }
 
   if (values.pm25 >= 35) {
@@ -1371,11 +1488,12 @@ function buildAdvice(values) {
   if (values.apparent <= 5) {
     advice.push("体感温度が低いです。屋外では防寒を優先してください。");
   } else if (values.apparent >= 30) {
-    advice.push("体感温度が高いです。徒歩移動は短めにして水分を用意してください。");
+    advice.push(mode === "car" ? "車内も暑くなりやすいです。乗る前の換気と水分を意識してください。" : "体感温度が高いです。徒歩移動は短めにして水分を用意してください。");
   }
 
   if (!advice.length) {
-    advice.push(values.outdoor >= 70 ? "大きな注意条件は少なめです。外で済む用事を入れやすいです。" : "条件は中間です。近場の用事から選ぶのが現実的です。");
+    const transport = getTransportModeOption();
+    advice.push(values.outdoor >= 70 ? `${transport.statusLabel}でも大きな注意条件は少なめです。` : `${transport.statusLabel}では条件を見て、近場の用事から選ぶのが現実的です。`);
   }
 
   return advice.slice(0, 3);
@@ -1385,6 +1503,33 @@ function scoreText(score, good, warn, bad) {
   if (score >= 72) return good;
   if (score >= 48) return warn;
   return bad;
+}
+
+function getTransportDecisionTitle(score, mode = state.transportMode) {
+  if (mode === "car") return scoreText(score, "車で動きやすい", "運転は準備して出る", "時間変更も候補");
+  if (mode === "bike") return scoreText(score, "自転車向き", "短距離なら自転車可", "徒歩か車も候補");
+  return scoreText(score, "予定どおり歩きやすい", "準備して歩く", "時間変更も候補");
+}
+
+function getTransportScoreLabel(score, mode = state.transportMode) {
+  if (mode === "car") {
+    if (score >= 82) return "車で動きやすい";
+    if (score >= 66) return "運転しやすい";
+    if (score >= 45) return "運転は注意";
+    return "車でも慎重に";
+  }
+
+  if (mode === "bike") {
+    if (score >= 82) return "自転車向き";
+    if (score >= 66) return "短距離なら自転車";
+    if (score >= 45) return "風雨を見て判断";
+    return "自転車は避けたい";
+  }
+
+  if (score >= 82) return "歩きやすい";
+  if (score >= 66) return "短時間なら歩きやすい";
+  if (score >= 45) return "条件を見て徒歩";
+  return "屋内中心が無難";
 }
 
 function getScoreLabel(score) {
@@ -1484,14 +1629,30 @@ function renderHours(hours) {
     .join("");
 }
 
-function computeHourScore(hour) {
+function computeTransportHourScore(hour, mode = state.transportMode) {
   const temp = Number(hour.apparent ?? hour.temperature ?? 20);
   const tempScore = 100 - Math.min(Math.abs(temp - 21) * 5.5, 70);
   const rainScore = clamp(100 - Number(hour.rainProbability || 0) * 0.85 - Number(hour.precipitation || 0) * 10, 0, 100);
-  const windScore = clamp(100 - Math.max(0, Number(hour.wind || 0) - 12) * 3, 0, 100);
+  const wind = Number(hour.wind || 0);
+  const gust = Number(hour.gust || wind);
+  const windScore = clamp(100 - Math.max(0, wind - 12) * 3 - Math.max(0, gust - 28) * 1.7, 0, 100);
   const airScore = clamp(100 - Math.max(0, Number(hour.pm25 || 0) - 12) * 2.8, 0, 100);
   const uvScore = clamp(100 - Math.max(0, Number(hour.uv || 0) - 5) * 12, 0, 100);
-  return Math.round(tempScore * 0.24 + rainScore * 0.34 + windScore * 0.18 + airScore * 0.14 + uvScore * 0.1);
+  return computeTransportCompositeScore({
+    tempScore,
+    rainScore,
+    windScore,
+    airScore,
+    uvScore,
+    rainProbability: Number(hour.rainProbability || 0),
+    precipitation: Number(hour.precipitation || 0),
+    wind,
+    gust,
+  }, mode);
+}
+
+function computeHourScore(hour) {
+  return computeTransportHourScore(hour, state.transportMode);
 }
 
 function renderDaily(forecast) {
@@ -1807,6 +1968,9 @@ function bindEvents() {
   calendarRangeButtons.forEach((button) => {
     button.addEventListener("click", handleCalendarRangeChange);
   });
+  transportModeButtons.forEach((button) => {
+    button.addEventListener("click", handleTransportModeChange);
+  });
   saveCalendarClient.addEventListener("click", saveCalendarClientId);
   clearCalendarClient.addEventListener("click", clearCalendarClientId);
   refreshNews.addEventListener("click", () => fetchNews(true));
@@ -1851,6 +2015,7 @@ function init() {
   todayLabel.textContent = formatDate(new Date());
   loadState();
   bindEvents();
+  renderTransportModeControls();
   renderCalendarSettings();
   renderCalendarPreview();
   renderPlaceLists();

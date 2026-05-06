@@ -284,6 +284,57 @@ h2 {
   gap: 7px;
 }
 
+.transport-mode-panel {
+  display: grid;
+  gap: 9px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f4f7f6;
+}
+
+.transport-mode-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.transport-mode-heading strong {
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 950;
+}
+
+.transport-mode-control {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border-radius: 8px;
+  background: #e9efec;
+}
+
+.transport-mode-control button {
+  min-height: 34px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.transport-mode-control button.active {
+  background: #ffffff;
+  color: var(--green-dark);
+  box-shadow: 0 6px 16px rgba(41, 74, 59, 0.1);
+}
+
+.transport-mode-control button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
 .advice-item {
   display: grid;
   grid-template-columns: 3px minmax(0, 1fr);
