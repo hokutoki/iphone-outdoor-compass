@@ -13,7 +13,7 @@ Open-Meteoの公開APIを使い、天気、雨、風、PM2.5、UVから外出し
 - 通信できない場合は前回データを表示
 - GitHub Pagesなどの静的ホスティングで公開可能
 - 情報タブで地域ニュース、地域イベント、公式リンクを確認
-- GitHub Actionsでヒガシルのイベント情報をJSON化して表示
+- GitHub Actionsで静的サイトの公開とヒガシルのイベント情報JSON更新を実行
 - Google Calendar APIのClient IDを内蔵し、iPhone単独で予定の読み取り接続を開始可能
 - Googleカレンダー予定を今日、明日、今後7日間で切り替え表示
 - カレンダー予定を日付、時刻、場所の有無が分かるカードで表示
@@ -43,7 +43,7 @@ Open-Meteoの公開APIを使い、天気、雨、風、PM2.5、UVから外出し
 node scripts/update-events.mjs
 ```
 
-GitHub Actionsでは毎日5:15頃（日本時間）に `data/events.json` を更新します。
+GitHub Actionsでは毎日5:15頃（日本時間）に `data/events.json` を更新します。GitHub Pagesの公開もActionsワークフローから実行します。
 
 ## ローカル確認
 
