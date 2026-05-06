@@ -18,7 +18,6 @@ const state = {
   cache: null,
   newsCache: null,
   eventFeedCache: null,
-  eventNotes: [],
 };
 
 const views = {
@@ -51,12 +50,6 @@ const refreshEvents = document.querySelector("#refresh-events");
 const autoEventsUpdated = document.querySelector("#auto-events-updated");
 const eventsStatus = document.querySelector("#events-status");
 const autoEventList = document.querySelector("#auto-event-list");
-const eventForm = document.querySelector("#event-form");
-const eventTitle = document.querySelector("#event-title");
-const eventDate = document.querySelector("#event-date");
-const eventNote = document.querySelector("#event-note");
-const eventStatus = document.querySelector("#event-status");
-const eventList = document.querySelector("#event-list");
 const searchForm = document.querySelector("#search-form");
 const placeQuery = document.querySelector("#place-query");
 const placeStatus = document.querySelector("#place-status");
@@ -120,14 +113,12 @@ function loadState() {
     if (parsed.cache) state.cache = parsed.cache;
     if (parsed.newsCache) state.newsCache = parsed.newsCache;
     if (parsed.eventFeedCache) state.eventFeedCache = normalizeEventFeed(parsed.eventFeedCache);
-    if (Array.isArray(parsed.eventNotes)) state.eventNotes = normalizeEventNotes(parsed.eventNotes);
   } catch {
     state.activeLocationId = defaultLocation.id;
     state.savedLocations = [defaultLocation];
     state.cache = null;
     state.newsCache = null;
     state.eventFeedCache = null;
-    state.eventNotes = [];
   }
 }
 
@@ -140,7 +131,6 @@ function saveState() {
       cache: state.cache,
       newsCache: state.newsCache,
       eventFeedCache: state.eventFeedCache,
-      eventNotes: state.eventNotes,
     }),
   );
 }
@@ -512,21 +502,15 @@ function renderAutoEventCard(item) {
   const location = item.location ? `<small>${escapeHtml(item.location)}</small>` : "";
   const summary = item.summary ? `<p>${escapeHtml(item.summary)}</p>` : "";
   const tags = item.tags.length ? `<div class="auto-event-tags">${item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : "";
-  const saved = isAutoEventSaved(item);
   return `
-    <article class="auto-event-card" data-auto-event-id="${escapeHtml(item.id)}">
+    <article class="auto-event-card">
       <div>
         <p class="auto-event-meta">${escapeHtml(details || item.source || "イベント")}</p>
         <h3>${escapeHtml(item.title)}</h3>
         ${summary}
         ${location}
         ${tags}
-        <div class="auto-event-actions">
-          <button class="auto-event-save" type="button" data-auto-event-action="save" ${saved ? "disabled" : ""}>
-            ${saved ? "追加済み" : "メモに追加"}
-          </button>
-          <a class="news-open-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">詳細を開く</a>
-        </div>
+        <a class="news-open-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">詳細を開く</a>
       </div>
     </article>
   `;
@@ -541,159 +525,14 @@ function formatAutoEventDate(item) {
   return "";
 }
 
-function isAutoEventSaved(item) {
-  return state.eventNotes.some((note) => {
-    if (note.url && item.url) return note.url === item.url;
-    return note.title === item.title && note.date === item.startDate;
-  });
-}
-
-function handleAutoEventAction(event) {
-  const button = event.target.closest("[data-auto-event-action]");
-  if (!button) return;
-  const card = event.target.closest("[data-auto-event-id]");
-  if (!card) return;
-  const item = getAutoEventById(card.dataset.autoEventId);
-  if (!item) return;
-
-  if (button.dataset.autoEventAction === "save") {
-    addAutoEventToNotes(item);
-  }
-}
-
-function getAutoEventById(id) {
-  const items = state.eventFeedCache?.items || [];
-  return items.find((item) => item.id === id);
-}
-
-function addAutoEventToNotes(item) {
-  if (isAutoEventSaved(item)) {
-    eventStatus.textContent = "このイベントはすでにメモに追加済みです。";
-    renderAutoEvents(state.eventFeedCache, true);
-    return;
-  }
-
-  state.eventNotes.push({
-    id: createEventId(),
-    title: item.title,
-    date: item.startDate || "",
-    note: buildAutoEventNote(item),
-    url: item.url,
-    source: item.source || "ヒガシル",
-    createdAt: new Date().toISOString(),
-  });
-
-  saveState();
-  renderEventNotes();
-  renderAutoEvents(state.eventFeedCache, true);
-  eventStatus.textContent = `${item.title}をイベントメモに追加しました。`;
-}
-
-function buildAutoEventNote(item) {
-  return [
-    item.dateLabel ? `日程: ${item.dateLabel}` : "",
-    item.location ? `場所: ${item.location}` : "",
-    item.summary ? `内容: ${item.summary}` : "",
-  ]
-    .filter(Boolean)
-    .join(" / ");
-}
-
 function createEventId() {
   return window.crypto?.randomUUID?.() || `event-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-}
-
-function normalizeEventNotes(items) {
-  return items
-    .map((item) => ({
-      id: item.id || createEventId(),
-      title: String(item.title || "").trim(),
-      date: String(item.date || "").slice(0, 10),
-      note: String(item.note || "").trim(),
-      url: String(item.url || "").trim(),
-      source: String(item.source || "").trim(),
-      createdAt: item.createdAt || new Date().toISOString(),
-    }))
-    .filter((item) => item.title || item.note);
-}
-
-function addEventNote(event) {
-  event.preventDefault();
-
-  const title = eventTitle.value.trim();
-  const date = eventDate.value;
-  const note = eventNote.value.trim();
-
-  if (!title) {
-    eventStatus.textContent = "イベント名を入力してください。";
-    return;
-  }
-
-  state.eventNotes.push({
-    id: createEventId(),
-    title,
-    date,
-    note,
-    createdAt: new Date().toISOString(),
-  });
-
-  saveState();
-  eventForm.reset();
-  eventStatus.textContent = "イベントメモを保存しました。";
-  renderEventNotes();
-}
-
-function renderEventNotes() {
-  const notes = [...state.eventNotes].sort((a, b) => {
-    const aDate = a.date || "9999-12-31";
-    const bDate = b.date || "9999-12-31";
-    if (aDate !== bDate) return aDate.localeCompare(bDate);
-    return String(a.createdAt || "").localeCompare(String(b.createdAt || ""));
-  });
-
-  eventList.innerHTML = notes.length
-    ? notes.map(renderEventNote).join("")
-    : emptyState("気になるイベントを見つけたら、ここにメモできます。");
-}
-
-function renderEventNote(item) {
-  const note = item.note ? `<p>${escapeHtml(item.note)}</p>` : "";
-  const source = item.source ? `<span class="event-note-source">${escapeHtml(item.source)}</span>` : "";
-  const link = item.url ? `<a class="event-note-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">詳細を開く</a>` : "";
-  return `
-    <article class="event-note-item" data-event-id="${escapeHtml(item.id)}">
-      <div>
-        <strong>${escapeHtml(item.title)}</strong>
-        <span>${escapeHtml(formatEventDate(item.date))}</span>
-        ${source}
-        ${note}
-        ${link}
-      </div>
-      <button class="event-delete" type="button" data-event-action="delete" aria-label="${escapeHtml(item.title)}を削除">
-        <svg><use href="#icon-trash"></use></svg>
-      </button>
-    </article>
-  `;
 }
 
 function formatEventDate(value) {
   if (!value) return "日付未設定";
   const date = new Date(`${value}T00:00:00`);
   return Number.isNaN(date.getTime()) ? value : formatDate(date);
-}
-
-function handleEventAction(event) {
-  const button = event.target.closest("[data-event-action]");
-  if (!button) return;
-  const item = event.target.closest("[data-event-id]");
-  if (!item) return;
-
-  if (button.dataset.eventAction === "delete") {
-    state.eventNotes = state.eventNotes.filter((note) => note.id !== item.dataset.eventId);
-    saveState();
-    renderEventNotes();
-    eventStatus.textContent = "イベントメモを削除しました。";
-  }
 }
 
 function renderLoading(location) {
@@ -1112,7 +951,6 @@ function getBackupPayload() {
     data: {
       activeLocationId: state.activeLocationId,
       savedLocations: state.savedLocations,
-      eventNotes: state.eventNotes,
     },
   };
 }
@@ -1154,7 +992,7 @@ function importBackup() {
     return;
   }
 
-  const confirmed = window.confirm("現在の保存地点とイベントメモを、貼り付けたバックアップで置き換えます。実行しますか？");
+  const confirmed = window.confirm("現在の保存地点を、貼り付けたバックアップで置き換えます。実行しますか？");
   if (!confirmed) {
     backupStatus.textContent = "復元をキャンセルしました。";
     return;
@@ -1162,10 +1000,8 @@ function importBackup() {
 
   state.savedLocations = dedupeLocations([defaultLocation, ...data.savedLocations.map(normalizeLocation)]);
   state.activeLocationId = data.activeLocationId || defaultLocation.id;
-  state.eventNotes = Array.isArray(data.eventNotes) ? normalizeEventNotes(data.eventNotes) : state.eventNotes;
   saveState();
   renderPlaceLists();
-  renderEventNotes();
   fetchWeather();
   backupStatus.textContent = "バックアップから復元しました。";
 }
@@ -1200,9 +1036,6 @@ function bindEvents() {
   refreshNow.addEventListener("click", fetchWeather);
   refreshNews.addEventListener("click", () => fetchNews(true));
   refreshEvents.addEventListener("click", () => fetchEvents(true));
-  autoEventList.addEventListener("click", handleAutoEventAction);
-  eventForm.addEventListener("submit", addEventNote);
-  eventList.addEventListener("click", handleEventAction);
   searchForm.addEventListener("submit", handleSearch);
   searchResults.addEventListener("click", handlePlaceAction);
   savedPlaces.addEventListener("click", handlePlaceAction);
@@ -1227,7 +1060,6 @@ function init() {
   loadState();
   bindEvents();
   renderPlaceLists();
-  renderEventNotes();
   if (state.newsCache) renderNews(state.newsCache, true);
   if (state.eventFeedCache) renderAutoEvents(state.eventFeedCache, true);
 

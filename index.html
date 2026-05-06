@@ -211,30 +211,6 @@
             </a>
           </div>
 
-          <div class="event-note-panel">
-            <div class="section-heading compact">
-              <span class="section-kicker">My list</span>
-              <h2>気になるイベントメモ</h2>
-            </div>
-            <form id="event-form" class="event-form">
-              <label>
-                <span>イベント名</span>
-                <input id="event-title" type="text" autocomplete="off" placeholder="例: 酒まつり、道の駅の催し" />
-              </label>
-              <label>
-                <span>日付</span>
-                <input id="event-date" type="date" />
-              </label>
-              <label>
-                <span>メモ</span>
-                <textarea id="event-note" rows="3" placeholder="確認したい内容や候補時間を残せます。"></textarea>
-              </label>
-              <button class="full-button primary" type="submit">メモに追加</button>
-            </form>
-            <p id="event-status" class="helper-text" aria-live="polite"></p>
-            <div id="event-list" class="event-list"></div>
-          </div>
-
           <div class="section-heading">
             <span class="section-kicker">Official links</span>
             <h2>公式・確認リンク</h2>
@@ -304,7 +280,7 @@
             </div>
             <div class="info-row">
               <strong>保存</strong>
-              <span>地点、イベントメモ、前回取得データは、このブラウザ内に保存</span>
+              <span>地点と前回取得データは、このブラウザ内に保存</span>
             </div>
             <div class="info-row">
               <strong>オフライン</strong>
@@ -330,7 +306,7 @@
             </div>
             <label class="backup-label">
               <span>バックアップJSON</span>
-              <textarea id="backup-text" rows="7" placeholder="保存地点とイベントメモのバックアップをここに表示します。"></textarea>
+              <textarea id="backup-text" rows="7" placeholder="保存地点のバックアップをここに表示します。"></textarea>
             </label>
             <button id="import-data" class="full-button primary" type="button">貼り付けた内容で復元</button>
             <p id="backup-status" class="helper-text" aria-live="polite"></p>
