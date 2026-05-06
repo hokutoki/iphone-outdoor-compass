@@ -143,6 +143,7 @@ h2 {
 .activity-card,
 .hour-card,
 .day-card,
+.schedule-weather-panel,
 .search-form,
 .place-card,
 .calendar-panel,
@@ -361,6 +362,129 @@ h2 {
 .daily-list {
   display: grid;
   gap: 9px;
+}
+
+.schedule-weather-panel {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border-color: transparent;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
+}
+
+.schedule-weather-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.schedule-weather-header h2 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.schedule-weather-score {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 1.02rem;
+  font-weight: 950;
+}
+
+.schedule-weather-score.good {
+  background: var(--green-soft);
+  color: var(--green-dark);
+}
+
+.schedule-weather-score.warn {
+  background: var(--amber-soft);
+  color: #7a551a;
+}
+
+.schedule-weather-score.bad {
+  background: var(--coral-soft);
+  color: #8a3222;
+}
+
+.schedule-weather-main {
+  display: grid;
+  gap: 8px;
+}
+
+.schedule-weather-title {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 950;
+  line-height: 1.32;
+  overflow-wrap: anywhere;
+}
+
+.schedule-weather-time,
+.schedule-weather-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.schedule-weather-summary {
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f4f7f6;
+}
+
+.schedule-weather-summary span {
+  font-size: 0.86rem;
+  font-weight: 950;
+}
+
+.schedule-weather-summary span.good {
+  color: var(--green-dark);
+}
+
+.schedule-weather-summary span.warn {
+  color: #7a551a;
+}
+
+.schedule-weather-summary span.bad {
+  color: #8a3222;
+}
+
+.schedule-weather-summary small {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.schedule-weather-advice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.schedule-weather-advice span {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 0.72rem;
+  font-weight: 950;
+  line-height: 1.1;
 }
 
 .activity-card {

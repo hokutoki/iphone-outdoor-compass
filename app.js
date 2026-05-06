@@ -75,6 +75,7 @@ const conditionLabel = document.querySelector("#condition-label");
 const conditionSummary = document.querySelector("#condition-summary");
 const updatedLabel = document.querySelector("#updated-label");
 const adviceList = document.querySelector("#advice-list");
+const scheduleWeatherPanel = document.querySelector("#schedule-weather-panel");
 const metricGrid = document.querySelector("#metric-grid");
 const activityGrid = document.querySelector("#activity-grid");
 const hourlyList = document.querySelector("#hourly-list");
@@ -523,6 +524,7 @@ function renderCalendarPreview() {
   }
 
   calendarPreviewList.innerHTML = calendarPreviewItems.map(renderCalendarPreviewCard).join("");
+  renderScheduleWeatherPanel();
 }
 
 function renderCalendarPreviewCard(item) {
@@ -801,6 +803,7 @@ function renderCalendarEvents() {
   calendarPreviewList.innerHTML = state.calendarEvents.length
     ? state.calendarEvents.map(renderCalendarEventCard).join("")
     : emptyState(range.emptyText);
+  renderScheduleWeatherPanel();
 }
 
 function renderCalendarEventCard(item) {
@@ -1030,6 +1033,7 @@ function renderError(error) {
   conditionSummary.textContent = error?.message || "通信状態を確認してください。";
   updatedLabel.textContent = "前回データなし";
   metricGrid.innerHTML = emptyState("表示できる天気データがありません。");
+  renderScheduleWeatherPanel();
   activityGrid.innerHTML = emptyState("通信できる状態で再取得してください。");
   hourlyList.innerHTML = emptyState("時間帯データは未取得です。");
   dailyList.innerHTML = emptyState("日別データは未取得です。");
@@ -1059,10 +1063,214 @@ function renderWeather(cache, isStale, error) {
   }
 
   metricGrid.innerHTML = renderMetrics(current, airCurrent, hours);
+  renderScheduleWeatherPanel();
   activityGrid.innerHTML = renderActivities(scores.activities);
   hourlyList.innerHTML = renderHours(hours);
   dailyList.innerHTML = renderDaily(forecast);
   renderPlaceLists();
+}
+
+function renderScheduleWeatherPanel() {
+  if (!scheduleWeatherPanel) return;
+
+  if (!state.cache) {
+    scheduleWeatherPanel.innerHTML = renderScheduleWeatherEmpty("天気データを取得すると、次の予定と合わせて判断できます。");
+    return;
+  }
+
+  if (!hasUsableCalendarToken()) {
+    scheduleWeatherPanel.innerHTML = renderScheduleWeatherEmpty("Googleカレンダーを接続すると、次の予定の時間帯に合わせた天気判断を表示します。");
+    return;
+  }
+
+  const event = findNextCalendarEvent();
+  if (!event) {
+    const range = getCalendarRangeOption();
+    scheduleWeatherPanel.innerHTML = renderScheduleWeatherEmpty(`${range.statusLabel}の表示範囲に、これからの予定はありません。`);
+    return;
+  }
+
+  const weatherMatch = findWeatherForCalendarEvent(state.cache, event);
+  if (!weatherMatch) {
+    scheduleWeatherPanel.innerHTML = renderScheduleWeatherNoForecast(event);
+    return;
+  }
+
+  scheduleWeatherPanel.innerHTML = renderScheduleWeatherDecision(event, weatherMatch);
+}
+
+function renderScheduleWeatherEmpty(text) {
+  return `
+    <div class="schedule-weather-header">
+      <div>
+        <span class="section-kicker">Plan weather</span>
+        <h2>次の予定 × 天気</h2>
+      </div>
+    </div>
+    <div class="schedule-weather-empty">${escapeHtml(text)}</div>
+  `;
+}
+
+function findNextCalendarEvent() {
+  const now = new Date();
+  return state.calendarEvents
+    .map((event) => ({
+      event,
+      start: getCalendarEventStart(event),
+      end: getCalendarEventEnd(event),
+    }))
+    .filter((item) => item.start && (item.start >= now || (item.end && item.end > now)))
+    .sort((a, b) => a.start.getTime() - b.start.getTime())[0]?.event || null;
+}
+
+function getCalendarEventStart(event) {
+  if (!event?.start) return null;
+  const date = new Date(event.start.length === 10 ? `${event.start}T00:00:00` : event.start);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function getCalendarEventEnd(event) {
+  if (!event?.end) return null;
+  const date = new Date(event.end.length === 10 ? `${event.end}T00:00:00` : event.end);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function getCalendarEventWeatherTarget(event) {
+  const start = getCalendarEventStart(event);
+  if (!start) return null;
+
+  if (!event.allDay) {
+    const end = getCalendarEventEnd(event);
+    const now = new Date();
+    return start < now && end && end > now ? now : start;
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const target = new Date(start);
+  target.setHours(0, 0, 0, 0);
+  if (target.getTime() === today.getTime()) return new Date();
+  target.setHours(12, 0, 0, 0);
+  return target;
+}
+
+function findWeatherForCalendarEvent(cache, event) {
+  const target = getCalendarEventWeatherTarget(event);
+  if (!target) return null;
+
+  const hours = getForecastHours(cache.forecast, cache.air);
+  let best = null;
+  for (const hour of hours) {
+    const date = new Date(hour.time);
+    if (Number.isNaN(date.getTime())) continue;
+    const diffMs = Math.abs(date.getTime() - target.getTime());
+    if (!best || diffMs < best.diffMs) {
+      best = { hour, date, diffMs };
+    }
+  }
+
+  if (!best || best.diffMs > 90 * 60 * 1000) return null;
+  return { ...best, target };
+}
+
+function getForecastHours(forecast, air) {
+  const hourly = forecast?.hourly || {};
+  const airHourly = air?.hourly || {};
+  const times = hourly.time || [];
+  return times.map((time, index) => {
+    const airIndex = (airHourly.time || []).indexOf(time);
+    return {
+      time,
+      temperature: valueAt(hourly.temperature_2m, index),
+      apparent: valueAt(hourly.apparent_temperature, index),
+      rainProbability: valueAt(hourly.precipitation_probability, index),
+      precipitation: valueAt(hourly.precipitation, index),
+      weatherCode: valueAt(hourly.weather_code, index),
+      wind: valueAt(hourly.wind_speed_10m, index),
+      gust: valueAt(hourly.wind_gusts_10m, index),
+      pm25: valueAt(airHourly.pm2_5, airIndex),
+      uv: valueAt(airHourly.uv_index, airIndex),
+      aqi: valueAt(airHourly.us_aqi, airIndex),
+    };
+  });
+}
+
+function renderScheduleWeatherNoForecast(event) {
+  return `
+    <div class="schedule-weather-header">
+      <div>
+        <span class="section-kicker">Plan weather</span>
+        <h2>次の予定 × 天気</h2>
+      </div>
+    </div>
+    <div class="schedule-weather-empty">
+      ${escapeHtml(event.title)} は予報取得範囲の外です。近い予定になると天気判断を表示できます。
+    </div>
+  `;
+}
+
+function renderScheduleWeatherDecision(event, weatherMatch) {
+  const { hour } = weatherMatch;
+  const score = computeHourScore(hour);
+  const tone = score >= 72 ? "good" : score >= 48 ? "warn" : "bad";
+  const title = scoreText(score, "予定どおり動きやすい", "準備して出る", "時間変更も候補");
+  const eventTime = formatCalendarEventTimeForWeather(event);
+  const location = event.location || "場所情報なし";
+  const rain = round(hour.rainProbability);
+  const temp = round(hour.temperature, 1);
+  const wind = round(hour.wind, 1);
+  const weather = getWeatherName(hour.weatherCode);
+  const advice = buildScheduleWeatherAdvice(hour, score);
+
+  return `
+    <div class="schedule-weather-header">
+      <div>
+        <span class="section-kicker">Plan weather</span>
+        <h2>次の予定 × 天気</h2>
+      </div>
+      <strong class="schedule-weather-score ${tone}">${score}</strong>
+    </div>
+    <div class="schedule-weather-main">
+      <p class="schedule-weather-title">${escapeHtml(event.title)}</p>
+      <p class="schedule-weather-time">${escapeHtml(eventTime)} / ${escapeHtml(location)}</p>
+      <div class="schedule-weather-summary">
+        <span class="${tone}">${escapeHtml(title)}</span>
+        <small>${escapeHtml(weather)} / 雨 ${rain ?? "--"}% / 気温 ${temp ?? "--"}度 / 風 ${wind ?? "--"}km/h</small>
+      </div>
+      <div class="schedule-weather-advice">
+        ${advice.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function formatCalendarEventTimeForWeather(event) {
+  const start = getCalendarEventStart(event);
+  if (!start) return "予定時刻不明";
+  const dateLabel = getCalendarDateBadge(event.start).accessibleLabel;
+  if (event.allDay) return `${dateLabel} 終日`;
+  return `${dateLabel} ${getCalendarTimeLabel(event)}`;
+}
+
+function buildScheduleWeatherAdvice(hour, score) {
+  const advice = [];
+  const rain = Number(hour.rainProbability || 0);
+  const wind = Number(hour.wind || 0);
+  const gust = Number(hour.gust || wind);
+  const temp = Number(hour.apparent ?? hour.temperature ?? 20);
+  const uv = Number(hour.uv || 0);
+
+  if (rain >= 60 || Number(hour.precipitation || 0) >= 1) advice.push("傘か雨具を先に用意");
+  else if (rain >= 35) advice.push("折りたたみ傘があると安心");
+  else advice.push("雨の心配は小さめ");
+
+  if (gust >= 35 || wind >= 24) advice.push("風が強め。自転車と傘に注意");
+  else if (temp >= 30) advice.push("暑さ対策と水分を優先");
+  else if (temp <= 5) advice.push("防寒を優先");
+  else if (uv >= 7) advice.push("日差し対策を追加");
+  else advice.push(score >= 72 ? "通常装備で動きやすい" : "用事は短めが無難");
+
+  return advice.slice(0, 2);
 }
 
 function getNextHours(forecast, air) {
