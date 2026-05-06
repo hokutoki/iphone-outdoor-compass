@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#f2f2f7" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="外出コンパス" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -11,7 +12,7 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="apple-touch-icon" href="./icons/icon-180.png" />
     <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=24" />
+    <link rel="stylesheet" href="./styles.css?v=25" />
   </head>
   <body>
     <svg aria-hidden="true" class="svg-sprite">
@@ -362,8 +363,23 @@
             </div>
             <div class="info-row">
               <strong>公開</strong>
-              <span>HTTPS公開後はホーム画面追加とPWAキャッシュに対応</span>
+              <span>HTTPS公開後はiPhone/Androidのホーム画面追加とPWAキャッシュに対応</span>
             </div>
+            <div class="info-row">
+              <strong>Android</strong>
+              <span>Chromeでは条件が揃うとインストールボタンからアプリとして追加可能</span>
+            </div>
+          </div>
+
+          <div class="install-panel">
+            <div class="section-heading compact">
+              <span class="section-kicker">Install</span>
+              <h2>Android / iPhoneへ追加</h2>
+            </div>
+            <p id="install-status" class="helper-text" aria-live="polite">
+              Android Chromeでは、準備ができるとこの画面からインストールできます。
+            </p>
+            <button id="install-app" class="full-button primary" type="button" disabled>インストール</button>
           </div>
 
           <div class="update-panel">
@@ -446,6 +462,6 @@
       </nav>
     </div>
 
-    <script src="./app.js?v=24"></script>
+    <script src="./app.js?v=25"></script>
   </body>
 </html>

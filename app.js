@@ -130,6 +130,8 @@ const copyData = document.querySelector("#copy-data");
 const importData = document.querySelector("#import-data");
 const backupText = document.querySelector("#backup-text");
 const backupStatus = document.querySelector("#backup-status");
+const installApp = document.querySelector("#install-app");
+const installStatus = document.querySelector("#install-status");
 const checkAppUpdate = document.querySelector("#check-app-update");
 const reloadApp = document.querySelector("#reload-app");
 const appUpdateStatus = document.querySelector("#app-update-status");
@@ -142,6 +144,7 @@ let googleIdentityScriptPromise = null;
 let calendarTokenClient = null;
 let serviceWorkerRegistration = null;
 let appUpdateReloading = false;
+let deferredInstallPrompt = null;
 const serviceWorkerUpdateBindings = new WeakSet();
 
 const calendarPreviewItems = [
@@ -2191,6 +2194,7 @@ function escapeHtml(value) {
 }
 
 function switchView(name) {
+  if (!views[name]) return;
   for (const [viewName, element] of Object.entries(views)) {
     element.classList.toggle("active", viewName === name);
   }
@@ -2203,10 +2207,84 @@ function switchView(name) {
   }
 }
 
+function getInitialView() {
+  const hashView = window.location.hash.replace("#", "");
+  return views[hashView] ? hashView : "dashboard";
+}
+
 function setAppUpdateStatus(message, canReload = false) {
   appUpdateStatus.textContent = message;
   reloadApp.hidden = !canReload;
   reloadApp.disabled = !canReload;
+}
+
+function isStandaloneDisplay() {
+  return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+}
+
+function getInstallGuidance() {
+  const ua = window.navigator.userAgent || "";
+  const isAndroid = /Android/i.test(ua);
+  const isIos = /iPhone|iPad|iPod/i.test(ua);
+  const isChrome = /Chrome|CriOS/i.test(ua);
+
+  if (isStandaloneDisplay()) {
+    return "すでにホーム画面版として起動しています。";
+  }
+
+  if (!["http:", "https:"].includes(window.location.protocol)) {
+    return "インストール確認はHTTPS公開版、またはlocalhostで利用できます。";
+  }
+
+  if (isAndroid && isChrome) {
+    return "Android Chromeでインストール条件を確認中です。ボタンが有効になったら追加できます。";
+  }
+
+  if (isIos) {
+    return "iPhoneではSafariの共有メニューから「ホーム画面に追加」を選びます。";
+  }
+
+  return "対応ブラウザではメニューの「アプリをインストール」または「ホーム画面に追加」から使えます。";
+}
+
+function setInstallStatus(message, canInstall = false) {
+  if (!installStatus || !installApp) return;
+  installStatus.textContent = message;
+  installApp.disabled = !canInstall;
+}
+
+function updateInstallStatus() {
+  if (!installStatus || !installApp) return;
+  if (isStandaloneDisplay()) {
+    setInstallStatus("すでにアプリとして起動しています。", false);
+    return;
+  }
+
+  if (deferredInstallPrompt) {
+    setInstallStatus("Android Chromeでインストールできます。ボタンを押すと確認画面が開きます。", true);
+    return;
+  }
+
+  setInstallStatus(getInstallGuidance(), false);
+}
+
+async function installApplication() {
+  if (!deferredInstallPrompt) {
+    updateInstallStatus();
+    return;
+  }
+
+  const promptEvent = deferredInstallPrompt;
+  deferredInstallPrompt = null;
+  setInstallStatus("インストール確認を開いています。", false);
+  promptEvent.prompt();
+
+  const result = await promptEvent.userChoice;
+  if (result?.outcome === "accepted") {
+    setInstallStatus("インストールを開始しました。ホーム画面から起動できます。", false);
+  } else {
+    setInstallStatus("インストールはキャンセルされました。必要になったらブラウザメニューから追加できます。", false);
+  }
 }
 
 function showAppReloadButton(message = "更新を取得しました。再読み込みで反映します。") {
@@ -2302,6 +2380,7 @@ function bindEvents() {
   useGps.addEventListener("click", useCurrentPosition);
   checkAppUpdate.addEventListener("click", checkForAppUpdate);
   reloadApp.addEventListener("click", reloadApplication);
+  installApp?.addEventListener("click", installApplication);
   exportData.addEventListener("click", exportBackup);
   copyData.addEventListener("click", copyBackup);
   importData.addEventListener("click", importBackup);
@@ -2332,6 +2411,21 @@ function registerServiceWorker() {
   });
 }
 
+function bindInstallPrompt() {
+  updateInstallStatus();
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    updateInstallStatus();
+  });
+
+  window.addEventListener("appinstalled", () => {
+    deferredInstallPrompt = null;
+    setInstallStatus("インストール済みです。ホーム画面から起動できます。", false);
+  });
+}
+
 function init() {
   todayLabel.textContent = formatDate(new Date());
   loadState();
@@ -2344,7 +2438,9 @@ function init() {
   if (state.eventFeedCache) renderAutoEvents(state.eventFeedCache, true);
 
   if (state.cache) renderWeather(state.cache, true);
+  switchView(getInitialView());
   fetchWeather();
+  bindInstallPrompt();
   registerServiceWorker();
 }
 
