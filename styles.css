@@ -140,6 +140,7 @@ h2 {
 
 .score-panel,
 .next-plan-hero,
+.temperature-trend-panel,
 .metric-card,
 .activity-card,
 .hour-card,
@@ -672,6 +673,103 @@ h2 {
   font-size: 0.72rem;
   font-weight: 950;
   line-height: 1.1;
+}
+
+.temperature-trend-panel {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-color: transparent;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
+}
+
+.temperature-trend-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.temperature-trend-header h2,
+.temperature-trend-panel h2 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.temperature-trend-header span:last-child {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: var(--green-soft);
+  color: var(--green-dark);
+  font-size: 0.72rem;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.temperature-trend-title {
+  color: var(--ink);
+  font-size: 1.08rem;
+  font-weight: 950;
+  line-height: 1.32;
+}
+
+.temperature-trend-summary,
+.temperature-trend-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.temperature-trend-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.temperature-trend-details span {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #f4f7f6;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.temperature-trend-panel.warmer {
+  background: linear-gradient(180deg, #fffaf0 0%, #fff4df 100%);
+}
+
+.temperature-trend-panel.warmer .temperature-trend-title,
+.temperature-trend-panel.warmer .temperature-trend-header span:last-child {
+  color: #7a551a;
+}
+
+.temperature-trend-panel.warmer .temperature-trend-header span:last-child,
+.temperature-trend-panel.warmer .temperature-trend-details span {
+  background: var(--amber-soft);
+}
+
+.temperature-trend-panel.cooler {
+  background: linear-gradient(180deg, #f7fbff 0%, #edf6ff 100%);
+}
+
+.temperature-trend-panel.cooler .temperature-trend-title,
+.temperature-trend-panel.cooler .temperature-trend-header span:last-child {
+  color: #0b5cad;
+}
+
+.temperature-trend-panel.cooler .temperature-trend-header span:last-child,
+.temperature-trend-panel.cooler .temperature-trend-details span {
+  background: var(--blue-soft);
 }
 
 .activity-card {

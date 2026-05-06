@@ -99,6 +99,7 @@ const nextPlanHero = document.querySelector("#next-plan-hero");
 const transportModeButtons = document.querySelectorAll("[data-transport-mode]");
 const transportModeNote = document.querySelector("#transport-mode-note");
 const scheduleWeatherPanel = document.querySelector("#schedule-weather-panel");
+const temperatureTrendPanel = document.querySelector("#temperature-trend-panel");
 const metricGrid = document.querySelector("#metric-grid");
 const activityGrid = document.querySelector("#activity-grid");
 const hourlyList = document.querySelector("#hourly-list");
@@ -187,6 +188,24 @@ function formatDate(date) {
     day: "numeric",
     weekday: "short",
   }).format(date);
+}
+
+function formatDateKey(date, timeZone = defaultLocation.timezone) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function shiftDateKey(dateKey, offsetDays) {
+  const [year, month, day] = String(dateKey).split("-").map(Number);
+  if (!year || !month || !day) return "";
+  const date = new Date(Date.UTC(year, month - 1, day + offsetDays));
+  return date.toISOString().slice(0, 10);
 }
 
 function formatTime(date) {
@@ -327,6 +346,7 @@ function buildForecastUrl(location) {
       "wind_gusts_10m_max",
     ].join(","),
     forecast_days: "3",
+    past_days: "1",
     timezone: location.timezone || "Asia/Tokyo",
   });
   return `https://api.open-meteo.com/v1/forecast?${params.toString()}`;
@@ -1089,6 +1109,7 @@ function renderLoading(location) {
   conditionLabel.textContent = "取得中";
   conditionSummary.textContent = "Open-Meteoから天気と空気質を取得しています。";
   updatedLabel.textContent = "通信中";
+  renderTemperatureTrendPanel();
 }
 
 function renderError(error) {
@@ -1097,6 +1118,7 @@ function renderError(error) {
   conditionLabel.textContent = "取得できませんでした";
   conditionSummary.textContent = error?.message || "通信状態を確認してください。";
   updatedLabel.textContent = "前回データなし";
+  renderTemperatureTrendPanel("表示できる前日比較データがありません。");
   metricGrid.innerHTML = emptyState("表示できる天気データがありません。");
   renderScheduleWeatherPanel();
   activityGrid.innerHTML = emptyState("通信できる状態で再取得してください。");
@@ -1131,10 +1153,60 @@ function renderWeather(cache, isStale, error) {
 
   metricGrid.innerHTML = renderMetrics(current, airCurrent, hours);
   renderScheduleWeatherPanel();
+  renderTemperatureTrendPanel(forecast, location);
   activityGrid.innerHTML = renderActivities(scores.activities);
   hourlyList.innerHTML = renderHours(hours);
-  dailyList.innerHTML = renderDaily(forecast);
+  dailyList.innerHTML = renderDaily(forecast, location);
   renderPlaceLists();
+}
+
+function renderTemperatureTrendPanel(forecast, location = getActiveLocation()) {
+  if (!temperatureTrendPanel) return;
+
+  if (typeof forecast === "string") {
+    temperatureTrendPanel.innerHTML = renderTemperatureTrendEmpty(forecast);
+    return;
+  }
+
+  if (!forecast) {
+    temperatureTrendPanel.innerHTML = renderTemperatureTrendEmpty("天気データ取得後に、昨日との気温差を表示します。");
+    return;
+  }
+
+  const trend = getTemperatureTrend(forecast, location);
+  if (!trend) {
+    temperatureTrendPanel.innerHTML = renderTemperatureTrendEmpty("前日比較データがありません。再取得すると表示できる場合があります。");
+    return;
+  }
+
+  temperatureTrendPanel.classList.remove("warmer", "cooler", "steady");
+  temperatureTrendPanel.classList.add(trend.tone);
+  temperatureTrendPanel.innerHTML = `
+    <div class="temperature-trend-header">
+      <div>
+        <span class="section-kicker">Change</span>
+        <h2>昨日からの気温変化</h2>
+      </div>
+      <span>${escapeHtml(trend.badge)}</span>
+    </div>
+    <strong class="temperature-trend-title">${escapeHtml(trend.title)}</strong>
+    <p class="temperature-trend-summary">${escapeHtml(trend.summary)}</p>
+    <div class="temperature-trend-details">
+      <span>${escapeHtml(trend.maxDetail)}</span>
+      <span>${escapeHtml(trend.minDetail)}</span>
+    </div>
+  `;
+}
+
+function renderTemperatureTrendEmpty(text) {
+  temperatureTrendPanel?.classList.remove("warmer", "cooler", "steady");
+  return `
+    <div>
+      <span class="section-kicker">Change</span>
+      <h2>昨日からの気温変化</h2>
+    </div>
+    <p class="temperature-trend-empty">${escapeHtml(text)}</p>
+  `;
 }
 
 function renderScheduleWeatherPanel() {
@@ -1495,6 +1567,60 @@ function valueAt(values, index) {
   return values[index] ?? null;
 }
 
+function getTemperatureTrend(forecast, location = getActiveLocation()) {
+  const daily = forecast?.daily || {};
+  if (!Array.isArray(daily.time)) return null;
+
+  const todayKey = formatDateKey(new Date(), location.timezone || defaultLocation.timezone);
+  const yesterdayKey = shiftDateKey(todayKey, -1);
+  const todayIndex = daily.time.indexOf(todayKey);
+  const yesterdayIndex = daily.time.indexOf(yesterdayKey);
+  if (todayIndex < 0 || yesterdayIndex < 0) return null;
+
+  const todayMax = round(valueAt(daily.temperature_2m_max, todayIndex), 1);
+  const yesterdayMax = round(valueAt(daily.temperature_2m_max, yesterdayIndex), 1);
+  const todayMin = round(valueAt(daily.temperature_2m_min, todayIndex), 1);
+  const yesterdayMin = round(valueAt(daily.temperature_2m_min, yesterdayIndex), 1);
+  if (todayMax === null || yesterdayMax === null) return null;
+
+  const maxDiff = round(todayMax - yesterdayMax, 1);
+  const minDiff = todayMin === null || yesterdayMin === null ? null : round(todayMin - yesterdayMin, 1);
+  const absMaxDiff = Math.abs(maxDiff);
+  const tone = absMaxDiff < 0.5 ? "steady" : maxDiff > 0 ? "warmer" : "cooler";
+  const title = buildTemperatureTrendTitle(maxDiff);
+  const summary = `最高気温で比較: ${formatTemperature(yesterdayMax)}度 → ${formatTemperature(todayMax)}度`;
+  const maxDetail = `最高 ${formatSignedTemperatureDiff(maxDiff)}`;
+  const minDetail = minDiff === null ? "最低 データなし" : `最低 ${formatSignedTemperatureDiff(minDiff)}`;
+  const badge = tone === "warmer" ? "暑くなる" : tone === "cooler" ? "涼しくなる" : "ほぼ同じ";
+
+  return {
+    tone,
+    title,
+    summary,
+    maxDetail,
+    minDetail,
+    badge,
+  };
+}
+
+function buildTemperatureTrendTitle(diff) {
+  const amount = formatTemperature(Math.abs(diff));
+  if (Math.abs(diff) < 0.5) return "昨日とほぼ同じ気温です";
+  if (diff > 0) return `昨日より${amount}度暑くなります`;
+  return `昨日より${amount}度涼しくなります`;
+}
+
+function formatSignedTemperatureDiff(diff) {
+  if (Math.abs(diff) < 0.5) return "ほぼ同じ";
+  return `${diff > 0 ? "+" : "-"}${formatTemperature(Math.abs(diff))}度`;
+}
+
+function formatTemperature(value) {
+  const rounded = round(value, 1);
+  if (rounded === null) return "--";
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+}
+
 function computeTransportCompositeScore(values, mode = state.transportMode) {
   const transportMode = isTransportMode(mode) ? mode : defaultTransportMode;
   const tempScore = Number(values.tempScore ?? 70);
@@ -1764,12 +1890,17 @@ function computeHourScore(hour) {
   return computeTransportHourScore(hour, state.transportMode);
 }
 
-function renderDaily(forecast) {
+function renderDaily(forecast, location = getActiveLocation()) {
   const daily = forecast.daily || {};
   if (!Array.isArray(daily.time)) return emptyState("日別データがありません。");
+  const todayKey = formatDateKey(new Date(), location.timezone || defaultLocation.timezone);
+  const visibleDays = daily.time
+    .map((time, index) => ({ time, index }))
+    .filter(({ time }) => time >= todayKey);
+  const days = visibleDays.length ? visibleDays : daily.time.map((time, index) => ({ time, index }));
 
-  return daily.time
-    .map((time, index) => {
+  return days
+    .map(({ time, index }) => {
       const max = round(valueAt(daily.temperature_2m_max, index), 1);
       const min = round(valueAt(daily.temperature_2m_min, index), 1);
       const rain = round(valueAt(daily.precipitation_sum, index), 1);

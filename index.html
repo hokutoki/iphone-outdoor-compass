@@ -11,7 +11,7 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="apple-touch-icon" href="./icons/icon-180.png" />
     <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20" />
+    <link rel="stylesheet" href="./styles.css?v=21" />
   </head>
   <body>
     <svg aria-hidden="true" class="svg-sprite">
@@ -152,6 +152,14 @@
             </div>
 
             <div id="advice-list" class="advice-list"></div>
+          </div>
+
+          <div id="temperature-trend-panel" class="temperature-trend-panel" aria-live="polite">
+            <div>
+              <span class="section-kicker">Change</span>
+              <h2>昨日からの気温変化</h2>
+            </div>
+            <p class="temperature-trend-empty">天気データ取得後に、昨日との気温差を表示します。</p>
           </div>
 
           <div id="schedule-weather-panel" class="schedule-weather-panel" aria-live="polite">
@@ -438,6 +446,6 @@
       </nav>
     </div>
 
-    <script src="./app.js?v=20"></script>
+    <script src="./app.js?v=21"></script>
   </body>
 </html>
