@@ -208,6 +208,12 @@ function shiftDateKey(dateKey, offsetDays) {
   return date.toISOString().slice(0, 10);
 }
 
+function shiftDateTimeKey(dateTimeKey, offsetDays) {
+  const [datePart, timePart = "00:00"] = String(dateTimeKey || "").split("T");
+  const shiftedDate = shiftDateKey(datePart, offsetDays);
+  return shiftedDate ? `${shiftedDate}T${timePart.slice(0, 5)}` : "";
+}
+
 function formatTime(date) {
   return new Intl.DateTimeFormat("ja-JP", {
     hour: "2-digit",
@@ -1169,7 +1175,7 @@ function renderTemperatureTrendPanel(forecast, location = getActiveLocation()) {
   }
 
   if (!forecast) {
-    temperatureTrendPanel.innerHTML = renderTemperatureTrendEmpty("天気データ取得後に、昨日との気温差を表示します。");
+    temperatureTrendPanel.innerHTML = renderTemperatureTrendEmpty("天気データ取得後に、今の体感気温と昨日との差を表示します。");
     return;
   }
 
@@ -1192,8 +1198,7 @@ function renderTemperatureTrendPanel(forecast, location = getActiveLocation()) {
     <strong class="temperature-trend-title">${escapeHtml(trend.title)}</strong>
     <p class="temperature-trend-summary">${escapeHtml(trend.summary)}</p>
     <div class="temperature-trend-details">
-      <span>${escapeHtml(trend.maxDetail)}</span>
-      <span>${escapeHtml(trend.minDetail)}</span>
+      ${trend.details.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}
     </div>
   `;
 }
@@ -1569,38 +1574,97 @@ function valueAt(values, index) {
 
 function getTemperatureTrend(forecast, location = getActiveLocation()) {
   const daily = forecast?.daily || {};
-  if (!Array.isArray(daily.time)) return null;
+  const apparentTrend = getApparentTemperatureTrend(forecast);
+  const hasDaily = Array.isArray(daily.time);
 
   const todayKey = formatDateKey(new Date(), location.timezone || defaultLocation.timezone);
   const yesterdayKey = shiftDateKey(todayKey, -1);
-  const todayIndex = daily.time.indexOf(todayKey);
-  const yesterdayIndex = daily.time.indexOf(yesterdayKey);
-  if (todayIndex < 0 || yesterdayIndex < 0) return null;
+  const todayIndex = hasDaily ? daily.time.indexOf(todayKey) : -1;
+  const yesterdayIndex = hasDaily ? daily.time.indexOf(yesterdayKey) : -1;
 
   const todayMax = round(valueAt(daily.temperature_2m_max, todayIndex), 1);
   const yesterdayMax = round(valueAt(daily.temperature_2m_max, yesterdayIndex), 1);
   const todayMin = round(valueAt(daily.temperature_2m_min, todayIndex), 1);
   const yesterdayMin = round(valueAt(daily.temperature_2m_min, yesterdayIndex), 1);
-  if (todayMax === null || yesterdayMax === null) return null;
+  if (!apparentTrend && (todayMax === null || yesterdayMax === null)) return null;
 
-  const maxDiff = round(todayMax - yesterdayMax, 1);
+  const maxDiff = todayMax === null || yesterdayMax === null ? null : round(todayMax - yesterdayMax, 1);
   const minDiff = todayMin === null || yesterdayMin === null ? null : round(todayMin - yesterdayMin, 1);
+  if (apparentTrend) {
+    const details = [
+      apparentTrend.detail,
+      apparentTrend.yesterdayDetail,
+      maxDiff === null ? null : `最高 ${formatSignedTemperatureDiff(maxDiff)}`,
+      minDiff === null ? null : `最低 ${formatSignedTemperatureDiff(minDiff)}`,
+    ].filter(Boolean);
+
+    return {
+      tone: apparentTrend.tone,
+      title: `現在の体感 ${formatTemperature(apparentTrend.current)}度`,
+      summary: apparentTrend.summary,
+      details,
+      badge: apparentTrend.badge,
+    };
+  }
+
   const absMaxDiff = Math.abs(maxDiff);
   const tone = absMaxDiff < 0.5 ? "steady" : maxDiff > 0 ? "warmer" : "cooler";
   const title = buildTemperatureTrendTitle(maxDiff);
   const summary = `最高気温で比較: ${formatTemperature(yesterdayMax)}度 → ${formatTemperature(todayMax)}度`;
-  const maxDetail = `最高 ${formatSignedTemperatureDiff(maxDiff)}`;
-  const minDetail = minDiff === null ? "最低 データなし" : `最低 ${formatSignedTemperatureDiff(minDiff)}`;
   const badge = tone === "warmer" ? "暑くなる" : tone === "cooler" ? "涼しくなる" : "ほぼ同じ";
 
   return {
     tone,
     title,
     summary,
-    maxDetail,
-    minDetail,
+    details: [
+      `最高 ${formatSignedTemperatureDiff(maxDiff)}`,
+      minDiff === null ? "最低 データなし" : `最低 ${formatSignedTemperatureDiff(minDiff)}`,
+    ],
     badge,
   };
+}
+
+function getApparentTemperatureTrend(forecast) {
+  const currentApparent = round(forecast?.current?.apparent_temperature, 1);
+  if (currentApparent === null) return null;
+
+  const hourly = forecast?.hourly || {};
+  const times = hourly.time || [];
+  const yesterdayTime = shiftDateTimeKey(forecast?.current?.time, -1);
+  const yesterdayIndex = times.indexOf(yesterdayTime);
+  const yesterdayApparent = round(valueAt(hourly.apparent_temperature, yesterdayIndex), 1);
+  if (yesterdayApparent === null) {
+    return {
+      current: currentApparent,
+      tone: "steady",
+      summary: "昨日の同じ時刻の体感データは取得できませんでした。",
+      detail: "体感 現在値のみ",
+      yesterdayDetail: null,
+      badge: "体感",
+    };
+  }
+
+  const diff = round(currentApparent - yesterdayApparent, 1);
+  const tone = Math.abs(diff) < 0.5 ? "steady" : diff > 0 ? "warmer" : "cooler";
+  const badge = tone === "warmer" ? "体感高め" : tone === "cooler" ? "体感低め" : "体感ほぼ同じ";
+  return {
+    current: currentApparent,
+    yesterday: yesterdayApparent,
+    diff,
+    tone,
+    summary: buildApparentTemperatureTrendSummary(diff),
+    detail: `体感 ${formatSignedTemperatureDiff(diff)}`,
+    yesterdayDetail: `昨日同時刻 ${formatTemperature(yesterdayApparent)}度`,
+    badge,
+  };
+}
+
+function buildApparentTemperatureTrendSummary(diff) {
+  const amount = formatTemperature(Math.abs(diff));
+  if (Math.abs(diff) < 0.5) return "昨日の同じ時刻とほぼ同じ体感です。";
+  if (diff > 0) return `昨日の同じ時刻より${amount}度高く感じます。`;
+  return `昨日の同じ時刻より${amount}度低く感じます。`;
 }
 
 function buildTemperatureTrendTitle(diff) {
