@@ -638,6 +638,34 @@ h2 {
   font-weight: 900;
 }
 
+.auto-event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.auto-event-save {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: var(--blue);
+  color: #ffffff;
+  padding: 0 12px;
+  font-size: 0.84rem;
+  font-weight: 950;
+}
+
+.auto-event-save:disabled {
+  background: #e7eaee;
+  color: var(--muted-2);
+  cursor: default;
+}
+
 .official-link-card,
 .event-link-card {
   display: grid;
@@ -736,12 +764,29 @@ h2 {
   font-weight: 900;
 }
 
+.event-note-item .event-note-source {
+  margin-top: 3px;
+  color: var(--muted-2);
+  font-size: 0.74rem;
+}
+
 .event-note-item p {
   margin: 6px 0 0;
   color: var(--muted);
   font-size: 0.8rem;
   font-weight: 750;
   line-height: 1.45;
+}
+
+.event-note-link {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  margin-top: 6px;
+  color: var(--blue);
+  font-size: 0.8rem;
+  font-weight: 950;
+  text-decoration: none;
 }
 
 .event-delete {
@@ -847,6 +892,7 @@ h2 {
 .icon-text-button:active,
 .full-button:active,
 .place-action:active,
+.auto-event-save:active,
 .event-delete:active,
 .nav-button:active {
   transform: scale(0.98);

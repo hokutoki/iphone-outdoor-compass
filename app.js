@@ -512,15 +512,21 @@ function renderAutoEventCard(item) {
   const location = item.location ? `<small>${escapeHtml(item.location)}</small>` : "";
   const summary = item.summary ? `<p>${escapeHtml(item.summary)}</p>` : "";
   const tags = item.tags.length ? `<div class="auto-event-tags">${item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : "";
+  const saved = isAutoEventSaved(item);
   return `
-    <article class="auto-event-card">
+    <article class="auto-event-card" data-auto-event-id="${escapeHtml(item.id)}">
       <div>
         <p class="auto-event-meta">${escapeHtml(details || item.source || "イベント")}</p>
         <h3>${escapeHtml(item.title)}</h3>
         ${summary}
         ${location}
         ${tags}
-        <a class="news-open-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">詳細を開く</a>
+        <div class="auto-event-actions">
+          <button class="auto-event-save" type="button" data-auto-event-action="save" ${saved ? "disabled" : ""}>
+            ${saved ? "追加済み" : "メモに追加"}
+          </button>
+          <a class="news-open-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">詳細を開く</a>
+        </div>
       </div>
     </article>
   `;
@@ -535,6 +541,64 @@ function formatAutoEventDate(item) {
   return "";
 }
 
+function isAutoEventSaved(item) {
+  return state.eventNotes.some((note) => {
+    if (note.url && item.url) return note.url === item.url;
+    return note.title === item.title && note.date === item.startDate;
+  });
+}
+
+function handleAutoEventAction(event) {
+  const button = event.target.closest("[data-auto-event-action]");
+  if (!button) return;
+  const card = event.target.closest("[data-auto-event-id]");
+  if (!card) return;
+  const item = getAutoEventById(card.dataset.autoEventId);
+  if (!item) return;
+
+  if (button.dataset.autoEventAction === "save") {
+    addAutoEventToNotes(item);
+  }
+}
+
+function getAutoEventById(id) {
+  const items = state.eventFeedCache?.items || [];
+  return items.find((item) => item.id === id);
+}
+
+function addAutoEventToNotes(item) {
+  if (isAutoEventSaved(item)) {
+    eventStatus.textContent = "このイベントはすでにメモに追加済みです。";
+    renderAutoEvents(state.eventFeedCache, true);
+    return;
+  }
+
+  state.eventNotes.push({
+    id: createEventId(),
+    title: item.title,
+    date: item.startDate || "",
+    note: buildAutoEventNote(item),
+    url: item.url,
+    source: item.source || "ヒガシル",
+    createdAt: new Date().toISOString(),
+  });
+
+  saveState();
+  renderEventNotes();
+  renderAutoEvents(state.eventFeedCache, true);
+  eventStatus.textContent = `${item.title}をイベントメモに追加しました。`;
+}
+
+function buildAutoEventNote(item) {
+  return [
+    item.dateLabel ? `日程: ${item.dateLabel}` : "",
+    item.location ? `場所: ${item.location}` : "",
+    item.summary ? `内容: ${item.summary}` : "",
+  ]
+    .filter(Boolean)
+    .join(" / ");
+}
+
 function createEventId() {
   return window.crypto?.randomUUID?.() || `event-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
@@ -546,6 +610,8 @@ function normalizeEventNotes(items) {
       title: String(item.title || "").trim(),
       date: String(item.date || "").slice(0, 10),
       note: String(item.note || "").trim(),
+      url: String(item.url || "").trim(),
+      source: String(item.source || "").trim(),
       createdAt: item.createdAt || new Date().toISOString(),
     }))
     .filter((item) => item.title || item.note);
@@ -592,12 +658,16 @@ function renderEventNotes() {
 
 function renderEventNote(item) {
   const note = item.note ? `<p>${escapeHtml(item.note)}</p>` : "";
+  const source = item.source ? `<span class="event-note-source">${escapeHtml(item.source)}</span>` : "";
+  const link = item.url ? `<a class="event-note-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">詳細を開く</a>` : "";
   return `
     <article class="event-note-item" data-event-id="${escapeHtml(item.id)}">
       <div>
         <strong>${escapeHtml(item.title)}</strong>
         <span>${escapeHtml(formatEventDate(item.date))}</span>
+        ${source}
         ${note}
+        ${link}
       </div>
       <button class="event-delete" type="button" data-event-action="delete" aria-label="${escapeHtml(item.title)}を削除">
         <svg><use href="#icon-trash"></use></svg>
@@ -1130,6 +1200,7 @@ function bindEvents() {
   refreshNow.addEventListener("click", fetchWeather);
   refreshNews.addEventListener("click", () => fetchNews(true));
   refreshEvents.addEventListener("click", () => fetchEvents(true));
+  autoEventList.addEventListener("click", handleAutoEventAction);
   eventForm.addEventListener("submit", addEventNote);
   eventList.addEventListener("click", handleEventAction);
   searchForm.addEventListener("submit", handleSearch);

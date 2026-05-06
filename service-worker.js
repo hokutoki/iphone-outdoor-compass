@@ -1,4 +1,4 @@
-const cacheName = "outdoor-compass-v7";
+const cacheName = "outdoor-compass-v8";
 
 const appShell = [
   "./",
