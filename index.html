@@ -104,6 +104,14 @@
 
       <main>
         <section id="view-dashboard" class="view active" aria-labelledby="dashboard-title">
+          <div id="next-plan-hero" class="next-plan-hero" aria-live="polite">
+            <div>
+              <span class="section-kicker">Today</span>
+              <h2>今日の次の予定</h2>
+            </div>
+            <p class="next-plan-empty">Googleカレンダー接続後に、今日の次の予定を大きく表示します。</p>
+          </div>
+
           <div class="score-panel">
             <div class="location-row">
               <div>
@@ -136,11 +144,11 @@
                 <strong>移動手段</strong>
               </div>
               <div class="transport-mode-control" role="group" aria-label="外出判断の移動手段">
-                <button type="button" data-transport-mode="walk" aria-pressed="true">徒歩</button>
+                <button type="button" data-transport-mode="walk" aria-pressed="false">徒歩</button>
                 <button type="button" data-transport-mode="bike" aria-pressed="false">自転車</button>
-                <button type="button" data-transport-mode="car" aria-pressed="false">車</button>
+                <button type="button" data-transport-mode="car" aria-pressed="true">車</button>
               </div>
-              <p id="transport-mode-note" class="helper-text">徒歩移動を基準に、雨・風・暑さを重めに見ます。</p>
+              <p id="transport-mode-note" class="helper-text">車移動を基準に、視界・雨・横風を中心に見ます。</p>
             </div>
 
             <div id="advice-list" class="advice-list"></div>

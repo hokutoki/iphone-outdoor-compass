@@ -6,7 +6,7 @@ const calendarApiBaseUrl = "https://www.googleapis.com/calendar/v3";
 const googleIdentityScriptUrl = "https://accounts.google.com/gsi/client";
 const defaultCalendarClientId = "176925321769-f8r8ic1bvbd84tn1co66bl3ibeuqo4ai.apps.googleusercontent.com";
 const defaultCalendarRangeMode = "week";
-const defaultTransportMode = "walk";
+const defaultTransportMode = "car";
 const calendarRangeOptions = {
   today: {
     label: "今日",
@@ -74,6 +74,7 @@ const state = {
   calendarFetchedAt: "",
   calendarRangeMode: defaultCalendarRangeMode,
   transportMode: defaultTransportMode,
+  transportModeTouched: false,
 };
 
 const views = {
@@ -94,6 +95,7 @@ const conditionLabel = document.querySelector("#condition-label");
 const conditionSummary = document.querySelector("#condition-summary");
 const updatedLabel = document.querySelector("#updated-label");
 const adviceList = document.querySelector("#advice-list");
+const nextPlanHero = document.querySelector("#next-plan-hero");
 const transportModeButtons = document.querySelectorAll("[data-transport-mode]");
 const transportModeNote = document.querySelector("#transport-mode-note");
 const scheduleWeatherPanel = document.querySelector("#schedule-weather-panel");
@@ -214,7 +216,10 @@ function loadState() {
     if (parsed.eventFeedCache) state.eventFeedCache = normalizeEventFeed(parsed.eventFeedCache);
     if (parsed.calendarClientId) state.calendarClientId = String(parsed.calendarClientId).trim();
     if (isCalendarRangeMode(parsed.calendarRangeMode)) state.calendarRangeMode = parsed.calendarRangeMode;
-    if (isTransportMode(parsed.transportMode)) state.transportMode = parsed.transportMode;
+    if (isTransportMode(parsed.transportMode)) {
+      state.transportModeTouched = parsed.transportModeTouched === true;
+      state.transportMode = state.transportModeTouched || parsed.transportMode !== "walk" ? parsed.transportMode : defaultTransportMode;
+    }
   } catch {
     state.activeLocationId = defaultLocation.id;
     state.savedLocations = [defaultLocation];
@@ -224,6 +229,7 @@ function loadState() {
     state.calendarClientId = "";
     state.calendarRangeMode = defaultCalendarRangeMode;
     state.transportMode = defaultTransportMode;
+    state.transportModeTouched = false;
     clearCalendarSession();
   }
 }
@@ -240,6 +246,7 @@ function saveState() {
       calendarClientId: state.calendarClientId,
       calendarRangeMode: state.calendarRangeMode,
       transportMode: state.transportMode,
+      transportModeTouched: state.transportModeTouched,
     }),
   );
 }
@@ -654,6 +661,7 @@ function handleTransportModeChange(event) {
   if (!isTransportMode(nextMode) || state.transportMode === nextMode) return;
 
   state.transportMode = nextMode;
+  state.transportModeTouched = true;
   saveState();
   renderTransportModeControls();
 
@@ -1131,6 +1139,7 @@ function renderWeather(cache, isStale, error) {
 
 function renderScheduleWeatherPanel() {
   if (!scheduleWeatherPanel) return;
+  renderNextPlanHero();
 
   if (!state.cache) {
     scheduleWeatherPanel.innerHTML = renderScheduleWeatherEmpty("天気データを取得すると、次の予定と合わせて判断できます。");
@@ -1156,6 +1165,106 @@ function renderScheduleWeatherPanel() {
   }
 
   scheduleWeatherPanel.innerHTML = renderScheduleWeatherDecision(event, weatherMatch);
+}
+
+function renderNextPlanHero() {
+  if (!nextPlanHero) return;
+
+  if (!hasUsableCalendarToken()) {
+    nextPlanHero.innerHTML = `
+      <div>
+        <span class="section-kicker">Today</span>
+        <h2>今日の次の予定</h2>
+      </div>
+      <p class="next-plan-empty">Googleカレンダー接続後に、今日の次の予定を大きく表示します。</p>
+    `;
+    return;
+  }
+
+  const event = findNextTodayCalendarEvent();
+  if (!event) {
+    nextPlanHero.innerHTML = `
+      <div>
+        <span class="section-kicker">Today</span>
+        <h2>今日の次の予定</h2>
+      </div>
+      <p class="next-plan-empty">今日のこれからの予定はありません。</p>
+    `;
+    return;
+  }
+
+  const weatherMatch = state.cache ? findWeatherForCalendarEvent(state.cache, event) : null;
+  nextPlanHero.innerHTML = renderNextPlanHeroCard(event, weatherMatch);
+}
+
+function findNextTodayCalendarEvent() {
+  const now = new Date();
+  const todayStart = new Date(now);
+  todayStart.setHours(0, 0, 0, 0);
+  const todayEnd = new Date(todayStart);
+  todayEnd.setDate(todayEnd.getDate() + 1);
+
+  return state.calendarEvents
+    .map((event) => ({
+      event,
+      start: getCalendarEventStart(event),
+      end: getCalendarEventEnd(event),
+    }))
+    .filter((item) => {
+      if (!item.start) return false;
+      const end = item.end || item.start;
+      const overlapsToday = item.start < todayEnd && end >= todayStart;
+      const stillRelevant = item.start >= now || end > now;
+      return overlapsToday && stillRelevant;
+    })
+    .sort((a, b) => a.start.getTime() - b.start.getTime())[0]?.event || null;
+}
+
+function renderNextPlanHeroCard(event, weatherMatch) {
+  const transport = getTransportModeOption();
+  const eventTime = formatCalendarEventTimeForWeather(event);
+  const location = event.location || "場所情報なし";
+
+  if (!weatherMatch) {
+    return `
+      <div class="next-plan-top">
+        <div>
+          <span class="section-kicker">Today</span>
+          <h2>今日の次の予定</h2>
+        </div>
+      </div>
+      <div class="next-plan-main">
+        <p class="next-plan-title">${escapeHtml(event.title)}</p>
+        <p class="next-plan-meta">${escapeHtml(eventTime)} / ${escapeHtml(location)}</p>
+        <p class="next-plan-summary">天気データを取得すると、${escapeHtml(transport.statusLabel)}基準の判断をここに表示します。</p>
+      </div>
+    `;
+  }
+
+  const score = computeTransportHourScore(weatherMatch.hour, state.transportMode);
+  const tone = score >= 72 ? "good" : score >= 48 ? "warn" : "bad";
+  const rain = round(weatherMatch.hour.rainProbability);
+  const temp = round(weatherMatch.hour.temperature, 1);
+  const wind = round(weatherMatch.hour.wind, 1);
+  const title = getTransportDecisionTitle(score, state.transportMode);
+
+  return `
+    <div class="next-plan-top">
+      <div>
+        <span class="section-kicker">Today</span>
+        <h2>今日の次の予定</h2>
+      </div>
+      <strong class="next-plan-score ${tone}">${score}</strong>
+    </div>
+    <div class="next-plan-main">
+      <p class="next-plan-title">${escapeHtml(event.title)}</p>
+      <p class="next-plan-meta">${escapeHtml(eventTime)} / ${escapeHtml(location)}</p>
+      <div class="next-plan-summary ${tone}">
+        <strong>${escapeHtml(title)}</strong>
+        <span>${escapeHtml(transport.statusLabel)}基準 / 雨 ${rain ?? "--"}% / 気温 ${temp ?? "--"}度 / 風 ${wind ?? "--"}km/h</span>
+      </div>
+    </div>
+  `;
 }
 
 function renderScheduleWeatherEmpty(text) {
