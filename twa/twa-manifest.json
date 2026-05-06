@@ -1,0 +1,44 @@
+{
+  "packageId": "com.hokutoki.outdoorcompass",
+  "host": "hokutoki.github.io",
+  "name": "外出コンパス",
+  "launcherName": "外出コンパス",
+  "display": "standalone",
+  "themeColor": "#f2f2f7",
+  "themeColorDark": "#11181c",
+  "navigationColor": "#f2f2f7",
+  "navigationColorDark": "#11181c",
+  "navigationDividerColor": "#d9dde3",
+  "navigationDividerColorDark": "#2b3035",
+  "backgroundColor": "#f2f2f7",
+  "enableNotifications": false,
+  "enableSiteSettingsShortcut": true,
+  "fallbackType": "customtabs",
+  "orientation": "portrait",
+  "startUrl": "/iphone-outdoor-compass/index.html",
+  "webManifestUrl": "https://hokutoki.github.io/iphone-outdoor-compass/manifest.webmanifest",
+  "iconUrl": "https://hokutoki.github.io/iphone-outdoor-compass/icons/icon-512.png",
+  "maskableIconUrl": "https://hokutoki.github.io/iphone-outdoor-compass/icons/icon-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "appVersion": "1.0.0",
+  "appVersionCode": 1,
+  "minSdkVersion": 23,
+  "signingKey": {
+    "path": "./release.jks",
+    "alias": "outdoor-compass"
+  },
+  "fingerprints": [],
+  "shortcuts": [
+    {
+      "name": "天気を確認",
+      "short_name": "天気",
+      "url": "/iphone-outdoor-compass/index.html"
+    },
+    {
+      "name": "地点を変更",
+      "short_name": "地点",
+      "url": "/iphone-outdoor-compass/index.html#places"
+    }
+  ],
+  "generatorApp": "bubblewrap-cli"
+}
