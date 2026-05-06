@@ -772,6 +772,43 @@ h2 {
   background: var(--blue-soft);
 }
 
+.temperature-trend-panel.alert {
+  border-color: rgba(255, 69, 58, 0.32);
+  box-shadow: 0 8px 22px rgba(255, 69, 58, 0.16);
+}
+
+.temperature-trend-panel.alert.warmer {
+  background: linear-gradient(180deg, #fff5f3 0%, #ffe7e5 100%);
+}
+
+.temperature-trend-panel.alert.warmer .temperature-trend-title,
+.temperature-trend-panel.alert.warmer .temperature-trend-header span:last-child {
+  color: #8a3222;
+}
+
+.temperature-trend-panel.alert.warmer .temperature-trend-header span:last-child,
+.temperature-trend-panel.alert.warmer .temperature-trend-details span {
+  background: #ffd8d3;
+  color: #8a3222;
+}
+
+.temperature-trend-panel.alert.cooler {
+  background: linear-gradient(180deg, #f0f7ff 0%, #dcebff 100%);
+  border-color: rgba(10, 92, 173, 0.28);
+  box-shadow: 0 8px 22px rgba(10, 92, 173, 0.14);
+}
+
+.temperature-trend-panel.alert.cooler .temperature-trend-title,
+.temperature-trend-panel.alert.cooler .temperature-trend-header span:last-child {
+  color: #08477f;
+}
+
+.temperature-trend-panel.alert.cooler .temperature-trend-header span:last-child,
+.temperature-trend-panel.alert.cooler .temperature-trend-details span {
+  background: #cfe3ff;
+  color: #08477f;
+}
+
 .activity-card {
   display: grid;
   grid-template-columns: 58px minmax(0, 1fr);

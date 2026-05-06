@@ -7,6 +7,7 @@ const googleIdentityScriptUrl = "https://accounts.google.com/gsi/client";
 const defaultCalendarClientId = "176925321769-f8r8ic1bvbd84tn1co66bl3ibeuqo4ai.apps.googleusercontent.com";
 const defaultCalendarRangeMode = "week";
 const defaultTransportMode = "car";
+const apparentTrendWarningThreshold = 4;
 const calendarRangeOptions = {
   today: {
     label: "今日",
@@ -1185,8 +1186,9 @@ function renderTemperatureTrendPanel(forecast, location = getActiveLocation()) {
     return;
   }
 
-  temperatureTrendPanel.classList.remove("warmer", "cooler", "steady");
+  temperatureTrendPanel.classList.remove("warmer", "cooler", "steady", "alert");
   temperatureTrendPanel.classList.add(trend.tone);
+  if (trend.severity === "alert") temperatureTrendPanel.classList.add("alert");
   temperatureTrendPanel.innerHTML = `
     <div class="temperature-trend-header">
       <div>
@@ -1204,7 +1206,7 @@ function renderTemperatureTrendPanel(forecast, location = getActiveLocation()) {
 }
 
 function renderTemperatureTrendEmpty(text) {
-  temperatureTrendPanel?.classList.remove("warmer", "cooler", "steady");
+  temperatureTrendPanel?.classList.remove("warmer", "cooler", "steady", "alert");
   return `
     <div>
       <span class="section-kicker">Change</span>
@@ -1607,6 +1609,7 @@ function getTemperatureTrend(forecast, location = getActiveLocation()) {
 
     return {
       tone: apparentTrend.tone,
+      severity: apparentTrend.severity,
       title: `現在の体感 ${formatTemperature(apparentTrend.current)}度`,
       summary: apparentTrend.summary,
       details,
@@ -1653,23 +1656,30 @@ function getApparentTemperatureTrend(forecast) {
   }
 
   const diff = round(currentApparent - yesterdayApparent, 1);
-  const tone = Math.abs(diff) < 0.5 ? "steady" : diff > 0 ? "warmer" : "cooler";
-  const badge = tone === "warmer" ? "体感高め" : tone === "cooler" ? "体感低め" : "体感ほぼ同じ";
+  const absDiff = Math.abs(diff);
+  const tone = absDiff < 0.5 ? "steady" : diff > 0 ? "warmer" : "cooler";
+  const severity = absDiff >= apparentTrendWarningThreshold ? "alert" : "normal";
+  const badge = severity === "alert" ? "体感差大" : tone === "warmer" ? "体感高め" : tone === "cooler" ? "体感低め" : "体感ほぼ同じ";
   return {
     current: currentApparent,
     yesterday: yesterdayApparent,
     diff,
     tone,
-    summary: buildApparentTemperatureTrendSummary(diff),
+    severity,
+    summary: buildApparentTemperatureTrendSummary(diff, severity),
     detail: `体感 ${formatSignedTemperatureDiff(diff)}`,
     yesterdayDetail: `昨日同時刻 ${formatTemperature(yesterdayApparent)}度`,
     badge,
   };
 }
 
-function buildApparentTemperatureTrendSummary(diff) {
+function buildApparentTemperatureTrendSummary(diff, severity = "normal") {
   const amount = formatTemperature(Math.abs(diff));
   if (Math.abs(diff) < 0.5) return "昨日の同じ時刻とほぼ同じ体感です。";
+  if (severity === "alert") {
+    if (diff > 0) return `昨日の同じ時刻より${amount}度高く感じます。水分と暑さ対策を優先してください。`;
+    return `昨日の同じ時刻より${amount}度低く感じます。羽織り物や防寒を意識してください。`;
+  }
   if (diff > 0) return `昨日の同じ時刻より${amount}度高く感じます。`;
   return `昨日の同じ時刻より${amount}度低く感じます。`;
 }
