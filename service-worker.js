@@ -1,10 +1,10 @@
-const cacheName = "outdoor-compass-v22";
+const cacheName = "outdoor-compass-v23";
 
 const appShell = [
   "./",
   "./index.html",
-  "./styles.css?v=22",
-  "./app.js?v=22",
+  "./styles.css?v=23",
+  "./app.js?v=23",
   "./data/events.json",
   "./manifest.webmanifest",
   "./icons/icon.svg",

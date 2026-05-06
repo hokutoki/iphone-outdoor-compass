@@ -1572,6 +1572,13 @@ function valueAt(values, index) {
   return values[index] ?? null;
 }
 
+function findHourlyTimeIndex(times, timeKey) {
+  if (!Array.isArray(times) || !timeKey) return -1;
+  const exactIndex = times.indexOf(timeKey);
+  if (exactIndex >= 0) return exactIndex;
+  return times.indexOf(`${String(timeKey).slice(0, 13)}:00`);
+}
+
 function getTemperatureTrend(forecast, location = getActiveLocation()) {
   const daily = forecast?.daily || {};
   const apparentTrend = getApparentTemperatureTrend(forecast);
@@ -1632,7 +1639,7 @@ function getApparentTemperatureTrend(forecast) {
   const hourly = forecast?.hourly || {};
   const times = hourly.time || [];
   const yesterdayTime = shiftDateTimeKey(forecast?.current?.time, -1);
-  const yesterdayIndex = times.indexOf(yesterdayTime);
+  const yesterdayIndex = findHourlyTimeIndex(times, yesterdayTime);
   const yesterdayApparent = round(valueAt(hourly.apparent_temperature, yesterdayIndex), 1);
   if (yesterdayApparent === null) {
     return {
