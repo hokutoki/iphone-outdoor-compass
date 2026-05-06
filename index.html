@@ -168,10 +168,13 @@
                 <strong id="calendar-title">Googleカレンダー</strong>
                 <span id="calendar-connection-label">未接続</span>
               </div>
-              <button id="connect-calendar" class="icon-text-button calendar-connect" type="button" disabled>
-                <svg><use href="#icon-calendar"></use></svg>
-                接続準備中
-              </button>
+              <div class="calendar-action-row">
+                <button id="connect-calendar" class="icon-text-button calendar-connect" type="button">
+                  <svg><use href="#icon-calendar"></use></svg>
+                  設定へ
+                </button>
+                <button id="disconnect-calendar" class="calendar-disconnect-button" type="button" disabled>解除</button>
+              </div>
             </div>
             <p id="calendar-status" class="helper-text" aria-live="polite">
               予定表示の枠だけ先に用意しています。
@@ -307,7 +310,7 @@
             </div>
             <div class="info-row">
               <strong>予定</strong>
-              <span>Google Calendar APIは認証設定後に有効化</span>
+              <span>Google Calendar APIはClient ID保存後に有効化</span>
             </div>
             <div class="info-row">
               <strong>保存</strong>
@@ -321,6 +324,22 @@
               <strong>公開</strong>
               <span>HTTPS公開後はホーム画面追加とPWAキャッシュに対応</span>
             </div>
+          </div>
+
+          <div class="calendar-settings-panel">
+            <div class="section-heading compact">
+              <span class="section-kicker">Calendar</span>
+              <h2>Googleカレンダー接続</h2>
+            </div>
+            <label class="calendar-client-label">
+              <span>OAuth Client ID</span>
+              <input id="calendar-client-id" type="text" inputmode="url" autocomplete="off" placeholder="1234567890-xxxxx.apps.googleusercontent.com" />
+            </label>
+            <div class="button-row">
+              <button id="save-calendar-client" class="full-button primary" type="button">保存</button>
+              <button id="clear-calendar-client" class="full-button subtle" type="button">削除</button>
+            </div>
+            <p id="calendar-settings-status" class="helper-text" aria-live="polite"></p>
           </div>
 
           <div class="backup-panel">
