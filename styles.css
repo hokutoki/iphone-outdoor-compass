@@ -155,6 +155,7 @@ h2 {
 .event-feed-panel,
 .auto-event-card,
 .info-panel,
+.update-panel,
 .backup-panel,
 .empty-state {
   border: 1px solid var(--line);
@@ -509,6 +510,17 @@ h2 {
   gap: 10px;
   padding: 14px;
   border-color: transparent;
+}
+
+.update-panel {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-color: transparent;
+}
+
+.update-panel .helper-text {
+  margin: 0;
 }
 
 .calendar-toolbar,

@@ -104,6 +104,9 @@ const copyData = document.querySelector("#copy-data");
 const importData = document.querySelector("#import-data");
 const backupText = document.querySelector("#backup-text");
 const backupStatus = document.querySelector("#backup-status");
+const checkAppUpdate = document.querySelector("#check-app-update");
+const reloadApp = document.querySelector("#reload-app");
+const appUpdateStatus = document.querySelector("#app-update-status");
 const calendarClientIdInput = document.querySelector("#calendar-client-id");
 const saveCalendarClient = document.querySelector("#save-calendar-client");
 const clearCalendarClient = document.querySelector("#clear-calendar-client");
@@ -111,6 +114,9 @@ const calendarSettingsStatus = document.querySelector("#calendar-settings-status
 
 let googleIdentityScriptPromise = null;
 let calendarTokenClient = null;
+let serviceWorkerRegistration = null;
+let appUpdateReloading = false;
+const serviceWorkerUpdateBindings = new WeakSet();
 
 const calendarPreviewItems = [
   {
@@ -1507,6 +1513,85 @@ function switchView(name) {
   }
 }
 
+function setAppUpdateStatus(message, canReload = false) {
+  appUpdateStatus.textContent = message;
+  reloadApp.hidden = !canReload;
+  reloadApp.disabled = !canReload;
+}
+
+function showAppReloadButton(message = "更新を取得しました。再読み込みで反映します。") {
+  setAppUpdateStatus(message, true);
+}
+
+function bindServiceWorkerUpdateEvents(registration) {
+  if (!registration || serviceWorkerUpdateBindings.has(registration)) return;
+  serviceWorkerUpdateBindings.add(registration);
+
+  registration.addEventListener("updatefound", () => {
+    const worker = registration.installing;
+    if (!worker) return;
+
+    setAppUpdateStatus("最新版を取得しています。", false);
+    worker.addEventListener("statechange", () => {
+      if (worker.state !== "installed") return;
+      if (navigator.serviceWorker.controller) {
+        showAppReloadButton();
+      } else {
+        setAppUpdateStatus("オフライン表示の準備ができました。");
+      }
+    });
+  });
+}
+
+async function ensureServiceWorkerRegistration() {
+  if (serviceWorkerRegistration) return serviceWorkerRegistration;
+  const existing = await navigator.serviceWorker.getRegistration("./");
+  serviceWorkerRegistration = existing || (await navigator.serviceWorker.register("./service-worker.js"));
+  bindServiceWorkerUpdateEvents(serviceWorkerRegistration);
+  return serviceWorkerRegistration;
+}
+
+async function checkForAppUpdate() {
+  if (!("serviceWorker" in navigator)) {
+    setAppUpdateStatus("このブラウザではPWA更新確認に対応していません。");
+    return;
+  }
+  if (!["http:", "https:"].includes(window.location.protocol)) {
+    setAppUpdateStatus("file://では更新確認を使えません。HTTPS公開版で利用してください。");
+    return;
+  }
+
+  try {
+    checkAppUpdate.disabled = true;
+    setAppUpdateStatus("更新を確認しています。", false);
+    const registration = await ensureServiceWorkerRegistration();
+    await registration.update();
+
+    if (registration.waiting) {
+      registration.waiting.postMessage({ type: "SKIP_WAITING" });
+      showAppReloadButton();
+      return;
+    }
+
+    if (registration.installing) {
+      setAppUpdateStatus("最新版を取得しています。完了後に再読み込みできます。");
+      return;
+    }
+
+    if (!reloadApp.hidden) return;
+    setAppUpdateStatus(`最新です: ${formatUpdated(new Date().toISOString())}`);
+  } catch (error) {
+    setAppUpdateStatus(`更新確認に失敗しました。${String(error?.message || "")}`);
+  } finally {
+    checkAppUpdate.disabled = false;
+  }
+}
+
+function reloadApplication() {
+  appUpdateReloading = true;
+  window.location.reload();
+}
+
 function bindEvents() {
   refreshNow.addEventListener("click", fetchWeather);
   connectCalendar.addEventListener("click", handleCalendarConnect);
@@ -1522,6 +1607,8 @@ function bindEvents() {
   searchResults.addEventListener("click", handlePlaceAction);
   savedPlaces.addEventListener("click", handlePlaceAction);
   useGps.addEventListener("click", useCurrentPosition);
+  checkAppUpdate.addEventListener("click", checkForAppUpdate);
+  reloadApp.addEventListener("click", reloadApplication);
   exportData.addEventListener("click", exportBackup);
   copyData.addEventListener("click", copyBackup);
   importData.addEventListener("click", importBackup);
@@ -1534,7 +1621,22 @@ function bindEvents() {
 function registerServiceWorker() {
   if (!("serviceWorker" in navigator)) return;
   if (!["http:", "https:"].includes(window.location.protocol)) return;
-  navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+
+  navigator.serviceWorker
+    .register("./service-worker.js")
+    .then((registration) => {
+      serviceWorkerRegistration = registration;
+      bindServiceWorkerUpdateEvents(registration);
+      if (registration.waiting) showAppReloadButton();
+    })
+    .catch(() => {
+      setAppUpdateStatus("PWAキャッシュの準備に失敗しました。通信できる状態で再度開いてください。");
+    });
+
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (appUpdateReloading) return;
+    showAppReloadButton("更新準備ができました。再読み込みで反映します。");
+  });
 }
 
 function init() {

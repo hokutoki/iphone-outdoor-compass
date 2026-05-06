@@ -1,4 +1,4 @@
-const cacheName = "outdoor-compass-v14";
+const cacheName = "outdoor-compass-v15";
 
 const appShell = [
   "./",
@@ -27,6 +27,12 @@ self.addEventListener("activate", (event) => {
       .then((keys) => Promise.all(keys.filter((key) => key !== cacheName).map((key) => caches.delete(key)))),
   );
   self.clients.claim();
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener("fetch", (event) => {
