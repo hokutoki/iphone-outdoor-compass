@@ -14,6 +14,7 @@ Open-Meteoの公開APIを使い、天気、雨、風、PM2.5、UVから外出し
 - GitHub Pagesなどの静的ホスティングで公開可能
 - 情報タブで地域ニュース、地域イベント、公式リンクを確認
 - GitHub Actionsでヒガシルのイベント情報をJSON化して表示
+- Google Calendar APIのClient IDを内蔵し、iPhone単独で予定の読み取り接続を開始可能
 
 ## 使用API
 
@@ -22,6 +23,7 @@ Open-Meteoの公開APIを使い、天気、雨、風、PM2.5、UVから外出し
 - Open-Meteo Air Quality API
 - GDELT Doc API
 - 東広島おでかけ観光サイト「ヒガシル」
+- Google Calendar API（任意接続、読み取り専用）
 
 ## イベント情報の更新
 

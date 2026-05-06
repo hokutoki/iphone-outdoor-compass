@@ -4,6 +4,7 @@ const eventFeedUrl = "./data/events.json";
 const calendarScope = "https://www.googleapis.com/auth/calendar.events.readonly";
 const calendarApiBaseUrl = "https://www.googleapis.com/calendar/v3";
 const googleIdentityScriptUrl = "https://accounts.google.com/gsi/client";
+const defaultCalendarClientId = "176925321769-f8r8ic1bvbd84tn1co66bl3ibeuqo4ai.apps.googleusercontent.com";
 
 const defaultLocation = {
   id: "higashihiroshima",
@@ -467,9 +468,9 @@ function renderCalendarPreview() {
     return;
   }
 
-  if (!state.calendarClientId) {
+  if (!isValidGoogleClientId(getCalendarClientId())) {
     calendarConnectionLabel.textContent = "Client ID未設定";
-    calendarStatus.textContent = "設定タブでOAuth Client IDを保存すると、Google接続を開始できます。";
+    calendarStatus.textContent = "設定タブでOAuth Client IDを確認すると、Google接続を開始できます。";
     connectCalendar.disabled = false;
     connectCalendar.innerHTML = `<svg><use href="#icon-settings"></use></svg>設定へ`;
     disconnectCalendar.disabled = true;
@@ -498,17 +499,22 @@ function renderCalendarPreviewCard(item) {
 }
 
 function renderCalendarSettings() {
-  calendarClientIdInput.value = state.calendarClientId;
+  calendarClientIdInput.value = state.calendarClientId || defaultCalendarClientId;
   calendarSettingsStatus.textContent = state.calendarClientId
-    ? "Client IDを保存済みです。情報タブからGoogle接続できます。"
-    : "Client IDは未設定です。";
+    ? "上書きClient IDを保存済みです。情報タブからGoogle接続できます。"
+    : "内蔵Client IDを使用中です。iPhoneでも追加設定なしでGoogle接続できます。";
 }
 
 function saveCalendarClientId() {
   const clientId = calendarClientIdInput.value.trim();
 
   if (!clientId) {
-    calendarSettingsStatus.textContent = "Client IDを入力してください。";
+    state.calendarClientId = "";
+    clearCalendarSession();
+    calendarTokenClient = null;
+    saveState();
+    renderCalendarSettings();
+    renderCalendarPreview();
     return;
   }
 
@@ -517,7 +523,7 @@ function saveCalendarClientId() {
     return;
   }
 
-  state.calendarClientId = clientId;
+  state.calendarClientId = clientId === defaultCalendarClientId ? "" : clientId;
   clearCalendarSession();
   calendarTokenClient = null;
   saveState();
@@ -532,6 +538,11 @@ function clearCalendarClientId() {
   saveState();
   renderCalendarSettings();
   renderCalendarPreview();
+}
+
+function getCalendarClientId() {
+  const customClientId = String(state.calendarClientId || "").trim();
+  return isValidGoogleClientId(customClientId) ? customClientId : defaultCalendarClientId;
 }
 
 function isValidGoogleClientId(value) {
@@ -550,7 +561,7 @@ function clearCalendarSession() {
 }
 
 async function handleCalendarConnect() {
-  if (!state.calendarClientId) {
+  if (!isValidGoogleClientId(getCalendarClientId())) {
     switchView("settings");
     window.setTimeout(() => calendarClientIdInput.focus(), 150);
     return;
@@ -589,7 +600,7 @@ async function requestCalendarAccessToken() {
 
   if (!calendarTokenClient) {
     calendarTokenClient = window.google.accounts.oauth2.initTokenClient({
-      client_id: state.calendarClientId,
+      client_id: getCalendarClientId(),
       scope: calendarScope,
       callback: () => {},
     });

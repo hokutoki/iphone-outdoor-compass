@@ -310,7 +310,7 @@
             </div>
             <div class="info-row">
               <strong>予定</strong>
-              <span>Google Calendar APIはClient ID保存後に有効化</span>
+              <span>Google Calendar APIは内蔵Client IDで接続可能</span>
             </div>
             <div class="info-row">
               <strong>保存</strong>
@@ -332,12 +332,12 @@
               <h2>Googleカレンダー接続</h2>
             </div>
             <label class="calendar-client-label">
-              <span>OAuth Client ID</span>
+              <span>OAuth Client ID（必要な場合だけ上書き）</span>
               <input id="calendar-client-id" type="text" inputmode="url" autocomplete="off" placeholder="1234567890-xxxxx.apps.googleusercontent.com" />
             </label>
             <div class="button-row">
               <button id="save-calendar-client" class="full-button primary" type="button">保存</button>
-              <button id="clear-calendar-client" class="full-button subtle" type="button">削除</button>
+              <button id="clear-calendar-client" class="full-button subtle" type="button">既定に戻す</button>
             </div>
             <p id="calendar-settings-status" class="helper-text" aria-live="polite"></p>
           </div>
