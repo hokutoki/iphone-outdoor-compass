@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-08T21:17:31.479Z",
+  "fetchedAt": "2026-05-09T21:04:27.323Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -70,22 +70,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "himawari_pj_tanemaki",
-      "title": "ひまわりプロジェクト2026「種まきイベント」",
-      "summary": "ひまわり畑の“株主”となって、一緒にひまわりを育ててみませんか？",
-      "url": "https://higashihiroshima-kanko.jp/event/himawari_pj_tanemaki/",
-      "dateLabel": "2026/05/09（土）",
-      "startDate": "2026-05-09",
-      "endDate": "2026-05-09",
-      "area": "北部 / 福富",
-      "location": "東広島市福富町下竹仁",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "opera-concert",
       "title": "オペラ「ヘンゼルとグレーテル」",
       "summary": "家族で楽しむ、本格オペラの世界",
@@ -95,7 +79,7 @@
       "endDate": "2026-05-10",
       "area": "中央部 / 西条",
       "location": "東広島芸術文化ホールくらら 小ホール",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#アート・音楽・文化"
       ],
@@ -194,6 +178,22 @@
       "status": "",
       "tags": [
         "#その他イベント"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "hh-music-festival",
+      "title": "第19回ひがしひろしま音楽祭～くららフェス2026～",
+      "summary": "気軽に楽しめる、音楽あふれる一日♪",
+      "url": "https://higashihiroshima-kanko.jp/event/hh-music-festival/",
+      "dateLabel": "2026/06/07（日）",
+      "startDate": "2026-06-07",
+      "endDate": "2026-06-07",
+      "area": "中央部 / 西条",
+      "location": "東広島芸術文化ホールくらら 大ホール",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     }
