@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-09T21:04:27.323Z",
+  "fetchedAt": "2026-05-10T21:07:42.832Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -66,22 +66,6 @@
       "status": "開催中",
       "tags": [
         "#キャンペーン・おトク"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "opera-concert",
-      "title": "オペラ「ヘンゼルとグレーテル」",
-      "summary": "家族で楽しむ、本格オペラの世界",
-      "url": "https://higashihiroshima-kanko.jp/event/opera-concert/",
-      "dateLabel": "2026/05/10（日）",
-      "startDate": "2026-05-10",
-      "endDate": "2026-05-10",
-      "area": "中央部 / 西条",
-      "location": "東広島芸術文化ホールくらら 小ホール",
-      "status": "開催中",
-      "tags": [
-        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     },
@@ -194,6 +178,23 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "foodfriends",
+      "title": "第４回 Food&#038;Friends～広大アフリカ留学生協会との共同企画～",
+      "summary": "アフリカの留学生と、話して・遊んで・一緒に食べる交流イベント",
+      "url": "https://higashihiroshima-kanko.jp/event/foodfriends/",
+      "dateLabel": "2026/06/20（土）",
+      "startDate": "2026-06-20",
+      "endDate": "2026-06-20",
+      "area": "中央部 / 西条",
+      "location": "ひろしま国際プラザ",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化",
+        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     }
