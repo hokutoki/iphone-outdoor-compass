@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-11T21:42:46.160Z",
+  "fetchedAt": "2026-05-12T21:41:04.791Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -127,7 +127,7 @@
       "endDate": "2026-05-24",
       "area": "中央部 / 西条",
       "location": "西条駅前にぎわい広場 他",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#マルシェ・グルメ・物産"
       ],
@@ -143,9 +143,25 @@
       "endDate": "2026-05-24",
       "area": "中央部 / 黒瀬",
       "location": "黒瀬みのり農園（広島国際大学から安浦方面へ車で1分）",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "horoyoi-sanpo-coupon",
+      "title": "ほろよい散歩クーポン",
+      "summary": "西条酒蔵通りの酒蔵やお店で使える！酒蔵散策がより楽しめるクーポン！",
+      "url": "https://higashihiroshima-kanko.jp/event/horoyoi-sanpo-coupon/",
+      "dateLabel": "2026/06/01（月） ～ 2026/09/14（月） ※8月11日(火)〜16日(日)は除く",
+      "startDate": "2026-06-01",
+      "endDate": "2026-09-14",
+      "area": "中央部 / 西条",
+      "location": "西条酒蔵通り",
+      "status": "",
+      "tags": [
+        "#キャンペーン・おトク"
       ],
       "source": "ヒガシル"
     },
@@ -178,23 +194,6 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "foodfriends",
-      "title": "第４回 Food&#038;Friends～広大アフリカ留学生協会との共同企画～",
-      "summary": "アフリカの留学生と、話して・遊んで・一緒に食べる交流イベント",
-      "url": "https://higashihiroshima-kanko.jp/event/foodfriends/",
-      "dateLabel": "2026/06/20（土）",
-      "startDate": "2026-06-20",
-      "endDate": "2026-06-20",
-      "area": "中央部 / 西条",
-      "location": "ひろしま国際プラザ",
-      "status": "",
-      "tags": [
-        "#アート・音楽・文化",
-        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     }
