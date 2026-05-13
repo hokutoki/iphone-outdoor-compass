@@ -495,15 +495,19 @@ async function fetchNewsJson(url, timeoutMs = 15000) {
 
 function normalizeNewsItems(items) {
   return items
-    .map((item) => ({
-      title: item.title || item.name || "無題の記事",
-      url: item.url_mobile || item.url || item.id || "",
-      domain: item.domain || getDomain(item.url || item.id || ""),
-      seenDate: item.seendate || item.date_published || item.date_modified || "",
-      image: item.socialimage || item.image || "",
-      language: item.language || "",
-      sourceCountry: item.sourcecountry || "",
-    }))
+    .map((item) => {
+      const rawUrl = item.url_mobile || item.url || item.id || "";
+      const url = isSafeHttpUrl(rawUrl) ? String(rawUrl).trim() : "";
+      return {
+        title: item.title || item.name || "無題の記事",
+        url,
+        domain: item.domain || getDomain(url),
+        seenDate: item.seendate || item.date_published || item.date_modified || "",
+        image: isSafeHttpUrl(item.socialimage || item.image || "") ? item.socialimage || item.image || "" : "",
+        language: item.language || "",
+        sourceCountry: item.sourcecountry || "",
+      };
+    })
     .filter((item) => item.url)
     .slice(0, 8);
 }
@@ -876,7 +880,7 @@ function normalizeCalendarEvents(items) {
         start,
         end,
         location: item.location || "",
-        htmlLink: item.htmlLink || "",
+        htmlLink: isSafeHttpUrl(item.htmlLink) ? item.htmlLink : "",
         status: item.status || "",
         allDay: Boolean(item.start?.date),
       };
@@ -1044,7 +1048,7 @@ function normalizeEventFeed(feed) {
         id: String(item.id || item.url || item.title || createEventId()),
         title: String(item.title || "").trim(),
         summary: String(item.summary || "").trim(),
-        url: String(item.url || "").trim(),
+        url: isSafeHttpUrl(item.url) ? String(item.url).trim() : "",
         dateLabel: String(item.dateLabel || "").trim(),
         startDate: String(item.startDate || "").slice(0, 10),
         endDate: String(item.endDate || "").slice(0, 10),
@@ -2191,6 +2195,15 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function isSafeHttpUrl(value) {
+  try {
+    const url = new URL(String(value || "").trim(), window.location.href);
+    return url.protocol === "https:" || url.protocol === "http:";
+  } catch {
+    return false;
+  }
 }
 
 function switchView(name) {
