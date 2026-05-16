@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-15T21:19:56.183Z",
+  "fetchedAt": "2026-05-16T21:05:44.674Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -66,38 +66,6 @@
       "status": "開催中",
       "tags": [
         "#キャンペーン・おトク"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "sakekasu-labo",
-      "title": "SAKEKASU LABOー酒粕トースト体験会ー",
-      "summary": "酒粕でアレンジ！つくって食べる体験イベント",
-      "url": "https://higashihiroshima-kanko.jp/event/sakekasu-labo/",
-      "dateLabel": "2026/05/16（土）",
-      "startDate": "2026-05-16",
-      "endDate": "2026-05-16",
-      "area": "中央部 / 西条",
-      "location": "町家",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "field_navi",
-      "title": "第115回フィールドナビ「ネイチャーゲームで遊ぼう！春編」",
-      "summary": "春のキャンパスで、自然とあそぼう！",
-      "url": "https://higashihiroshima-kanko.jp/event/field_navi/",
-      "dateLabel": "2026/05/16（土）",
-      "startDate": "2026-05-16",
-      "endDate": "2026-05-16",
-      "area": "中央部 / 西条",
-      "location": "広島大学 東広島キャンパス",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     },
@@ -194,6 +162,40 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "archery-experience",
+      "title": "アーチェリー体験会",
+      "summary": "弓も矢もレンタルOK！手ぶらでアーチェリー体験",
+      "url": "https://higashihiroshima-kanko.jp/event/archery-experience/",
+      "dateLabel": "2026/06/20（土） ～ 2026/06/21（日） ※雨天中止",
+      "startDate": "2026-06-20",
+      "endDate": "2026-06-21",
+      "area": "中央部 / 西条",
+      "location": "塚の垰アーチェリー",
+      "status": "",
+      "tags": [
+        "#体験・見学・ワークショップ",
+        "#スポーツ・アウトドア"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "foodfriends",
+      "title": "第４回 Food&#038;Friends～広大アフリカ留学生協会との共同企画～",
+      "summary": "アフリカの留学生と、話して・遊んで・一緒に食べる交流イベント",
+      "url": "https://higashihiroshima-kanko.jp/event/foodfriends/",
+      "dateLabel": "2026/06/20（土）",
+      "startDate": "2026-06-20",
+      "endDate": "2026-06-20",
+      "area": "中央部 / 西条",
+      "location": "ひろしま国際プラザ",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化",
+        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     }
