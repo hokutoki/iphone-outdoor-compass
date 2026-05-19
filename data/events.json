@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-18T21:39:27.940Z",
+  "fetchedAt": "2026-05-19T21:47:54.637Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -66,22 +66,6 @@
       "status": "開催中",
       "tags": [
         "#キャンペーン・おトク"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "iwc2026-shinsakai-tour",
-      "title": "IWC2026「SAKE部門」審査会特別公開ツアー",
-      "summary": "世界最高峰の舞台を間近で見学できるツアー",
-      "url": "https://higashihiroshima-kanko.jp/event/iwc2026-shinsakai-tour/",
-      "dateLabel": "2026/05/19（火）",
-      "startDate": "2026-05-19",
-      "endDate": "2026-05-19",
-      "area": "中央部 / 西条",
-      "location": "東広島芸術文化ホールくらら",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     },
@@ -196,6 +180,22 @@
       "tags": [
         "#アート・音楽・文化",
         "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "trumpet-festival",
+      "title": "松井秀太郎×ナカリャコフ×児玉隼人 トランペットの祭典",
+      "summary": "世界が唸る音が、ここに集う",
+      "url": "https://higashihiroshima-kanko.jp/event/trumpet-festival/",
+      "dateLabel": "2026/08/01（土）",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-01",
+      "area": "中央部 / 西条",
+      "location": "東広島芸術文化ホールくらら 大ホール",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     }
