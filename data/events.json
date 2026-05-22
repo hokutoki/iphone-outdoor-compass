@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-21T21:50:27.025Z",
+  "fetchedAt": "2026-05-22T21:36:58.628Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -79,7 +79,7 @@
       "endDate": "2026-05-24",
       "area": "中央部 / 西条",
       "location": "西条駅前にぎわい広場 他",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#マルシェ・グルメ・物産"
       ],
@@ -95,7 +95,7 @@
       "endDate": "2026-05-24",
       "area": "中央部 / 黒瀬",
       "location": "黒瀬みのり農園（広島国際大学から安浦方面へ車で1分）",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ"
       ],
