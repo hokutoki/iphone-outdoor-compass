@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-23T21:09:17.162Z",
+  "fetchedAt": "2026-05-24T21:13:12.063Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -66,38 +66,6 @@
       "status": "開催中",
       "tags": [
         "#キャンペーン・おトク"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "iwc2026-sakefes",
-      "title": "IWC2026「SAKE部門」開催記念｜IWC2026 HIROSHIMA SAKE Fes in東広島",
-      "summary": "〜 世界に挑戦したSAKEを呑む 〜",
-      "url": "https://higashihiroshima-kanko.jp/event/iwc2026-sakefes/",
-      "dateLabel": "2026/05/23（土） ～ 2026/05/24（日）",
-      "startDate": "2026-05-23",
-      "endDate": "2026-05-24",
-      "area": "中央部 / 西条",
-      "location": "西条駅前にぎわい広場 他",
-      "status": "開催中",
-      "tags": [
-        "#マルシェ・グルメ・物産"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "kurose_riceplanting",
-      "title": "黒瀬みのり農園「田植え体験会」",
-      "summary": "お子さんも初めての方も大歓迎！楽しみながら田植えを体験♪",
-      "url": "https://higashihiroshima-kanko.jp/event/kurose_riceplanting/",
-      "dateLabel": "2026/05/23（土） ～ 2026/05/24（日）",
-      "startDate": "2026-05-23",
-      "endDate": "2026-05-24",
-      "area": "中央部 / 黒瀬",
-      "location": "黒瀬みのり農園（広島国際大学から安浦方面へ車で1分）",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     },
@@ -196,6 +164,22 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "heso-matsuri",
+      "title": "第30回どまんなか豊栄ヘソまつり",
+      "summary": "広島県のど真ん中にある豊栄の夏祭り！",
+      "url": "https://higashihiroshima-kanko.jp/event/heso-matsuri/",
+      "dateLabel": "2026/08/01（土）",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-01",
+      "area": "北部 / 豊栄",
+      "location": "豊栄ふれあいグラウンド",
+      "status": "",
+      "tags": [
+        "#祭り"
       ],
       "source": "ヒガシル"
     }
