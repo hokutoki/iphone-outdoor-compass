@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-24T21:13:12.063Z",
+  "fetchedAt": "2026-05-25T21:35:44.007Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -47,22 +47,6 @@
       "endDate": "2026-06-30",
       "area": "複数エリア / 西条、安芸津…",
       "location": "東広島市内の各スポット",
-      "status": "開催中",
-      "tags": [
-        "#キャンペーン・おトク"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "iwc2026_sns_campaign",
-      "title": "IWC2026×東広島 応援コメントキャンペーン",
-      "summary": "東広島を一緒に盛り上げ、酒スイーツ詰め合わせを当てよう！",
-      "url": "https://higashihiroshima-kanko.jp/event/iwc2026_sns_campaign/",
-      "dateLabel": "2026/04/27（月） ～ 2026/05/25（月）",
-      "startDate": "2026-04-27",
-      "endDate": "2026-05-25",
-      "area": "中央部 / 西条",
-      "location": "",
       "status": "開催中",
       "tags": [
         "#キャンペーン・おトク"
