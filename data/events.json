@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-25T21:35:44.007Z",
+  "fetchedAt": "2026-05-26T21:58:33.437Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -54,6 +54,22 @@
       "source": "ヒガシル"
     },
     {
+      "id": "shiraichi-mushirodorii",
+      "title": "第三回白市むしろ鳥居まつり",
+      "summary": "歴史ある白市の町並みと、懐かしき昭和のお祭り",
+      "url": "https://higashihiroshima-kanko.jp/event/shiraichi-mushirodorii/",
+      "dateLabel": "2026/05/30（土）",
+      "startDate": "2026-05-30",
+      "endDate": "2026-05-30",
+      "area": "中央部 / 高屋",
+      "location": "白市の町並み",
+      "status": "開催間近",
+      "tags": [
+        "#祭り"
+      ],
+      "source": "ヒガシル"
+    },
+    {
       "id": "horoyoi-sanpo-coupon",
       "title": "ほろよい散歩クーポン",
       "summary": "西条酒蔵通りの酒蔵やお店で使える！酒蔵散策がより楽しめるクーポン！",
@@ -79,7 +95,7 @@
       "endDate": "2026-07-18",
       "area": "中央部 / 西条",
       "location": "東広島商工会議所4階文化ホール",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#その他イベント"
       ],
