@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-27T22:13:04.591Z",
+  "fetchedAt": "2026-05-28T22:12:16.194Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -50,6 +50,22 @@
       "status": "開催中",
       "tags": [
         "#キャンペーン・おトク"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "sake-lecture",
+      "title": "第62回独立行政法人酒類総合研究所講演会（オンライン開催）",
+      "summary": "酒づくりの未来を知る講演会",
+      "url": "https://higashihiroshima-kanko.jp/event/sake-lecture/",
+      "dateLabel": "2026/05/25（月） ～ 2026/06/01（月）",
+      "startDate": "2026-05-25",
+      "endDate": "2026-06-01",
+      "area": "中央部 / 西条",
+      "location": "オンライン開催",
+      "status": "開催中",
+      "tags": [
+        "#その他イベント"
       ],
       "source": "ヒガシル"
     },
