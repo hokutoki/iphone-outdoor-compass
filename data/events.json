@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-28T22:12:16.194Z",
+  "fetchedAt": "2026-05-29T22:05:58.574Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -79,7 +79,7 @@
       "endDate": "2026-05-30",
       "area": "中央部 / 高屋",
       "location": "白市の町並み",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#祭り"
       ],
@@ -151,6 +151,22 @@
       "source": "ヒガシル"
     },
     {
+      "id": "field-navi-frog",
+      "title": "第117回フィールドナビ「蛙～観察会＆いきもの講座～」",
+      "summary": "オタマジャクシは、本当にカエルになる？",
+      "url": "https://higashihiroshima-kanko.jp/event/field-navi-frog/",
+      "dateLabel": "2026/06/20（土）",
+      "startDate": "2026-06-20",
+      "endDate": "2026-06-20",
+      "area": "中央部 / 西条",
+      "location": "広島大学 東広島キャンパス",
+      "status": "",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
       "id": "foodfriends",
       "title": "第４回 Food&#038;Friends～広大アフリカ留学生協会との共同企画～",
       "summary": "アフリカの留学生と、話して・遊んで・一緒に食べる交流イベント",
@@ -180,22 +196,6 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "heso-matsuri",
-      "title": "第30回どまんなか豊栄ヘソまつり",
-      "summary": "広島県のど真ん中にある豊栄の夏祭り！",
-      "url": "https://higashihiroshima-kanko.jp/event/heso-matsuri/",
-      "dateLabel": "2026/08/01（土）",
-      "startDate": "2026-08-01",
-      "endDate": "2026-08-01",
-      "area": "北部 / 豊栄",
-      "location": "豊栄ふれあいグラウンド",
-      "status": "",
-      "tags": [
-        "#祭り"
       ],
       "source": "ヒガシル"
     }
