@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-05-29T22:05:58.574Z",
+  "fetchedAt": "2026-05-30T21:15:44.765Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -66,22 +66,6 @@
       "status": "開催中",
       "tags": [
         "#その他イベント"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "shiraichi-mushirodorii",
-      "title": "第三回白市むしろ鳥居まつり",
-      "summary": "歴史ある白市の町並みと、懐かしき昭和のお祭り",
-      "url": "https://higashihiroshima-kanko.jp/event/shiraichi-mushirodorii/",
-      "dateLabel": "2026/05/30（土）",
-      "startDate": "2026-05-30",
-      "endDate": "2026-05-30",
-      "area": "中央部 / 高屋",
-      "location": "白市の町並み",
-      "status": "開催中",
-      "tags": [
-        "#祭り"
       ],
       "source": "ヒガシル"
     },
@@ -196,6 +180,22 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "heso-matsuri",
+      "title": "第30回どまんなか豊栄ヘソまつり",
+      "summary": "広島県のど真ん中にある豊栄の夏祭り！",
+      "url": "https://higashihiroshima-kanko.jp/event/heso-matsuri/",
+      "dateLabel": "2026/08/01（土）",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-01",
+      "area": "北部 / 豊栄",
+      "location": "豊栄ふれあいグラウンド",
+      "status": "",
+      "tags": [
+        "#祭り"
       ],
       "source": "ヒガシル"
     }
