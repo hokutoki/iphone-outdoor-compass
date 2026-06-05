@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-04T21:54:27.663Z",
+  "fetchedAt": "2026-06-05T21:45:22.802Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -95,7 +95,7 @@
       "endDate": "2026-07-18",
       "area": "中央部 / 西条",
       "location": "東広島商工会議所4階文化ホール",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#その他イベント"
       ],
