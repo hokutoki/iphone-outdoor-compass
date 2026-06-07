@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-06T21:18:51.882Z",
+  "fetchedAt": "2026-06-07T21:37:05.962Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -98,22 +98,6 @@
       "status": "開催中",
       "tags": [
         "#その他イベント"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "hh-music-festival",
-      "title": "第19回ひがしひろしま音楽祭～くららフェス2026～",
-      "summary": "気軽に楽しめる、音楽あふれる一日♪",
-      "url": "https://higashihiroshima-kanko.jp/event/hh-music-festival/",
-      "dateLabel": "2026/06/07（日）",
-      "startDate": "2026-06-07",
-      "endDate": "2026-06-07",
-      "area": "中央部 / 西条",
-      "location": "東広島芸術文化ホールくらら 大ホール",
-      "status": "開催中",
-      "tags": [
-        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     },
