@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-08T22:01:55.559Z",
+  "fetchedAt": "2026-06-09T21:59:32.837Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -111,7 +111,7 @@
       "endDate": "2026-06-21",
       "area": "中央部 / 西条",
       "location": "塚の垰アーチェリー",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ",
         "#スポーツ・アウトドア"
@@ -128,7 +128,7 @@
       "endDate": "2026-06-20",
       "area": "中央部 / 西条",
       "location": "広島大学 東広島キャンパス",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ"
       ],
@@ -144,7 +144,7 @@
       "endDate": "2026-06-20",
       "area": "中央部 / 西条",
       "location": "ひろしま国際プラザ",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#アート・音楽・文化",
         "#体験・見学・ワークショップ"
