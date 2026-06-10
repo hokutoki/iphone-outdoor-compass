@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-09T21:59:32.837Z",
+  "fetchedAt": "2026-06-10T22:20:48.457Z",
   "items": [
     {
       "id": "fumufumu-garalley31",
@@ -148,6 +148,22 @@
       "tags": [
         "#アート・音楽・文化",
         "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "hirodai-summerconcert",
+      "title": "広島大学交響楽団 第18回サマーコンサート",
+      "summary": "夕暮れのホールで楽しむコンサート♪",
+      "url": "https://higashihiroshima-kanko.jp/event/hirodai-summerconcert/",
+      "dateLabel": "2026/07/05（日）",
+      "startDate": "2026-07-05",
+      "endDate": "2026-07-05",
+      "area": "中央部 / 西条",
+      "location": "広島大学サタケメモリアルホール",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     },
