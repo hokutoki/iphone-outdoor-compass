@@ -3,24 +3,8 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-12T22:01:33.084Z",
+  "fetchedAt": "2026-06-13T21:39:04.362Z",
   "items": [
-    {
-      "id": "fumufumu-garalley31",
-      "title": "第36回ふむふむギャラリー「いのちのサバイバル展」",
-      "summary": "攻める力と守る工夫。いのちをつなぐサバイバルの世界へ！",
-      "url": "https://higashihiroshima-kanko.jp/event/fumufumu-garalley31/",
-      "dateLabel": "2026/04/01（水） ～ 2026/06/13（土）",
-      "startDate": "2026-04-01",
-      "endDate": "2026-06-13",
-      "area": "中央部 / 西条",
-      "location": "広島大学総合博物館本館",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
     {
       "id": "collection-exhibition",
       "title": "コレクション展第Ⅰ期「細やかな美 版で魅せる／暮らしと器 西洋と日本」",
@@ -196,6 +180,22 @@
       "status": "",
       "tags": [
         "#祭り"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "jack-show",
+      "title": "Jack！マジック＆ジャグリングショー",
+      "summary": "東広島ゆかりのパフォーマーが集結！特別ステージ開催",
+      "url": "https://higashihiroshima-kanko.jp/event/jack-show/",
+      "dateLabel": "2026/08/30（日）",
+      "startDate": "2026-08-30",
+      "endDate": "2026-08-30",
+      "area": "中央部 / 西条",
+      "location": "東広島市市民文化センター アザレアホール",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     }
