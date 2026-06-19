@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-18T22:26:15.426Z",
+  "fetchedAt": "2026-06-19T21:36:35.572Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -95,7 +95,7 @@
       "endDate": "2026-06-21",
       "area": "中央部 / 西条",
       "location": "塚の垰アーチェリー",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ",
         "#スポーツ・アウトドア"
@@ -112,7 +112,7 @@
       "endDate": "2026-06-20",
       "area": "中央部 / 西条",
       "location": "広島大学 東広島キャンパス",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ"
       ],
@@ -128,7 +128,7 @@
       "endDate": "2026-06-20",
       "area": "中央部 / 西条",
       "location": "ひろしま国際プラザ",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#アート・音楽・文化",
         "#体験・見学・ワークショップ"
@@ -148,6 +148,24 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "anniversary-fes-saijo",
+      "title": "道の駅西条のん太の酒蔵 開業4周年 夏祭り",
+      "summary": "道の駅西条のん太の酒蔵が夏祭り一色に！夏の思い出を作ろう！",
+      "url": "https://higashihiroshima-kanko.jp/event/anniversary-fes-saijo/",
+      "dateLabel": "2026/07/18（土） ～ 2026/07/20（月）",
+      "startDate": "2026-07-18",
+      "endDate": "2026-07-20",
+      "area": "中央部 / 西条",
+      "location": "道の駅西条のん太の酒蔵",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化",
+        "#体験・見学・ワークショップ",
+        "#祭り"
       ],
       "source": "ヒガシル"
     },
@@ -180,22 +198,6 @@
       "status": "",
       "tags": [
         "#祭り"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "jack-show",
-      "title": "Jack！マジック＆ジャグリングショー",
-      "summary": "東広島ゆかりのパフォーマーが集結！特別ステージ開催",
-      "url": "https://higashihiroshima-kanko.jp/event/jack-show/",
-      "dateLabel": "2026/08/30（日）",
-      "startDate": "2026-08-30",
-      "endDate": "2026-08-30",
-      "area": "中央部 / 西条",
-      "location": "東広島市市民文化センター アザレアホール",
-      "status": "",
-      "tags": [
-        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     }
