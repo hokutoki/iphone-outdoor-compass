@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-19T21:36:35.572Z",
+  "fetchedAt": "2026-06-20T21:40:53.047Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -103,39 +103,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "field-navi-frog",
-      "title": "第117回フィールドナビ「蛙～観察会＆いきもの講座～」",
-      "summary": "オタマジャクシは、本当にカエルになる？",
-      "url": "https://higashihiroshima-kanko.jp/event/field-navi-frog/",
-      "dateLabel": "2026/06/20（土）",
-      "startDate": "2026-06-20",
-      "endDate": "2026-06-20",
-      "area": "中央部 / 西条",
-      "location": "広島大学 東広島キャンパス",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "foodfriends",
-      "title": "第４回 Food&#038;Friends～広大アフリカ留学生協会との共同企画～",
-      "summary": "アフリカの留学生と、話して・遊んで・一緒に食べる交流イベント",
-      "url": "https://higashihiroshima-kanko.jp/event/foodfriends/",
-      "dateLabel": "2026/06/20（土）",
-      "startDate": "2026-06-20",
-      "endDate": "2026-06-20",
-      "area": "中央部 / 西条",
-      "location": "ひろしま国際プラザ",
-      "status": "開催中",
-      "tags": [
-        "#アート・音楽・文化",
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "hirodai-summerconcert",
       "title": "広島大学交響楽団 第18回サマーコンサート",
       "summary": "夕暮れのホールで楽しむコンサート♪",
@@ -198,6 +165,38 @@
       "status": "",
       "tags": [
         "#祭り"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "sake-university",
+      "title": "令和8年度東広島市立日本酒大学",
+      "summary": "日本酒の魅力を学んで、味わって楽しもう！",
+      "url": "https://higashihiroshima-kanko.jp/event/sake-university/",
+      "dateLabel": "2026/08/22（土） ～ 2026/09/05（土） ※開催日は8/22(土)・9/5(土)の2日間 申込期間：7月10日(金)から7月31日(金)17：00まで",
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-05",
+      "area": "中央部 / 西条",
+      "location": "賀茂泉館 4階 泉ホール",
+      "status": "",
+      "tags": [
+        "#その他イベント"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "jack-show",
+      "title": "Jack！マジック＆ジャグリングショー",
+      "summary": "東広島ゆかりのパフォーマーが集結！特別ステージ開催",
+      "url": "https://higashihiroshima-kanko.jp/event/jack-show/",
+      "dateLabel": "2026/08/30（日）",
+      "startDate": "2026-08-30",
+      "endDate": "2026-08-30",
+      "area": "中央部 / 西条",
+      "location": "東広島市市民文化センター アザレアホール",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     }
