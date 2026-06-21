@@ -36,7 +36,9 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family:
-    -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Meiryo", system-ui, sans-serif;
+    "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ ProN",
+    "TsukuBRdGothic-Regular", "筑紫B丸ゴシック", "Hiragino Sans",
+    "Yu Gothic", "YuGothic", "Meiryo", system-ui, sans-serif;
   overflow-x: hidden;
 }
 
