@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-20T21:40:53.047Z",
+  "fetchedAt": "2026-06-21T21:42:46.693Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -82,23 +82,6 @@
       "status": "開催中",
       "tags": [
         "#その他イベント"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "archery-experience",
-      "title": "アーチェリー体験会",
-      "summary": "弓も矢もレンタルOK！手ぶらでアーチェリー体験",
-      "url": "https://higashihiroshima-kanko.jp/event/archery-experience/",
-      "dateLabel": "2026/06/20（土） ～ 2026/06/21（日） ※雨天中止",
-      "startDate": "2026-06-20",
-      "endDate": "2026-06-21",
-      "area": "中央部 / 西条",
-      "location": "塚の垰アーチェリー",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ",
-        "#スポーツ・アウトドア"
       ],
       "source": "ヒガシル"
     },
