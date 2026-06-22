@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-21T21:42:46.693Z",
+  "fetchedAt": "2026-06-22T22:16:52.308Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -120,6 +120,40 @@
       "source": "ヒガシル"
     },
     {
+      "id": "tommilk-matsuri",
+      "title": "第7回トムミルクファーム牧場まつり",
+      "summary": "自然あふれる牧場で、1日たっぷり楽しめるイベント",
+      "url": "https://higashihiroshima-kanko.jp/event/tommilk-matsuri/",
+      "dateLabel": "2026/07/19（日）",
+      "startDate": "2026-07-19",
+      "endDate": "2026-07-19",
+      "area": "北部 / 豊栄",
+      "location": "トムミルクファーム",
+      "status": "",
+      "tags": [
+        "#祭り",
+        "#マルシェ・グルメ・物産"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "higashihiroshima-hanabi-fes",
+      "title": "第12回東広島花火大会",
+      "summary": "安芸津の海を彩る千数百発の花火",
+      "url": "https://higashihiroshima-kanko.jp/event/higashihiroshima-hanabi-fes/",
+      "dateLabel": "2026/07/29（水）",
+      "startDate": "2026-07-29",
+      "endDate": "2026-07-29",
+      "area": "南部 / 安芸津",
+      "location": "あきつ港周辺",
+      "status": "",
+      "tags": [
+        "#祭り",
+        "#花火・イルミネーション"
+      ],
+      "source": "ヒガシル"
+    },
+    {
       "id": "trumpet-festival",
       "title": "松井秀太郎×ナカリャコフ×児玉隼人 トランペットの祭典",
       "summary": "世界が唸る音が、ここに集う",
@@ -164,22 +198,6 @@
       "status": "",
       "tags": [
         "#その他イベント"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "jack-show",
-      "title": "Jack！マジック＆ジャグリングショー",
-      "summary": "東広島ゆかりのパフォーマーが集結！特別ステージ開催",
-      "url": "https://higashihiroshima-kanko.jp/event/jack-show/",
-      "dateLabel": "2026/08/30（日）",
-      "startDate": "2026-08-30",
-      "endDate": "2026-08-30",
-      "area": "中央部 / 西条",
-      "location": "東広島市市民文化センター アザレアホール",
-      "status": "",
-      "tags": [
-        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     }
