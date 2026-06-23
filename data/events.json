@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-22T22:16:52.308Z",
+  "fetchedAt": "2026-06-23T21:51:30.018Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -137,6 +137,22 @@
       "source": "ヒガシル"
     },
     {
+      "id": "higashihiroshima-art-horio",
+      "title": "《東広島市立美術館》特別展「堀尾幸男 舞台美術展 「無限」のたわむれ」",
+      "summary": "舞台の裏側に、無限の世界が広がる。",
+      "url": "https://higashihiroshima-kanko.jp/event/higashihiroshima-art-horio/",
+      "dateLabel": "2026/07/22（水） ～ 2026/10/04（日）",
+      "startDate": "2026-07-22",
+      "endDate": "2026-10-04",
+      "area": "中央部 / 西条",
+      "location": "東広島市立美術館 3階展示室",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
       "id": "higashihiroshima-hanabi-fes",
       "title": "第12回東広島花火大会",
       "summary": "安芸津の海を彩る千数百発の花火",
@@ -182,22 +198,6 @@
       "status": "",
       "tags": [
         "#祭り"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "sake-university",
-      "title": "令和8年度東広島市立日本酒大学",
-      "summary": "日本酒の魅力を学んで、味わって楽しもう！",
-      "url": "https://higashihiroshima-kanko.jp/event/sake-university/",
-      "dateLabel": "2026/08/22（土） ～ 2026/09/05（土） ※開催日は8/22(土)・9/5(土)の2日間 申込期間：7月10日(金)から7月31日(金)17：00まで",
-      "startDate": "2026-08-22",
-      "endDate": "2026-09-05",
-      "area": "中央部 / 西条",
-      "location": "賀茂泉館 4階 泉ホール",
-      "status": "",
-      "tags": [
-        "#その他イベント"
       ],
       "source": "ヒガシル"
     }
