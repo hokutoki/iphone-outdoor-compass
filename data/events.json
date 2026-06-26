@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-25T21:53:49.135Z",
+  "fetchedAt": "2026-06-26T21:41:01.654Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -95,7 +95,7 @@
       "endDate": "2026-06-28",
       "area": "中央部 / 西条",
       "location": "東広島市御薗宇地域センター",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#マルシェ・グルメ・物産"
       ],
