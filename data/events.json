@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-27T21:30:58.073Z",
+  "fetchedAt": "2026-06-28T21:30:49.689Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -82,22 +82,6 @@
       "status": "開催中",
       "tags": [
         "#その他イベント"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "misonon-marche",
-      "title": "みそのんマルシェvol.5",
-      "summary": "楽しい・おいしい・かわいいがぎゅっと集まる、親子にやさしいマルシェ🌻",
-      "url": "https://higashihiroshima-kanko.jp/event/misonon-marche/",
-      "dateLabel": "2026/06/27（土） ～ 2026/06/28（日）",
-      "startDate": "2026-06-27",
-      "endDate": "2026-06-28",
-      "area": "中央部 / 西条",
-      "location": "東広島市御薗宇地域センター",
-      "status": "開催中",
-      "tags": [
-        "#マルシェ・グルメ・物産"
       ],
       "source": "ヒガシル"
     },
@@ -198,6 +182,22 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "heso-matsuri",
+      "title": "第30回どまんなか豊栄ヘソまつり",
+      "summary": "広島県のど真ん中にある豊栄の夏祭り！",
+      "url": "https://higashihiroshima-kanko.jp/event/heso-matsuri/",
+      "dateLabel": "2026/08/01（土）",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-01",
+      "area": "北部 / 豊栄",
+      "location": "豊栄ふれあいグラウンド",
+      "status": "",
+      "tags": [
+        "#祭り"
       ],
       "source": "ヒガシル"
     }
