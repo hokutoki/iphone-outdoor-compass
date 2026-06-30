@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-06-29T21:44:59.973Z",
+  "fetchedAt": "2026-06-30T21:47:52.151Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -18,22 +18,6 @@
       "status": "開催中",
       "tags": [
         "#アート・音楽・文化"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "line-stamprally",
-      "title": "LINEで巡る「ヒガシル」デジタルスタンプラリー",
-      "summary": "東広島の「おいしい・たのしい」を巡って、ステキな特産品を当てよう！",
-      "url": "https://higashihiroshima-kanko.jp/event/line-stamprally/",
-      "dateLabel": "2026/04/15（水） ～ 2026/06/30（火）",
-      "startDate": "2026-04-15",
-      "endDate": "2026-06-30",
-      "area": "複数エリア / 西条、安芸津…",
-      "location": "東広島市内の各スポット",
-      "status": "開催中",
-      "tags": [
-        "#キャンペーン・おトク"
       ],
       "source": "ヒガシル"
     },
@@ -82,6 +66,22 @@
       "status": "開催中",
       "tags": [
         "#その他イベント"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "hirodai-engeki-hoshiwomiruhito",
+      "title": "広島大学演劇団 劇団ikaros 令和8年度初夏公演『星をみるひと』",
+      "summary": "面白おかしく進む研究、その結末は無事じゃ終われない！？",
+      "url": "https://higashihiroshima-kanko.jp/event/hirodai-engeki-hoshiwomiruhito/",
+      "dateLabel": "2026/07/04（土） ～ 2026/07/05（日）",
+      "startDate": "2026-07-04",
+      "endDate": "2026-07-05",
+      "area": "中央部 / 西条",
+      "location": "広島大学 大学会館 1F 大集会室 / バス停「大学会館前」から徒歩１分",
+      "status": "開催間近",
+      "tags": [
+        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     },
