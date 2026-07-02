@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-01T21:49:16.904Z",
+  "fetchedAt": "2026-07-02T21:34:36.800Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -153,6 +153,22 @@
       "source": "ヒガシル"
     },
     {
+      "id": "shakunageko-yoichi",
+      "title": "しゃくなげ湖 土曜夜市",
+      "summary": "涼しい夜風に包まれて道の駅で夏の思い出を🌟",
+      "url": "https://higashihiroshima-kanko.jp/event/shakunageko-yoichi/",
+      "dateLabel": "2026/07/25（土） ～ 2026/08/08（土） ※開催日：7月25日(土)・8月1日(土)・8月8日(土)の3日間",
+      "startDate": "2026-07-25",
+      "endDate": "2026-08-08",
+      "area": "北部 / 福富",
+      "location": "道の駅 湖畔の里福富",
+      "status": "",
+      "tags": [
+        "#祭り"
+      ],
+      "source": "ヒガシル"
+    },
+    {
       "id": "higashihiroshima-hanabi-fes",
       "title": "第12回東広島花火大会",
       "summary": "安芸津の海を彩る千数百発の花火",
@@ -182,22 +198,6 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "heso-matsuri",
-      "title": "第30回どまんなか豊栄ヘソまつり",
-      "summary": "広島県のど真ん中にある豊栄の夏祭り！",
-      "url": "https://higashihiroshima-kanko.jp/event/heso-matsuri/",
-      "dateLabel": "2026/08/01（土）",
-      "startDate": "2026-08-01",
-      "endDate": "2026-08-01",
-      "area": "北部 / 豊栄",
-      "location": "豊栄ふれあいグラウンド",
-      "status": "",
-      "tags": [
-        "#祭り"
       ],
       "source": "ヒガシル"
     }
