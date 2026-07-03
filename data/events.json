@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-02T21:34:36.800Z",
+  "fetchedAt": "2026-07-03T21:32:55.916Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -79,7 +79,7 @@
       "endDate": "2026-07-05",
       "area": "中央部 / 西条",
       "location": "広島大学 大学会館 1F 大集会室 / バス停「大学会館前」から徒歩１分",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#アート・音楽・文化"
       ],
