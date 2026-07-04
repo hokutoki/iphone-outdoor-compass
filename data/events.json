@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-03T21:32:55.916Z",
+  "fetchedAt": "2026-07-04T21:14:24.367Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -95,7 +95,7 @@
       "endDate": "2026-07-05",
       "area": "中央部 / 西条",
       "location": "広島大学サタケメモリアルホール",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#アート・音楽・文化"
       ],
