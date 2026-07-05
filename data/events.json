@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-04T21:14:24.367Z",
+  "fetchedAt": "2026-07-05T21:28:20.417Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -66,38 +66,6 @@
       "status": "開催中",
       "tags": [
         "#その他イベント"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "hirodai-engeki-hoshiwomiruhito",
-      "title": "広島大学演劇団 劇団ikaros 令和8年度初夏公演『星をみるひと』",
-      "summary": "面白おかしく進む研究、その結末は無事じゃ終われない！？",
-      "url": "https://higashihiroshima-kanko.jp/event/hirodai-engeki-hoshiwomiruhito/",
-      "dateLabel": "2026/07/04（土） ～ 2026/07/05（日）",
-      "startDate": "2026-07-04",
-      "endDate": "2026-07-05",
-      "area": "中央部 / 西条",
-      "location": "広島大学 大学会館 1F 大集会室 / バス停「大学会館前」から徒歩１分",
-      "status": "開催中",
-      "tags": [
-        "#アート・音楽・文化"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "hirodai-summerconcert",
-      "title": "広島大学交響楽団 第18回サマーコンサート",
-      "summary": "夕暮れのホールで楽しむコンサート♪",
-      "url": "https://higashihiroshima-kanko.jp/event/hirodai-summerconcert/",
-      "dateLabel": "2026/07/05（日）",
-      "startDate": "2026-07-05",
-      "endDate": "2026-07-05",
-      "area": "中央部 / 西条",
-      "location": "広島大学サタケメモリアルホール",
-      "status": "開催中",
-      "tags": [
-        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     },
@@ -198,6 +166,38 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "heso-matsuri",
+      "title": "第30回どまんなか豊栄ヘソまつり",
+      "summary": "広島県のど真ん中にある豊栄の夏祭り！",
+      "url": "https://higashihiroshima-kanko.jp/event/heso-matsuri/",
+      "dateLabel": "2026/08/01（土）",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-01",
+      "area": "北部 / 豊栄",
+      "location": "豊栄ふれあいグラウンド",
+      "status": "",
+      "tags": [
+        "#祭り"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "hh-enjoy-marathon",
+      "title": "東広島エンジョイ！リレーマラソン2026",
+      "summary": "走る人も、応援する人も楽しめる。東広島の夏を彩るリレーマラソン",
+      "url": "https://higashihiroshima-kanko.jp/event/hh-enjoy-marathon/",
+      "dateLabel": "2026/08/01（土） 雨天決行",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-01",
+      "area": "中央部 / 西条",
+      "location": "創建ホーム東広島スポーツパーク（東広島運動公園・陸上競技場）",
+      "status": "",
+      "tags": [
+        "#スポーツ・アウトドア"
       ],
       "source": "ヒガシル"
     }
