@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-06T21:48:15.326Z",
+  "fetchedAt": "2026-07-07T21:42:32.520Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -79,7 +79,7 @@
       "endDate": "2026-07-20",
       "area": "中央部 / 西条",
       "location": "道の駅西条のん太の酒蔵",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#アート・音楽・文化",
         "#体験・見学・ワークショップ",
