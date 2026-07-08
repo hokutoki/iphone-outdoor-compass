@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-07T21:42:32.520Z",
+  "fetchedAt": "2026-07-08T21:32:25.664Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -97,7 +97,7 @@
       "endDate": "2026-07-19",
       "area": "北部 / 豊栄",
       "location": "トムミルクファーム",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#祭り",
         "#マルシェ・グルメ・物産"
