@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-08T21:32:25.664Z",
+  "fetchedAt": "2026-07-09T21:47:11.340Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -66,6 +66,36 @@
       "status": "開催中",
       "tags": [
         "#その他イベント"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "nonta-stampcard",
+      "title": "おでかけ・お手伝い・自由研究にも！のん太のスタンプカードで夏を楽しもう",
+      "summary": "スタンプを集めて、夏休みをもっとワクワクに！",
+      "url": "https://higashihiroshima-kanko.jp/event/nonta-stampcard/",
+      "dateLabel": "2026/07/01（水） ～ 2026/08/31（月）",
+      "startDate": "2026-07-01",
+      "endDate": "2026-08-31",
+      "area": "エリア未設定 / エリア未設定",
+      "location": "",
+      "status": "開催中",
+      "tags": [],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "fukutomi-himawari",
+      "title": "東広島市福富町 ひまわり畑",
+      "summary": "2500㎡のひまわり畑や迷路、マルシェも開催！",
+      "url": "https://higashihiroshima-kanko.jp/event/fukutomi-himawari/",
+      "dateLabel": "2026/07/11（土） ～ 2026/08/11（火） ※期間中の「土日祝」のみ開園",
+      "startDate": "2026-07-11",
+      "endDate": "2026-08-11",
+      "area": "北部 / 福富",
+      "location": "東広島市福富町下竹仁",
+      "status": "開催間近",
+      "tags": [
+        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     },
@@ -166,38 +196,6 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "heso-matsuri",
-      "title": "第30回どまんなか豊栄ヘソまつり",
-      "summary": "広島県のど真ん中にある豊栄の夏祭り！",
-      "url": "https://higashihiroshima-kanko.jp/event/heso-matsuri/",
-      "dateLabel": "2026/08/01（土）",
-      "startDate": "2026-08-01",
-      "endDate": "2026-08-01",
-      "area": "北部 / 豊栄",
-      "location": "豊栄ふれあいグラウンド",
-      "status": "",
-      "tags": [
-        "#祭り"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "hh-enjoy-marathon",
-      "title": "東広島エンジョイ！リレーマラソン2026",
-      "summary": "走る人も、応援する人も楽しめる。東広島の夏を彩るリレーマラソン",
-      "url": "https://higashihiroshima-kanko.jp/event/hh-enjoy-marathon/",
-      "dateLabel": "2026/08/01（土） 雨天決行",
-      "startDate": "2026-08-01",
-      "endDate": "2026-08-01",
-      "area": "中央部 / 西条",
-      "location": "創建ホーム東広島スポーツパーク（東広島運動公園・陸上競技場）",
-      "status": "",
-      "tags": [
-        "#スポーツ・アウトドア"
       ],
       "source": "ヒガシル"
     }
