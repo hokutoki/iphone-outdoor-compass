@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-09T21:47:11.340Z",
+  "fetchedAt": "2026-07-10T21:28:50.697Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -93,7 +93,7 @@
       "endDate": "2026-08-11",
       "area": "北部 / 福富",
       "location": "東広島市福富町下竹仁",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ"
       ],
