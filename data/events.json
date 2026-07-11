@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-10T21:28:50.697Z",
+  "fetchedAt": "2026-07-11T21:08:07.479Z",
   "items": [
     {
       "id": "collection-exhibition",
@@ -144,7 +144,7 @@
       "endDate": "2026-10-04",
       "area": "中央部 / 西条",
       "location": "東広島市立美術館 3階展示室",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#アート・音楽・文化"
       ],
