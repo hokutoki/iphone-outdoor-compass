@@ -3,24 +3,8 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-11T21:08:07.479Z",
+  "fetchedAt": "2026-07-12T21:07:50.608Z",
   "items": [
-    {
-      "id": "collection-exhibition",
-      "title": "コレクション展第Ⅰ期「細やかな美 版で魅せる／暮らしと器 西洋と日本」",
-      "summary": "静かに味わう、版と美の世界",
-      "url": "https://higashihiroshima-kanko.jp/event/collection-exhibition/",
-      "dateLabel": "2026/04/11（土） ～ 2026/07/12（日）",
-      "startDate": "2026-04-11",
-      "endDate": "2026-07-12",
-      "area": "中央部 / 西条",
-      "location": "東広島市立美術館 3階展示室",
-      "status": "開催中",
-      "tags": [
-        "#アート・音楽・文化"
-      ],
-      "source": "ヒガシル"
-    },
     {
       "id": "field-navi-quiz",
       "title": "第116回フィールドナビ「広大の遺跡めぐりクイズラリー」",
@@ -196,6 +180,22 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "heso-matsuri",
+      "title": "第30回どまんなか豊栄ヘソまつり",
+      "summary": "広島県のど真ん中にある豊栄の夏祭り！",
+      "url": "https://higashihiroshima-kanko.jp/event/heso-matsuri/",
+      "dateLabel": "2026/08/01（土）",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-01",
+      "area": "北部 / 豊栄",
+      "location": "豊栄ふれあいグラウンド",
+      "status": "",
+      "tags": [
+        "#祭り"
       ],
       "source": "ヒガシル"
     }
