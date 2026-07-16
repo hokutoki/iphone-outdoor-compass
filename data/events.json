@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-15T21:15:50.545Z",
+  "fetchedAt": "2026-07-16T21:17:52.044Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -109,7 +109,7 @@
       "endDate": "2026-07-30",
       "area": "中央部 / 西条",
       "location": "クイズラリー開催場所：T・ジョイ東広島ロビー、およびフジグラン東広島店各所",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#その他イベント"
       ],
