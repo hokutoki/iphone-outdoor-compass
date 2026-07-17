@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-16T21:17:52.044Z",
+  "fetchedAt": "2026-07-17T21:09:04.653Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -125,7 +125,7 @@
       "endDate": "2026-07-20",
       "area": "中央部 / 西条",
       "location": "塚の垰アーチェリー",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ",
         "#スポーツ・アウトドア"
@@ -142,7 +142,7 @@
       "endDate": "2026-07-20",
       "area": "中央部 / 西条",
       "location": "道の駅西条のん太の酒蔵",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#アート・音楽・文化",
         "#体験・見学・ワークショップ",
