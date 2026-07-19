@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-18T21:06:53.796Z",
+  "fetchedAt": "2026-07-19T21:08:34.438Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -135,23 +135,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "tommilk-matsuri",
-      "title": "第7回トムミルクファーム牧場まつり",
-      "summary": "自然あふれる牧場で、1日たっぷり楽しめるイベント",
-      "url": "https://higashihiroshima-kanko.jp/event/tommilk-matsuri/",
-      "dateLabel": "2026/07/19（日）",
-      "startDate": "2026-07-19",
-      "endDate": "2026-07-19",
-      "area": "北部 / 豊栄",
-      "location": "トムミルクファーム",
-      "status": "開催中",
-      "tags": [
-        "#祭り",
-        "#マルシェ・グルメ・物産"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "higashihiroshima-art-horio",
       "title": "《東広島市立美術館》特別展「堀尾幸男 舞台美術展 「無限」のたわむれ」",
       "summary": "舞台の裏側に、無限の世界が広がる。",
@@ -196,6 +179,23 @@
       "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "higashihiroshima-hanabi-fes",
+      "title": "第12回東広島花火大会",
+      "summary": "安芸津の海を彩る千数百発の花火",
+      "url": "https://higashihiroshima-kanko.jp/event/higashihiroshima-hanabi-fes/",
+      "dateLabel": "2026/07/29（水）",
+      "startDate": "2026-07-29",
+      "endDate": "2026-07-29",
+      "area": "南部 / 安芸津",
+      "location": "あきつ港周辺",
+      "status": "開催間近",
+      "tags": [
+        "#祭り",
+        "#花火・イルミネーション"
       ],
       "source": "ヒガシル"
     }
