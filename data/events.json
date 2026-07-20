@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-19T21:08:34.438Z",
+  "fetchedAt": "2026-07-20T21:33:39.195Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -100,41 +100,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "archery-experience",
-      "title": "アーチェリー体験会",
-      "summary": "弓も矢もレンタルOK！手ぶらでアーチェリー体験",
-      "url": "https://higashihiroshima-kanko.jp/event/archery-experience/",
-      "dateLabel": "2026/07/18（土） ～ 2026/07/20（月） ※雨天中止",
-      "startDate": "2026-07-18",
-      "endDate": "2026-07-20",
-      "area": "中央部 / 西条",
-      "location": "塚の垰アーチェリー",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ",
-        "#スポーツ・アウトドア"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "anniversary-fes-saijo",
-      "title": "道の駅西条のん太の酒蔵 開業4周年 夏祭り",
-      "summary": "道の駅西条のん太の酒蔵が夏祭り一色に！夏の思い出を作ろう！",
-      "url": "https://higashihiroshima-kanko.jp/event/anniversary-fes-saijo/",
-      "dateLabel": "2026/07/18（土） ～ 2026/07/20（月）",
-      "startDate": "2026-07-18",
-      "endDate": "2026-07-20",
-      "area": "中央部 / 西条",
-      "location": "道の駅西条のん太の酒蔵",
-      "status": "開催中",
-      "tags": [
-        "#アート・音楽・文化",
-        "#体験・見学・ワークショップ",
-        "#祭り"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "higashihiroshima-art-horio",
       "title": "《東広島市立美術館》特別展「堀尾幸男 舞台美術展 「無限」のたわむれ」",
       "summary": "舞台の裏側に、無限の世界が広がる。",
@@ -196,6 +161,38 @@
       "tags": [
         "#祭り",
         "#花火・イルミネーション"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "fumufumu-garalley31",
+      "title": "第37回ふむふむギャラリー「全国に刻まれた原爆・非核平和の記憶－700基のモニュメントをたどる－」",
+      "summary": "各地に刻まれた記憶から、平和の意味を見つめる",
+      "url": "https://higashihiroshima-kanko.jp/event/fumufumu-garalley31/",
+      "dateLabel": "2026/07/29（水） ～ 2026/09/30（水）",
+      "startDate": "2026-07-29",
+      "endDate": "2026-09-30",
+      "area": "中央部 / 西条",
+      "location": "広島大学総合博物館本館",
+      "status": "開催間近",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "hu-lecture",
+      "title": "広島大学総合博物館 第88回公開講演会",
+      "summary": "被曝の記憶・平和について考える",
+      "url": "https://higashihiroshima-kanko.jp/event/hu-lecture/",
+      "dateLabel": "2026/08/01（土）",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-01",
+      "area": "中央部 / 西条",
+      "location": "広島大学教育学部 L104講義室",
+      "status": "",
+      "tags": [
+        "#その他イベント"
       ],
       "source": "ヒガシル"
     }
