@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-20T21:33:39.195Z",
+  "fetchedAt": "2026-07-21T21:33:26.187Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -100,6 +100,22 @@
       "source": "ヒガシル"
     },
     {
+      "id": "laboheme_humuseum",
+      "title": "自由研究応援企画 博物館×レストラン",
+      "summary": "食べて、学んで、自由研究！オオサンショウウオを大発見",
+      "url": "https://higashihiroshima-kanko.jp/event/laboheme_humuseum/",
+      "dateLabel": "2026/07/21（火） ～ 2026/08/31（月） ※期間中に店休日・閉館日あり",
+      "startDate": "2026-07-21",
+      "endDate": "2026-08-31",
+      "area": "中央部 / 西条",
+      "location": "ラ・ボエーム、広島大学総合博物館",
+      "status": "開催中",
+      "tags": [
+        "#その他イベント"
+      ],
+      "source": "ヒガシル"
+    },
+    {
       "id": "higashihiroshima-art-horio",
       "title": "《東広島市立美術館》特別展「堀尾幸男 舞台美術展 「無限」のたわむれ」",
       "summary": "舞台の裏側に、無限の世界が広がる。",
@@ -109,7 +125,7 @@
       "endDate": "2026-10-04",
       "area": "中央部 / 西条",
       "location": "東広島市立美術館 3階展示室",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#アート・音楽・文化"
       ],
@@ -177,22 +193,6 @@
       "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "hu-lecture",
-      "title": "広島大学総合博物館 第88回公開講演会",
-      "summary": "被曝の記憶・平和について考える",
-      "url": "https://higashihiroshima-kanko.jp/event/hu-lecture/",
-      "dateLabel": "2026/08/01（土）",
-      "startDate": "2026-08-01",
-      "endDate": "2026-08-01",
-      "area": "中央部 / 西条",
-      "location": "広島大学教育学部 L104講義室",
-      "status": "",
-      "tags": [
-        "#その他イベント"
       ],
       "source": "ヒガシル"
     }
