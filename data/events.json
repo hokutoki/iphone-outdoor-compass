@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-23T21:29:11.954Z",
+  "fetchedAt": "2026-07-24T21:29:35.814Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -141,7 +141,7 @@
       "endDate": "2026-08-08",
       "area": "北部 / 福富",
       "location": "道の駅 湖畔の里福富",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#祭り"
       ],
