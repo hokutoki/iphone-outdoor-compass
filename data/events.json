@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-24T21:29:35.814Z",
+  "fetchedAt": "2026-07-25T21:09:47.334Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -157,7 +157,7 @@
       "endDate": "2026-07-26",
       "area": "中央部 / 西条",
       "location": "東広島市西条町田口3280 (東広島運動公園テニスコート の裏)",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ"
       ],
