@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-27T21:30:33.101Z",
+  "fetchedAt": "2026-07-28T21:32:47.052Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -157,7 +157,7 @@
       "endDate": "2026-07-29",
       "area": "南部 / 安芸津",
       "location": "あきつ港周辺",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#祭り",
         "#花火・イルミネーション"
@@ -174,7 +174,7 @@
       "endDate": "2026-09-30",
       "area": "中央部 / 西条",
       "location": "広島大学総合博物館本館",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ"
       ],
