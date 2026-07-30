@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-29T21:13:00.640Z",
+  "fetchedAt": "2026-07-30T21:33:26.741Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -84,22 +84,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "t-joy-kokaievent",
-      "title": "仮面ライダーゼッツ&#038;超宇宙刑事ギャバン 映画公開イベント開催！",
-      "summary": "この夏、ヒーローのミッションに挑戦せよ！",
-      "url": "https://higashihiroshima-kanko.jp/event/t-joy-kokaievent/",
-      "dateLabel": "2026/07/17（金） ～ 2026/07/30（木）",
-      "startDate": "2026-07-17",
-      "endDate": "2026-07-30",
-      "area": "中央部 / 西条",
-      "location": "クイズラリー開催場所：T・ジョイ東広島ロビー、およびフジグラン東広島店各所",
-      "status": "開催中",
-      "tags": [
-        "#その他イベント"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "laboheme_humuseum",
       "title": "自由研究応援企画 博物館×レストラン",
       "summary": "食べて、学んで、自由研究！オオサンショウウオを大発見",
@@ -164,22 +148,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "hu-lecture",
-      "title": "広島大学総合博物館 第88回公開講演会",
-      "summary": "被爆の記憶・平和について考える",
-      "url": "https://higashihiroshima-kanko.jp/event/hu-lecture/",
-      "dateLabel": "2026/08/01（土）",
-      "startDate": "2026-08-01",
-      "endDate": "2026-08-01",
-      "area": "中央部 / 西条",
-      "location": "広島大学教育学部 L104講義室",
-      "status": "開催間近",
-      "tags": [
-        "#その他イベント"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "trumpet-festival",
       "title": "松井秀太郎×ナカリャコフ×児玉隼人 トランペットの祭典",
       "summary": "世界が唸る音が、ここに集う",
@@ -192,6 +160,38 @@
       "status": "開催間近",
       "tags": [
         "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "heso-matsuri",
+      "title": "第30回どまんなか豊栄ヘソまつり",
+      "summary": "広島県のど真ん中にある豊栄の夏祭り！",
+      "url": "https://higashihiroshima-kanko.jp/event/heso-matsuri/",
+      "dateLabel": "2026/08/01（土）",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-01",
+      "area": "北部 / 豊栄",
+      "location": "豊栄ふれあいグラウンド",
+      "status": "開催間近",
+      "tags": [
+        "#祭り"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "hh-enjoy-marathon",
+      "title": "東広島エンジョイ！リレーマラソン2026",
+      "summary": "走る人も、応援する人も楽しめる。東広島の夏を彩るリレーマラソン",
+      "url": "https://higashihiroshima-kanko.jp/event/hh-enjoy-marathon/",
+      "dateLabel": "2026/08/01（土） 雨天決行",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-01",
+      "area": "中央部 / 西条",
+      "location": "創建ホーム東広島スポーツパーク（東広島運動公園・陸上競技場）",
+      "status": "開催間近",
+      "tags": [
+        "#スポーツ・アウトドア"
       ],
       "source": "ヒガシル"
     }
