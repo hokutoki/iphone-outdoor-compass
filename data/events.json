@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-30T21:33:26.741Z",
+  "fetchedAt": "2026-07-31T21:29:34.898Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -157,7 +157,7 @@
       "endDate": "2026-08-01",
       "area": "中央部 / 西条",
       "location": "東広島芸術文化ホールくらら 大ホール",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#アート・音楽・文化"
       ],
@@ -173,7 +173,7 @@
       "endDate": "2026-08-01",
       "area": "北部 / 豊栄",
       "location": "豊栄ふれあいグラウンド",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#祭り"
       ],
@@ -189,7 +189,7 @@
       "endDate": "2026-08-01",
       "area": "中央部 / 西条",
       "location": "創建ホーム東広島スポーツパーク（東広島運動公園・陸上競技場）",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#スポーツ・アウトドア"
       ],
