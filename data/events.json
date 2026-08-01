@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-07-31T21:29:34.898Z",
+  "fetchedAt": "2026-08-01T21:10:09.461Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -148,50 +148,50 @@
       "source": "ヒガシル"
     },
     {
-      "id": "trumpet-festival",
-      "title": "松井秀太郎×ナカリャコフ×児玉隼人 トランペットの祭典",
-      "summary": "世界が唸る音が、ここに集う",
-      "url": "https://higashihiroshima-kanko.jp/event/trumpet-festival/",
-      "dateLabel": "2026/08/01（土）",
-      "startDate": "2026-08-01",
-      "endDate": "2026-08-01",
-      "area": "中央部 / 西条",
-      "location": "東広島芸術文化ホールくらら 大ホール",
+      "id": "poetry-farming-fieldwork2",
+      "title": "ぼくらの言葉の自給率",
+      "summary": "農家と詩人と一緒に、根っこのある言葉をさがしてみませんか？",
+      "url": "https://higashihiroshima-kanko.jp/event/poetry-farming-fieldwork2/",
+      "dateLabel": "2026/08/02（日）",
+      "startDate": "2026-08-02",
+      "endDate": "2026-08-02",
+      "area": "中央部 / 志和",
+      "location": "安芸の山里農園はなあふ〔hana:fu〕",
       "status": "開催中",
       "tags": [
-        "#アート・音楽・文化"
+        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     },
     {
-      "id": "heso-matsuri",
-      "title": "第30回どまんなか豊栄ヘソまつり",
-      "summary": "広島県のど真ん中にある豊栄の夏祭り！",
-      "url": "https://higashihiroshima-kanko.jp/event/heso-matsuri/",
-      "dateLabel": "2026/08/01（土）",
-      "startDate": "2026-08-01",
-      "endDate": "2026-08-01",
-      "area": "北部 / 豊栄",
-      "location": "豊栄ふれあいグラウンド",
+      "id": "shizen-marugoto",
+      "title": "自然農法まるごと体験ツアー",
+      "summary": "自然の恵みを、見て・採って・味わおう",
+      "url": "https://higashihiroshima-kanko.jp/event/shizen-marugoto/",
+      "dateLabel": "2026/08/02（日）",
+      "startDate": "2026-08-02",
+      "endDate": "2026-08-02",
+      "area": "北部 / 福富",
+      "location": "継菜供農縁〜つなぐのうえん〜",
       "status": "開催中",
       "tags": [
-        "#祭り"
+        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     },
     {
-      "id": "hh-enjoy-marathon",
-      "title": "東広島エンジョイ！リレーマラソン2026",
-      "summary": "走る人も、応援する人も楽しめる。東広島の夏を彩るリレーマラソン",
-      "url": "https://higashihiroshima-kanko.jp/event/hh-enjoy-marathon/",
-      "dateLabel": "2026/08/01（土） 雨天決行",
-      "startDate": "2026-08-01",
-      "endDate": "2026-08-01",
-      "area": "中央部 / 西条",
-      "location": "創建ホーム東広島スポーツパーク（東広島運動公園・陸上競技場）",
-      "status": "開催中",
+      "id": "shokkyou-ricemill-tour",
+      "title": "【食協】志和精米工場見学",
+      "summary": "来て！見て！感動！日本トップクラスの精米工場を見学",
+      "url": "https://higashihiroshima-kanko.jp/event/shokkyou-ricemill-tour/",
+      "dateLabel": "2026/08/07（金） ～ 2026/08/24（月） ※8月7日・8月18日・8月24日の3日間開催",
+      "startDate": "2026-08-07",
+      "endDate": "2026-08-24",
+      "area": "中央部 / 志和",
+      "location": "食協(株) 志和精米工場",
+      "status": "開催間近",
       "tags": [
-        "#スポーツ・アウトドア"
+        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     }
