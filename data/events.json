@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-01T21:10:09.461Z",
+  "fetchedAt": "2026-08-02T21:11:15.910Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -148,38 +148,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "poetry-farming-fieldwork2",
-      "title": "ぼくらの言葉の自給率",
-      "summary": "農家と詩人と一緒に、根っこのある言葉をさがしてみませんか？",
-      "url": "https://higashihiroshima-kanko.jp/event/poetry-farming-fieldwork2/",
-      "dateLabel": "2026/08/02（日）",
-      "startDate": "2026-08-02",
-      "endDate": "2026-08-02",
-      "area": "中央部 / 志和",
-      "location": "安芸の山里農園はなあふ〔hana:fu〕",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "shizen-marugoto",
-      "title": "自然農法まるごと体験ツアー",
-      "summary": "自然の恵みを、見て・採って・味わおう",
-      "url": "https://higashihiroshima-kanko.jp/event/shizen-marugoto/",
-      "dateLabel": "2026/08/02（日）",
-      "startDate": "2026-08-02",
-      "endDate": "2026-08-02",
-      "area": "北部 / 福富",
-      "location": "継菜供農縁〜つなぐのうえん〜",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "shokkyou-ricemill-tour",
       "title": "【食協】志和精米工場見学",
       "summary": "来て！見て！感動！日本トップクラスの精米工場を見学",
@@ -192,6 +160,36 @@
       "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "nonta-workshop",
+      "title": "I♡東広島 ~のん太トレカのワークショップ~",
+      "summary": "遊んで学んで、東広島博士になろう！",
+      "url": "https://higashihiroshima-kanko.jp/event/nonta-workshop/",
+      "dateLabel": "2026/08/08（土）",
+      "startDate": "2026-08-08",
+      "endDate": "2026-08-08",
+      "area": "中央部 / 西条",
+      "location": "三ツ城地域センター 研修室1(東広島市西条下見5丁目4番8号)",
+      "status": "開催間近",
+      "tags": [],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "takaya-school-fes",
+      "title": "第3回西高屋駅前夏の学園祭×eスポーツ",
+      "summary": "この夏、西高屋が青春の舞台になる。",
+      "url": "https://higashihiroshima-kanko.jp/event/takaya-school-fes/",
+      "dateLabel": "2026/08/08（土）",
+      "startDate": "2026-08-08",
+      "endDate": "2026-08-08",
+      "area": "中央部 / 高屋",
+      "location": "西高屋駅前通",
+      "status": "開催間近",
+      "tags": [
+        "#祭り"
       ],
       "source": "ヒガシル"
     }
