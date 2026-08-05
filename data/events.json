@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-04T21:37:42.702Z",
+  "fetchedAt": "2026-08-05T21:34:03.698Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -164,6 +164,23 @@
       "source": "ヒガシル"
     },
     {
+      "id": "archery-experience",
+      "title": "アーチェリー体験会",
+      "summary": "弓も矢もレンタルOK！手ぶらでアーチェリー体験",
+      "url": "https://higashihiroshima-kanko.jp/event/archery-experience/",
+      "dateLabel": "2026/08/07（金） ～ 2026/08/09（日） ※雨天中止",
+      "startDate": "2026-08-07",
+      "endDate": "2026-08-09",
+      "area": "中央部 / 西条",
+      "location": "塚の垰アーチェリー",
+      "status": "開催間近",
+      "tags": [
+        "#体験・見学・ワークショップ",
+        "#スポーツ・アウトドア"
+      ],
+      "source": "ヒガシル"
+    },
+    {
       "id": "nonta-workshop",
       "title": "I♡東広島 ~のん太トレカのワークショップ~",
       "summary": "遊んで学んで、東広島博士になろう！",
@@ -175,22 +192,6 @@
       "location": "三ツ城地域センター 研修室1(東広島市西条下見5丁目4番8号)",
       "status": "開催間近",
       "tags": [],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "takaya-school-fes",
-      "title": "第3回西高屋駅前夏の学園祭×eスポーツ",
-      "summary": "この夏、西高屋が青春の舞台になる。",
-      "url": "https://higashihiroshima-kanko.jp/event/takaya-school-fes/",
-      "dateLabel": "2026/08/08（土）",
-      "startDate": "2026-08-08",
-      "endDate": "2026-08-08",
-      "area": "中央部 / 高屋",
-      "location": "西高屋駅前通",
-      "status": "開催間近",
-      "tags": [
-        "#祭り"
-      ],
       "source": "ヒガシル"
     }
   ]
