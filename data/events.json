@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-05T21:34:03.698Z",
+  "fetchedAt": "2026-08-07T00:55:29.861Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -157,7 +157,7 @@
       "endDate": "2026-08-24",
       "area": "中央部 / 志和",
       "location": "食協(株) 志和精米工場",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ"
       ],
@@ -173,7 +173,7 @@
       "endDate": "2026-08-09",
       "area": "中央部 / 西条",
       "location": "塚の垰アーチェリー",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ",
         "#スポーツ・アウトドア"
