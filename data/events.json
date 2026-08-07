@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-07T00:55:29.861Z",
+  "fetchedAt": "2026-08-07T21:00:16.108Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -190,7 +190,7 @@
       "endDate": "2026-08-08",
       "area": "中央部 / 西条",
       "location": "三ツ城地域センター 研修室1(東広島市西条下見5丁目4番8号)",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [],
       "source": "ヒガシル"
     }
