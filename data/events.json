@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-07T21:00:16.108Z",
+  "fetchedAt": "2026-08-08T20:49:19.012Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -116,22 +116,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "shakunageko-yoichi",
-      "title": "しゃくなげ湖 土曜夜市",
-      "summary": "涼しい夜風に包まれて道の駅で夏の思い出を🌟",
-      "url": "https://higashihiroshima-kanko.jp/event/shakunageko-yoichi/",
-      "dateLabel": "2026/07/25（土） ～ 2026/08/08（土） ※開催日：7月25日(土)・8月1日(土)・8月8日(土)の3日間",
-      "startDate": "2026-07-25",
-      "endDate": "2026-08-08",
-      "area": "北部 / 福富",
-      "location": "道の駅 湖畔の里福富",
-      "status": "開催中",
-      "tags": [
-        "#祭り"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "fumufumu-garalley31",
       "title": "第37回ふむふむギャラリー「全国に刻まれた原爆・非核平和の記憶－700基のモニュメントをたどる－」",
       "summary": "各地に刻まれた記憶から、平和の意味を見つめる",
@@ -181,17 +165,36 @@
       "source": "ヒガシル"
     },
     {
-      "id": "nonta-workshop",
-      "title": "I♡東広島 ~のん太トレカのワークショップ~",
-      "summary": "遊んで学んで、東広島博士になろう！",
-      "url": "https://higashihiroshima-kanko.jp/event/nonta-workshop/",
-      "dateLabel": "2026/08/08（土）",
-      "startDate": "2026-08-08",
-      "endDate": "2026-08-08",
+      "id": "butaigejutsu-moko",
+      "title": "舞台芸術をシアターで！ 4K上映「蒙古が襲来」",
+      "summary": "「観に行く」から「やってくる」へ。 舞台映像上映Reライブシアター ～話題の演劇を４K上映～",
+      "url": "https://higashihiroshima-kanko.jp/event/butaigejutsu-moko/",
+      "dateLabel": "2026/08/09（日）",
+      "startDate": "2026-08-09",
+      "endDate": "2026-08-09",
       "area": "中央部 / 西条",
-      "location": "三ツ城地域センター 研修室1(東広島市西条下見5丁目4番8号)",
+      "location": "東広島芸術文化ホール・大ホール",
       "status": "開催中",
-      "tags": [],
+      "tags": [
+        "#アート・音楽・文化",
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "children-guide",
+      "title": "子どもガイドが案内する「酒蔵のまち てくてくガイド」＆杉玉飾り作り体験",
+      "summary": "子どもガイドが西条酒蔵通りの名所をご案内",
+      "url": "https://higashihiroshima-kanko.jp/event/children-guide/",
+      "dateLabel": "2026/08/10（月）",
+      "startDate": "2026-08-10",
+      "endDate": "2026-08-10",
+      "area": "中央部 / 西条",
+      "location": "東広島市観光案内所（集合）",
+      "status": "開催間近",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
       "source": "ヒガシル"
     }
   ]
