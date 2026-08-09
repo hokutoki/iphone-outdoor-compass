@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-08T20:49:19.012Z",
+  "fetchedAt": "2026-08-09T20:52:45.944Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -148,40 +148,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "archery-experience",
-      "title": "アーチェリー体験会",
-      "summary": "弓も矢もレンタルOK！手ぶらでアーチェリー体験",
-      "url": "https://higashihiroshima-kanko.jp/event/archery-experience/",
-      "dateLabel": "2026/08/07（金） ～ 2026/08/09（日） ※雨天中止",
-      "startDate": "2026-08-07",
-      "endDate": "2026-08-09",
-      "area": "中央部 / 西条",
-      "location": "塚の垰アーチェリー",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ",
-        "#スポーツ・アウトドア"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "butaigejutsu-moko",
-      "title": "舞台芸術をシアターで！ 4K上映「蒙古が襲来」",
-      "summary": "「観に行く」から「やってくる」へ。 舞台映像上映Reライブシアター ～話題の演劇を４K上映～",
-      "url": "https://higashihiroshima-kanko.jp/event/butaigejutsu-moko/",
-      "dateLabel": "2026/08/09（日）",
-      "startDate": "2026-08-09",
-      "endDate": "2026-08-09",
-      "area": "中央部 / 西条",
-      "location": "東広島芸術文化ホール・大ホール",
-      "status": "開催中",
-      "tags": [
-        "#アート・音楽・文化",
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "children-guide",
       "title": "子どもガイドが案内する「酒蔵のまち てくてくガイド」＆杉玉飾り作り体験",
       "summary": "子どもガイドが西条酒蔵通りの名所をご案内",
@@ -191,6 +157,39 @@
       "endDate": "2026-08-10",
       "area": "中央部 / 西条",
       "location": "東広島市観光案内所（集合）",
+      "status": "開催中",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "saijo-bonodori",
+      "title": "西条盆踊りの夕べ",
+      "summary": "西条の夏を彩る、にぎやかな盆踊りの夜",
+      "url": "https://higashihiroshima-kanko.jp/event/saijo-bonodori/",
+      "dateLabel": "2026/08/15（土）",
+      "startDate": "2026-08-15",
+      "endDate": "2026-08-15",
+      "area": "中央部 / 西条",
+      "location": "御建グラウンド(西条駅北側)",
+      "status": "開催間近",
+      "tags": [
+        "#祭り",
+        "#花火・イルミネーション"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "mitsutoyo-taiken",
+      "title": "【小学生以上対象】『測る』から学ぶ！ミツトヨ志和工場見学",
+      "summary": "ミクロの世界を体験！親子でものづくり探検",
+      "url": "https://higashihiroshima-kanko.jp/event/mitsutoyo-taiken/",
+      "dateLabel": "2026/08/18（火）",
+      "startDate": "2026-08-18",
+      "endDate": "2026-08-18",
+      "area": "中央部 / 志和",
+      "location": "ミツトヨ志和工場",
       "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ"
