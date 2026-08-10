@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-09T20:52:45.944Z",
+  "fetchedAt": "2026-08-10T21:03:12.269Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -148,22 +148,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "children-guide",
-      "title": "子どもガイドが案内する「酒蔵のまち てくてくガイド」＆杉玉飾り作り体験",
-      "summary": "子どもガイドが西条酒蔵通りの名所をご案内",
-      "url": "https://higashihiroshima-kanko.jp/event/children-guide/",
-      "dateLabel": "2026/08/10（月）",
-      "startDate": "2026-08-10",
-      "endDate": "2026-08-10",
-      "area": "中央部 / 西条",
-      "location": "東広島市観光案内所（集合）",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "saijo-bonodori",
       "title": "西条盆踊りの夕べ",
       "summary": "西条の夏を彩る、にぎやかな盆踊りの夜",
@@ -190,6 +174,22 @@
       "endDate": "2026-08-18",
       "area": "中央部 / 志和",
       "location": "ミツトヨ志和工場",
+      "status": "開催間近",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "sciencepark-openlabo",
+      "title": "広島中央サイエンスパーク 夏休みオープンラボ！",
+      "summary": "見て！触れて！聞いて楽しめる科学の魅力",
+      "url": "https://higashihiroshima-kanko.jp/event/sciencepark-openlabo/",
+      "dateLabel": "2026/08/20（木）",
+      "startDate": "2026-08-20",
+      "endDate": "2026-08-20",
+      "area": "中央部 / 西条",
+      "location": "広島中央サイエンスパーク",
       "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ"
