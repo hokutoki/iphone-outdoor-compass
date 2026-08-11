@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-10T21:03:12.269Z",
+  "fetchedAt": "2026-08-11T21:05:17.182Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -64,22 +64,6 @@
       "status": "開催中",
       "tags": [
         "#スポーツ・アウトドア"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "fukutomi-himawari",
-      "title": "東広島市福富町 ひまわり畑",
-      "summary": "2500㎡のひまわり畑や迷路、マルシェも開催！",
-      "url": "https://higashihiroshima-kanko.jp/event/fukutomi-himawari/",
-      "dateLabel": "2026/07/11（土） ～ 2026/08/11（火） ※期間中の「土日祝」のみ開園",
-      "startDate": "2026-07-11",
-      "endDate": "2026-08-11",
-      "area": "北部 / 福富",
-      "location": "東広島市福富町下竹仁",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     },
@@ -190,6 +174,22 @@
       "endDate": "2026-08-20",
       "area": "中央部 / 西条",
       "location": "広島中央サイエンスパーク",
+      "status": "開催間近",
+      "tags": [
+        "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "chirdren-experience-kamotsuru",
+      "title": "酒蔵見学&#038;オリジナルラベルと王冠マグネット作り体験",
+      "summary": "賀茂鶴酒造の親子向け夏休み特別企画！",
+      "url": "https://higashihiroshima-kanko.jp/event/chirdren-experience-kamotsuru/",
+      "dateLabel": "2026/08/22（土）",
+      "startDate": "2026-08-22",
+      "endDate": "2026-08-22",
+      "area": "中央部 / 西条",
+      "location": "賀茂鶴酒造1号蔵（蔵元直営店）",
       "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ"
