@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-13T21:04:44.293Z",
+  "fetchedAt": "2026-08-14T20:46:48.648Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -141,7 +141,7 @@
       "endDate": "2026-08-15",
       "area": "中央部 / 西条",
       "location": "御建グラウンド(西条駅北側)",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#祭り",
         "#花火・イルミネーション"
