@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-14T20:46:48.648Z",
+  "fetchedAt": "2026-08-15T20:40:19.001Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -132,23 +132,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "saijo-bonodori",
-      "title": "西条盆踊りの夕べ",
-      "summary": "西条の夏を彩る、にぎやかな盆踊りの夜",
-      "url": "https://higashihiroshima-kanko.jp/event/saijo-bonodori/",
-      "dateLabel": "2026/08/15（土）",
-      "startDate": "2026-08-15",
-      "endDate": "2026-08-15",
-      "area": "中央部 / 西条",
-      "location": "御建グラウンド(西条駅北側)",
-      "status": "開催中",
-      "tags": [
-        "#祭り",
-        "#花火・イルミネーション"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "mitsutoyo-taiken",
       "title": "【小学生以上対象】『測る』から学ぶ！ミツトヨ志和工場見学",
       "summary": "ミクロの世界を体験！親子でものづくり探検",
@@ -193,6 +176,22 @@
       "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "sake-university",
+      "title": "令和8年度東広島市立日本酒大学",
+      "summary": "日本酒の魅力を学んで、味わって楽しもう！",
+      "url": "https://higashihiroshima-kanko.jp/event/sake-university/",
+      "dateLabel": "2026/08/22（土） ～ 2026/09/05（土） ※開催日は8/22(土)・9/5(土)の2日間 申込期間：7月10日(金)から7月31日(金)17：00まで",
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-05",
+      "area": "中央部 / 西条",
+      "location": "賀茂泉館 4階 泉ホール",
+      "status": "開催間近",
+      "tags": [
+        "#その他イベント"
       ],
       "source": "ヒガシル"
     }
