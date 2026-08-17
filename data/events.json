@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-16T20:39:39.205Z",
+  "fetchedAt": "2026-08-17T20:45:28.321Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -141,7 +141,7 @@
       "endDate": "2026-08-18",
       "area": "中央部 / 志和",
       "location": "ミツトヨ志和工場",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ"
       ],
