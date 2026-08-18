@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-17T20:45:28.321Z",
+  "fetchedAt": "2026-08-18T20:41:34.780Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -132,22 +132,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "mitsutoyo-taiken",
-      "title": "【小学生以上対象】『測る』から学ぶ！ミツトヨ志和工場見学",
-      "summary": "ミクロの世界を体験！親子でものづくり探検",
-      "url": "https://higashihiroshima-kanko.jp/event/mitsutoyo-taiken/",
-      "dateLabel": "2026/08/18（火）",
-      "startDate": "2026-08-18",
-      "endDate": "2026-08-18",
-      "area": "中央部 / 志和",
-      "location": "ミツトヨ志和工場",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "sciencepark-openlabo",
       "title": "広島中央サイエンスパーク 夏休みオープンラボ！",
       "summary": "見て！触れて！聞いて楽しめる科学の魅力",
@@ -192,6 +176,23 @@
       "status": "開催間近",
       "tags": [
         "#その他イベント"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "tatekawa-horio",
+      "title": "《東広島芸術文化ホール開館10周年記念 》 立川志の輔 × 舞台美術家・堀尾幸男 トーク＆らくご会！",
+      "summary": "笑いに、粋に、引き込まれる。志の輔らくご、くららに初登場",
+      "url": "https://higashihiroshima-kanko.jp/event/tatekawa-horio/",
+      "dateLabel": "2026/08/29（土）",
+      "startDate": "2026-08-29",
+      "endDate": "2026-08-29",
+      "area": "中央部 / 西条",
+      "location": "東広島芸術文化ホール・大ホール",
+      "status": "開催間近",
+      "tags": [
+        "#アート・音楽・文化",
+        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     }
