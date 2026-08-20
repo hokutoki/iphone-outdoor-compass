@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-19T20:46:45.292Z",
+  "fetchedAt": "2026-08-20T20:48:06.576Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -132,22 +132,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "sciencepark-openlabo",
-      "title": "広島中央サイエンスパーク 夏休みオープンラボ！",
-      "summary": "見て！触れて！聞いて楽しめる科学の魅力",
-      "url": "https://higashihiroshima-kanko.jp/event/sciencepark-openlabo/",
-      "dateLabel": "2026/08/20（木）",
-      "startDate": "2026-08-20",
-      "endDate": "2026-08-20",
-      "area": "中央部 / 西条",
-      "location": "広島中央サイエンスパーク",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "chirdren-experience-kamotsuru",
       "title": "酒蔵見学&#038;オリジナルラベルと王冠マグネット作り体験",
       "summary": "賀茂鶴酒造の親子向け夏休み特別企画！",
@@ -193,6 +177,23 @@
       "tags": [
         "#アート・音楽・文化",
         "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "fukutomi-hanabi",
+      "title": "第4回しゃくなげ湖 納涼 花火大会",
+      "summary": "湖畔に咲く大輪の花🏵️夏の夜空を彩る感動の瞬間",
+      "url": "https://higashihiroshima-kanko.jp/event/fukutomi-hanabi/",
+      "dateLabel": "2026/08/29（土）",
+      "startDate": "2026-08-29",
+      "endDate": "2026-08-29",
+      "area": "北部 / 福富",
+      "location": "道の駅湖畔の里福富",
+      "status": "開催間近",
+      "tags": [
+        "#祭り",
+        "#花火・イルミネーション"
       ],
       "source": "ヒガシル"
     }
