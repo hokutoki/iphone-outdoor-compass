@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-20T20:48:06.576Z",
+  "fetchedAt": "2026-08-22T20:41:32.256Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -132,22 +132,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "chirdren-experience-kamotsuru",
-      "title": "酒蔵見学&#038;オリジナルラベルと王冠マグネット作り体験",
-      "summary": "賀茂鶴酒造の親子向け夏休み特別企画！",
-      "url": "https://higashihiroshima-kanko.jp/event/chirdren-experience-kamotsuru/",
-      "dateLabel": "2026/08/22（土）",
-      "startDate": "2026-08-22",
-      "endDate": "2026-08-22",
-      "area": "中央部 / 西条",
-      "location": "賀茂鶴酒造1号蔵（蔵元直営店）",
-      "status": "開催間近",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "sake-university",
       "title": "令和8年度東広島市立日本酒大学",
       "summary": "日本酒の魅力を学んで、味わって楽しもう！",
@@ -157,7 +141,7 @@
       "endDate": "2026-09-05",
       "area": "中央部 / 西条",
       "location": "賀茂泉館 4階 泉ホール",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#その他イベント"
       ],
@@ -194,6 +178,22 @@
       "tags": [
         "#祭り",
         "#花火・イルミネーション"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "jack-show",
+      "title": "Jack！マジック＆ジャグリングショー",
+      "summary": "東広島ゆかりのパフォーマーが集結！特別ステージ開催",
+      "url": "https://higashihiroshima-kanko.jp/event/jack-show/",
+      "dateLabel": "2026/08/30（日）",
+      "startDate": "2026-08-30",
+      "endDate": "2026-08-30",
+      "area": "中央部 / 西条",
+      "location": "東広島市市民文化センター アザレアホール",
+      "status": "開催間近",
+      "tags": [
+        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     }
