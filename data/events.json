@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-23T20:40:49.915Z",
+  "fetchedAt": "2026-08-24T20:49:33.980Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -116,22 +116,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "shokkyou-ricemill-tour",
-      "title": "【食協】志和精米工場見学",
-      "summary": "来て！見て！感動！日本トップクラスの精米工場を見学",
-      "url": "https://higashihiroshima-kanko.jp/event/shokkyou-ricemill-tour/",
-      "dateLabel": "2026/08/07（金） ～ 2026/08/24（月） ※8月7日・8月18日・8月24日の3日間開催",
-      "startDate": "2026-08-07",
-      "endDate": "2026-08-24",
-      "area": "中央部 / 志和",
-      "location": "食協(株) 志和精米工場",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "sake-university",
       "title": "令和8年度東広島市立日本酒大学",
       "summary": "日本酒の魅力を学んで、味わって楽しもう！",
@@ -195,6 +179,20 @@
       "tags": [
         "#アート・音楽・文化"
       ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "saijo-yoichi",
+      "title": "西条土曜夜市",
+      "summary": "西条の夏の風物詩！",
+      "url": "https://higashihiroshima-kanko.jp/event/saijo-yoichi/",
+      "dateLabel": "2026/09/05（土） ～ 2026/09/12（土） ※開催は9月5日(土)・12日(土)の2日間",
+      "startDate": "2026-09-05",
+      "endDate": "2026-09-12",
+      "area": "中央部 / 西条",
+      "location": "西条駅前にぎわい広場",
+      "status": "",
+      "tags": [],
       "source": "ヒガシル"
     }
   ]
