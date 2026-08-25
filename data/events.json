@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-24T20:49:33.980Z",
+  "fetchedAt": "2026-08-25T20:47:34.068Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -191,7 +191,7 @@
       "endDate": "2026-09-12",
       "area": "中央部 / 西条",
       "location": "西条駅前にぎわい広場",
-      "status": "",
+      "status": "開催間近",
       "tags": [],
       "source": "ヒガシル"
     }
