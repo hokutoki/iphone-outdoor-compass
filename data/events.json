@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-25T20:47:34.068Z",
+  "fetchedAt": "2026-08-26T23:37:22.080Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -100,6 +100,22 @@
       "source": "ヒガシル"
     },
     {
+      "id": "art-part2-henyo",
+      "title": "東広島市立美術館 コレクション展 第Ⅱ期 変容するイメージ",
+      "summary": "光、音、衣裳。変わりゆく表現のかたち",
+      "url": "https://higashihiroshima-kanko.jp/event/art-part2-henyo/",
+      "dateLabel": "2026/07/22（水） ～ 2026/10/04（日）",
+      "startDate": "2026-07-22",
+      "endDate": "2026-10-04",
+      "area": "中央部 / 西条",
+      "location": "東広島市立美術館 ２階展示室",
+      "status": "開催中",
+      "tags": [
+        "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
       "id": "fumufumu-garalley31",
       "title": "第37回ふむふむギャラリー「全国に刻まれた原爆・非核平和の記憶－700基のモニュメントをたどる－」",
       "summary": "各地に刻まれた記憶から、平和の意味を見つめる",
@@ -112,6 +128,22 @@
       "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "art-uchuwotsukuru",
+      "title": "【東広島市立美術館】謎解きゲーム「宇宙を創る魔法」",
+      "summary": "まちに散らばる謎を解き、宇宙を創る魔法を見つけよう！",
+      "url": "https://higashihiroshima-kanko.jp/event/art-uchuwotsukuru/",
+      "dateLabel": "2026/08/13（木） ～ 2026/09/23（水）",
+      "startDate": "2026-08-13",
+      "endDate": "2026-09-23",
+      "area": "中央部 / 西条",
+      "location": "ゆめタウン東広島/西条酒蔵通り観光案内所（くぐり門）/東広島市芸術文化ホールくらら/東広島市立美術館 1階ロビースペース/東広島市立美術館 2階展示室/東広島市立美術館 3階展示室",
+      "status": "開催中",
+      "tags": [
+        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     },
@@ -163,36 +195,6 @@
         "#祭り",
         "#花火・イルミネーション"
       ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "jack-show",
-      "title": "Jack！マジック＆ジャグリングショー",
-      "summary": "東広島ゆかりのパフォーマーが集結！特別ステージ開催",
-      "url": "https://higashihiroshima-kanko.jp/event/jack-show/",
-      "dateLabel": "2026/08/30（日）",
-      "startDate": "2026-08-30",
-      "endDate": "2026-08-30",
-      "area": "中央部 / 西条",
-      "location": "東広島市市民文化センター アザレアホール",
-      "status": "開催間近",
-      "tags": [
-        "#アート・音楽・文化"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "saijo-yoichi",
-      "title": "西条土曜夜市",
-      "summary": "西条の夏の風物詩！",
-      "url": "https://higashihiroshima-kanko.jp/event/saijo-yoichi/",
-      "dateLabel": "2026/09/05（土） ～ 2026/09/12（土） ※開催は9月5日(土)・12日(土)の2日間",
-      "startDate": "2026-09-05",
-      "endDate": "2026-09-12",
-      "area": "中央部 / 西条",
-      "location": "西条駅前にぎわい広場",
-      "status": "開催間近",
-      "tags": [],
       "source": "ヒガシル"
     }
   ]
