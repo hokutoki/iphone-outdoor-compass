@@ -3,24 +3,8 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-29T02:49:32.940Z",
+  "fetchedAt": "2026-08-29T22:40:21.731Z",
   "items": [
-    {
-      "id": "field-navi-quiz",
-      "title": "第116回フィールドナビ「広大の遺跡めぐりクイズラリー」",
-      "summary": "広島大学の遺跡をめぐる、クイズラリー開催！",
-      "url": "https://higashihiroshima-kanko.jp/event/field-navi-quiz/",
-      "dateLabel": "2026/05/27（水） ～ 2026/08/29（土）",
-      "startDate": "2026-05-27",
-      "endDate": "2026-08-29",
-      "area": "中央部 / 西条",
-      "location": "広島大学 東広島キャンパス",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ"
-      ],
-      "source": "ヒガシル"
-    },
     {
       "id": "horoyoi-sanpo-coupon",
       "title": "ほろよい散歩クーポン",
@@ -164,35 +148,48 @@
       "source": "ヒガシル"
     },
     {
-      "id": "tatekawa-horio",
-      "title": "《東広島芸術文化ホール開館10周年記念 》 立川志の輔 × 舞台美術家・堀尾幸男 トーク＆らくご会！",
-      "summary": "笑いに、粋に、引き込まれる。志の輔らくご、くららに初登場",
-      "url": "https://higashihiroshima-kanko.jp/event/tatekawa-horio/",
-      "dateLabel": "2026/08/29（土）",
-      "startDate": "2026-08-29",
-      "endDate": "2026-08-29",
+      "id": "jack-show",
+      "title": "Jack！マジック＆ジャグリングショー",
+      "summary": "東広島ゆかりのパフォーマーが集結！特別ステージ開催",
+      "url": "https://higashihiroshima-kanko.jp/event/jack-show/",
+      "dateLabel": "2026/08/30（日）",
+      "startDate": "2026-08-30",
+      "endDate": "2026-08-30",
       "area": "中央部 / 西条",
-      "location": "東広島芸術文化ホール・大ホール",
+      "location": "東広島市市民文化センター アザレアホール",
       "status": "開催中",
       "tags": [
-        "#アート・音楽・文化",
-        "#体験・見学・ワークショップ"
+        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     },
     {
-      "id": "fukutomi-hanabi",
-      "title": "第4回しゃくなげ湖 納涼 花火大会",
-      "summary": "湖畔に咲く大輪の花🏵️夏の夜空を彩る感動の瞬間",
-      "url": "https://higashihiroshima-kanko.jp/event/fukutomi-hanabi/",
-      "dateLabel": "2026/08/29（土）",
-      "startDate": "2026-08-29",
-      "endDate": "2026-08-29",
-      "area": "北部 / 福富",
-      "location": "道の駅湖畔の里福富",
-      "status": "開催中",
+      "id": "saijo-yoichi",
+      "title": "西条土曜夜市",
+      "summary": "西条の夏の風物詩！",
+      "url": "https://higashihiroshima-kanko.jp/event/saijo-yoichi/",
+      "dateLabel": "2026/09/05（土） ～ 2026/09/12（土） ※開催は9月5日(土)・12日(土)の2日間",
+      "startDate": "2026-09-05",
+      "endDate": "2026-09-12",
+      "area": "中央部 / 西条",
+      "location": "西条駅前にぎわい広場",
+      "status": "開催間近",
+      "tags": [],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "akari-sanpomichi",
+      "title": "第13回あかりの散歩道",
+      "summary": "西条酒蔵通りのライトアップや現地イベントを開催",
+      "url": "https://higashihiroshima-kanko.jp/event/akari-sanpomichi/",
+      "dateLabel": "2026/09/12（土） ～ 2026/09/23（水） ※各イベントは2026年9月12日(土)開催",
+      "startDate": "2026-09-12",
+      "endDate": "2026-09-23",
+      "area": "中央部 / 西条",
+      "location": "西条酒蔵通り",
+      "status": "",
       "tags": [
-        "#祭り",
+        "#体験・見学・ワークショップ",
         "#花火・イルミネーション"
       ],
       "source": "ヒガシル"
