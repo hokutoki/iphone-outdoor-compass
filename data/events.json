@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-28T04:22:34.161Z",
+  "fetchedAt": "2026-08-29T02:49:32.940Z",
   "items": [
     {
       "id": "field-navi-quiz",
@@ -173,7 +173,7 @@
       "endDate": "2026-08-29",
       "area": "中央部 / 西条",
       "location": "東広島芸術文化ホール・大ホール",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#アート・音楽・文化",
         "#体験・見学・ワークショップ"
@@ -190,7 +190,7 @@
       "endDate": "2026-08-29",
       "area": "北部 / 福富",
       "location": "道の駅湖畔の里福富",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#祭り",
         "#花火・イルミネーション"
