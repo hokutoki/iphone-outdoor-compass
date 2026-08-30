@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-29T22:40:21.731Z",
+  "fetchedAt": "2026-08-30T22:46:45.884Z",
   "items": [
     {
       "id": "horoyoi-sanpo-coupon",
@@ -148,22 +148,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "jack-show",
-      "title": "Jack！マジック＆ジャグリングショー",
-      "summary": "東広島ゆかりのパフォーマーが集結！特別ステージ開催",
-      "url": "https://higashihiroshima-kanko.jp/event/jack-show/",
-      "dateLabel": "2026/08/30（日）",
-      "startDate": "2026-08-30",
-      "endDate": "2026-08-30",
-      "area": "中央部 / 西条",
-      "location": "東広島市市民文化センター アザレアホール",
-      "status": "開催中",
-      "tags": [
-        "#アート・音楽・文化"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "saijo-yoichi",
       "title": "西条土曜夜市",
       "summary": "西条の夏の風物詩！",
@@ -191,6 +175,23 @@
       "tags": [
         "#体験・見学・ワークショップ",
         "#花火・イルミネーション"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "chidoriashi-tournament",
+      "title": "第8回全国千鳥足選手権大会",
+      "summary": "出演者が迫真の千鳥足を披露！出演者も募集中♪",
+      "url": "https://higashihiroshima-kanko.jp/event/chidoriashi-tournament/",
+      "dateLabel": "2026/09/12（土）",
+      "startDate": "2026-09-12",
+      "endDate": "2026-09-12",
+      "area": "中央部 / 西条",
+      "location": "西条本町歴史広場",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化",
+        "#その他イベント"
       ],
       "source": "ヒガシル"
     }
