@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-08-30T22:46:45.884Z",
+  "fetchedAt": "2026-09-01T22:37:21.339Z",
   "items": [
     {
       "id": "horoyoi-sanpo-coupon",
@@ -22,20 +22,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "nonta-stampcard",
-      "title": "おでかけ・お手伝い・自由研究にも！のん太のスタンプカードで夏を楽しもう",
-      "summary": "スタンプを集めて、夏休みをもっとワクワクに！",
-      "url": "https://higashihiroshima-kanko.jp/event/nonta-stampcard/",
-      "dateLabel": "2026/07/01（水） ～ 2026/08/31（月）",
-      "startDate": "2026-07-01",
-      "endDate": "2026-08-31",
-      "area": "エリア未設定 / エリア未設定",
-      "location": "",
-      "status": "開催中",
-      "tags": [],
-      "source": "ヒガシル"
-    },
-    {
       "id": "hakuwa-familypool",
       "title": "HAKUWAファミリープール＠西条HAKUWAホテル",
       "summary": "2026年夏もオープン！開放感あふれる屋外プールで思い出を作ろう！",
@@ -48,22 +34,6 @@
       "status": "開催中",
       "tags": [
         "#スポーツ・アウトドア"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "laboheme_humuseum",
-      "title": "自由研究応援企画 博物館×レストラン",
-      "summary": "食べて、学んで、自由研究！オオサンショウウオを大発見",
-      "url": "https://higashihiroshima-kanko.jp/event/laboheme_humuseum/",
-      "dateLabel": "2026/07/21（火） ～ 2026/08/31（月） ※期間中に店休日・閉館日あり",
-      "startDate": "2026-07-21",
-      "endDate": "2026-08-31",
-      "area": "中央部 / 西条",
-      "location": "ラ・ボエーム、広島大学総合博物館",
-      "status": "開催中",
-      "tags": [
-        "#その他イベント"
       ],
       "source": "ヒガシル"
     },
@@ -148,6 +118,22 @@
       "source": "ヒガシル"
     },
     {
+      "id": "komekara-digital-stamprally",
+      "title": "ご当地グルメ『コメカラ』スタンプラリー",
+      "summary": "食べて集めて当てよう！",
+      "url": "https://higashihiroshima-kanko.jp/event/komekara-digital-stamprally/",
+      "dateLabel": "2026/09/01（火） ～ 2026/12/15（火）",
+      "startDate": "2026-09-01",
+      "endDate": "2026-12-15",
+      "area": "複数エリア / 安芸津、西条…",
+      "location": "",
+      "status": "開催中",
+      "tags": [
+        "#マルシェ・グルメ・物産"
+      ],
+      "source": "ヒガシル"
+    },
+    {
       "id": "saijo-yoichi",
       "title": "西条土曜夜市",
       "summary": "西条の夏の風物詩！",
@@ -171,7 +157,7 @@
       "endDate": "2026-09-23",
       "area": "中央部 / 西条",
       "location": "西条酒蔵通り",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#体験・見学・ワークショップ",
         "#花火・イルミネーション"
@@ -188,10 +174,26 @@
       "endDate": "2026-09-12",
       "area": "中央部 / 西条",
       "location": "西条本町歴史広場",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#アート・音楽・文化",
         "#その他イベント"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "junior-economy-expo2026",
+      "title": "ジュニアエコノミーEXPO2026",
+      "summary": "体験で発見〜自分の中のワクワクの原石を見つけよう〜",
+      "url": "https://higashihiroshima-kanko.jp/event/junior-economy-expo2026/",
+      "dateLabel": "2026/09/21（月） ～ 2026/09/21（月）",
+      "startDate": "2026-09-21",
+      "endDate": "2026-09-21",
+      "area": "中央部 / 西条",
+      "location": "東広島芸術文化ホール くらら",
+      "status": "",
+      "tags": [
+        "#体験・見学・ワークショップ"
       ],
       "source": "ヒガシル"
     }
