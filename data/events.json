@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-09-03T22:36:53.263Z",
+  "fetchedAt": "2026-09-04T22:22:07.574Z",
   "items": [
     {
       "id": "horoyoi-sanpo-coupon",
@@ -143,7 +143,7 @@
       "endDate": "2026-09-12",
       "area": "中央部 / 西条",
       "location": "西条駅前にぎわい広場",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [],
       "source": "ヒガシル"
     },
