@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-09-04T22:22:07.574Z",
+  "fetchedAt": "2026-09-05T22:03:59.701Z",
   "items": [
     {
       "id": "horoyoi-sanpo-coupon",
@@ -102,22 +102,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "sake-university",
-      "title": "令和8年度東広島市立日本酒大学",
-      "summary": "日本酒の魅力を学んで、味わって楽しもう！",
-      "url": "https://higashihiroshima-kanko.jp/event/sake-university/",
-      "dateLabel": "2026/08/22（土） ～ 2026/09/05（土） ※開催日は8/22(土)・9/5(土)の2日間 申込期間：7月10日(金)から7月31日(金)17：00まで",
-      "startDate": "2026-08-22",
-      "endDate": "2026-09-05",
-      "area": "中央部 / 西条",
-      "location": "賀茂泉館 4階 泉ホール",
-      "status": "開催中",
-      "tags": [
-        "#その他イベント"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "komekara-digital-stamprally",
       "title": "ご当地グルメ『コメカラ』スタンプラリー",
       "summary": "食べて集めて当てよう！",
@@ -194,6 +178,22 @@
       "status": "",
       "tags": [
         "#体験・見学・ワークショップ"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "hiroshimauni-pokkin",
+      "title": "広島大学演劇団 劇団ポッキンアイス 令和8年度夏休み公演『冬枯れ』『おーい でてこーい』",
+      "summary": "日常の会話と、不思議な穴。異なる世界をめぐる2本立て公演",
+      "url": "https://higashihiroshima-kanko.jp/event/hiroshimauni-pokkin/",
+      "dateLabel": "2026/09/26（土） ～ 2026/09/27（日）",
+      "startDate": "2026-09-26",
+      "endDate": "2026-09-27",
+      "area": "中央部 / 西条",
+      "location": "広島大学 大学会館 BF1 音楽鑑賞室",
+      "status": "",
+      "tags": [
+        "#アート・音楽・文化"
       ],
       "source": "ヒガシル"
     }
