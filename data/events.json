@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-09-07T22:51:29.331Z",
+  "fetchedAt": "2026-09-08T22:42:32.047Z",
   "items": [
     {
       "id": "horoyoi-sanpo-coupon",
@@ -166,34 +166,37 @@
       "source": "ヒガシル"
     },
     {
-      "id": "junior-economy-expo2026",
-      "title": "ジュニアエコノミーEXPO2026",
-      "summary": "体験で発見〜自分の中のワクワクの原石を見つけよう〜",
-      "url": "https://higashihiroshima-kanko.jp/event/junior-economy-expo2026/",
-      "dateLabel": "2026/09/21（月） ～ 2026/09/21（月）",
-      "startDate": "2026-09-21",
-      "endDate": "2026-09-21",
-      "area": "中央部 / 西条",
-      "location": "東広島芸術文化ホール くらら",
-      "status": "",
+      "id": "challenge-festa",
+      "title": "チャレンジフェスタ～つながろう 地域の輪～",
+      "summary": "見て、聞いて、体験して！親子で楽しく学ぶ防災・福祉イベント",
+      "url": "https://higashihiroshima-kanko.jp/event/challenge-festa/",
+      "dateLabel": "2026/09/13（日）",
+      "startDate": "2026-09-13",
+      "endDate": "2026-09-13",
+      "area": "南部 / 安芸津",
+      "location": "安芸津B＆G海洋センター 多目的広場",
+      "status": "開催間近",
       "tags": [
-        "#体験・見学・ワークショップ"
+        "#体験・見学・ワークショップ",
+        "#マルシェ・グルメ・物産",
+        "#その他イベント"
       ],
       "source": "ヒガシル"
     },
     {
-      "id": "hiroshimauni-pokkin",
-      "title": "広島大学演劇団 劇団ポッキンアイス 令和8年度夏休み公演『冬枯れ』『おーい でてこーい』",
-      "summary": "日常の会話と、不思議な穴。異なる世界をめぐる2本立て公演",
-      "url": "https://higashihiroshima-kanko.jp/event/hiroshimauni-pokkin/",
-      "dateLabel": "2026/09/26（土） ～ 2026/09/27（日）",
-      "startDate": "2026-09-26",
-      "endDate": "2026-09-27",
+      "id": "archery-experience",
+      "title": "アーチェリー体験会",
+      "summary": "弓も矢もレンタルOK！手ぶらでアーチェリー体験",
+      "url": "https://higashihiroshima-kanko.jp/event/archery-experience/",
+      "dateLabel": "2026/09/19（土） ～ 2026/09/22（火） ※雨天中止",
+      "startDate": "2026-09-19",
+      "endDate": "2026-09-22",
       "area": "中央部 / 西条",
-      "location": "広島大学 大学会館 BF1 音楽鑑賞室",
-      "status": "",
+      "location": "塚の垰アーチェリー",
+      "status": "開催間近",
       "tags": [
-        "#アート・音楽・文化"
+        "#体験・見学・ワークショップ",
+        "#スポーツ・アウトドア"
       ],
       "source": "ヒガシル"
     }
