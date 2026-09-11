@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-09-10T22:36:38.987Z",
+  "fetchedAt": "2026-09-11T22:37:00.383Z",
   "items": [
     {
       "id": "horoyoi-sanpo-coupon",
@@ -141,7 +141,7 @@
       "endDate": "2026-09-23",
       "area": "中央部 / 西条",
       "location": "西条酒蔵通り",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#体験・見学・ワークショップ",
         "#花火・イルミネーション"
@@ -158,7 +158,7 @@
       "endDate": "2026-09-12",
       "area": "中央部 / 西条",
       "location": "西条本町歴史広場",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#アート・音楽・文化",
         "#その他イベント"
