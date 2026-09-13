@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-09-12T22:20:10.232Z",
+  "fetchedAt": "2026-09-13T22:26:06.295Z",
   "items": [
     {
       "id": "horoyoi-sanpo-coupon",
@@ -18,22 +18,6 @@
       "status": "開催中",
       "tags": [
         "#キャンペーン・おトク"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "hakuwa-familypool",
-      "title": "HAKUWAファミリープール＠西条HAKUWAホテル",
-      "summary": "2026年夏もオープン！開放感あふれる屋外プールで思い出を作ろう！",
-      "url": "https://higashihiroshima-kanko.jp/event/hakuwa-familypool/",
-      "dateLabel": "2026/07/04（土） ～ 2026/09/13（日）",
-      "startDate": "2026-07-04",
-      "endDate": "2026-09-13",
-      "area": "中央部 / 西条",
-      "location": "西条HAKUWAホテル",
-      "status": "開催中",
-      "tags": [
-        "#スポーツ・アウトドア"
       ],
       "source": "ヒガシル"
     },
@@ -135,24 +119,6 @@
       "source": "ヒガシル"
     },
     {
-      "id": "challenge-festa",
-      "title": "チャレンジフェスタ～つながろう 地域の輪～",
-      "summary": "見て、聞いて、体験して！親子で楽しく学ぶ防災・福祉イベント",
-      "url": "https://higashihiroshima-kanko.jp/event/challenge-festa/",
-      "dateLabel": "2026/09/13（日）",
-      "startDate": "2026-09-13",
-      "endDate": "2026-09-13",
-      "area": "南部 / 安芸津",
-      "location": "安芸津B＆G海洋センター 多目的広場",
-      "status": "開催中",
-      "tags": [
-        "#体験・見学・ワークショップ",
-        "#マルシェ・グルメ・物産",
-        "#その他イベント"
-      ],
-      "source": "ヒガシル"
-    },
-    {
       "id": "archery-experience",
       "title": "アーチェリー体験会",
       "summary": "弓も矢もレンタルOK！手ぶらでアーチェリー体験",
@@ -198,6 +164,40 @@
       "status": "",
       "tags": [
         "#アート・音楽・文化"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "hu-lecture",
+      "title": "広島大学総合博物館 第88回公開講演会",
+      "summary": "被爆の記憶・平和について考える",
+      "url": "https://higashihiroshima-kanko.jp/event/hu-lecture/",
+      "dateLabel": "2026/09/26（土）",
+      "startDate": "2026-09-26",
+      "endDate": "2026-09-26",
+      "area": "中央部 / 西条",
+      "location": "広島大学文学部 B204講義室",
+      "status": "",
+      "tags": [
+        "#その他イベント"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "kurose-natsumatsuri",
+      "title": "黒瀬ふれあい祭り2026",
+      "summary": "モノマネ漫才でお馴染みの芸人によるショーや花火大会を開催！",
+      "url": "https://higashihiroshima-kanko.jp/event/kurose-natsumatsuri/",
+      "dateLabel": "2026/09/26（土）",
+      "startDate": "2026-09-26",
+      "endDate": "2026-09-26",
+      "area": "中央部 / 黒瀬",
+      "location": "黒瀬生涯学習センター付近",
+      "status": "",
+      "tags": [
+        "#祭り",
+        "#花火・イルミネーション",
+        "#マルシェ・グルメ・物産"
       ],
       "source": "ヒガシル"
     }
