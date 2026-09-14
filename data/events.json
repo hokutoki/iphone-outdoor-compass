@@ -3,24 +3,8 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-09-13T22:26:06.295Z",
+  "fetchedAt": "2026-09-14T23:09:31.094Z",
   "items": [
-    {
-      "id": "horoyoi-sanpo-coupon",
-      "title": "ほろよい散歩クーポン",
-      "summary": "西条酒蔵通りの酒蔵やお店で使える！酒蔵散策がより楽しめるクーポン！",
-      "url": "https://higashihiroshima-kanko.jp/event/horoyoi-sanpo-coupon/",
-      "dateLabel": "2026/06/01（月） ～ 2026/09/14（月） ※8月11日(火)〜16日(日)は除く",
-      "startDate": "2026-06-01",
-      "endDate": "2026-09-14",
-      "area": "中央部 / 西条",
-      "location": "西条酒蔵通り",
-      "status": "開催中",
-      "tags": [
-        "#キャンペーン・おトク"
-      ],
-      "source": "ヒガシル"
-    },
     {
       "id": "higashihiroshima-art-horio",
       "title": "《東広島市立美術館》特別展「堀尾幸男 舞台美術展 「無限」のたわむれ」",
@@ -198,6 +182,24 @@
         "#祭り",
         "#花火・イルミネーション",
         "#マルシェ・グルメ・物産"
+      ],
+      "source": "ヒガシル"
+    },
+    {
+      "id": "saijo-akimatsuri",
+      "title": "西条秋まつり2026",
+      "summary": "秋の一日、楽しさ全部盛り！",
+      "url": "https://higashihiroshima-kanko.jp/event/saijo-akimatsuri/",
+      "dateLabel": "2026/09/26（土） ※荒天中止",
+      "startDate": "2026-09-26",
+      "endDate": "2026-09-26",
+      "area": "中央部 / 西条",
+      "location": "賀茂ボール駐車場特設エリア",
+      "status": "",
+      "tags": [
+        "#祭り",
+        "#花火・イルミネーション",
+        "#スポーツ・アウトドア"
       ],
       "source": "ヒガシル"
     }
