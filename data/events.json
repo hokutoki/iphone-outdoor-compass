@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-09-14T23:09:31.094Z",
+  "fetchedAt": "2026-09-15T22:54:30.503Z",
   "items": [
     {
       "id": "higashihiroshima-art-horio",
@@ -120,6 +120,22 @@
       "source": "ヒガシル"
     },
     {
+      "id": "waiwai-carnival",
+      "title": "第3回 わいわいカーニバル in 東広島",
+      "summary": "食べて、遊んで、みんなでわいわい！秋のグルメイベント開催",
+      "url": "https://higashihiroshima-kanko.jp/event/waiwai-carnival/",
+      "dateLabel": "2026/09/20（日） ～ 2026/09/22（火）",
+      "startDate": "2026-09-20",
+      "endDate": "2026-09-22",
+      "area": "中央部 / 西条",
+      "location": "西条中央公園",
+      "status": "開催間近",
+      "tags": [
+        "#祭り"
+      ],
+      "source": "ヒガシル"
+    },
+    {
       "id": "junior-economy-expo2026",
       "title": "ジュニアエコノミーEXPO2026",
       "summary": "体験で発見〜自分の中のワクワクの原石を見つけよう〜",
@@ -145,7 +161,7 @@
       "endDate": "2026-09-27",
       "area": "中央部 / 西条",
       "location": "広島大学 大学会館 BF1 音楽鑑賞室",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#アート・音楽・文化"
       ],
@@ -161,7 +177,7 @@
       "endDate": "2026-09-26",
       "area": "中央部 / 西条",
       "location": "広島大学文学部 B204講義室",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#その他イベント"
       ],
@@ -177,29 +193,11 @@
       "endDate": "2026-09-26",
       "area": "中央部 / 黒瀬",
       "location": "黒瀬生涯学習センター付近",
-      "status": "",
+      "status": "開催間近",
       "tags": [
         "#祭り",
         "#花火・イルミネーション",
         "#マルシェ・グルメ・物産"
-      ],
-      "source": "ヒガシル"
-    },
-    {
-      "id": "saijo-akimatsuri",
-      "title": "西条秋まつり2026",
-      "summary": "秋の一日、楽しさ全部盛り！",
-      "url": "https://higashihiroshima-kanko.jp/event/saijo-akimatsuri/",
-      "dateLabel": "2026/09/26（土） ※荒天中止",
-      "startDate": "2026-09-26",
-      "endDate": "2026-09-26",
-      "area": "中央部 / 西条",
-      "location": "賀茂ボール駐車場特設エリア",
-      "status": "",
-      "tags": [
-        "#祭り",
-        "#花火・イルミネーション",
-        "#スポーツ・アウトドア"
       ],
       "source": "ヒガシル"
     }
