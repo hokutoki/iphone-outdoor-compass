@@ -4,15 +4,11 @@ const sourceUrl = "https://higashihiroshima-kanko.jp/event/";
 const outputPath = new URL("../data/events.json", import.meta.url);
 const maxItems = 12;
 
-const response = await fetch(sourceUrl, {
-  headers: {
-    "User-Agent": "iphone-outdoor-compass/1.0 (+https://hokutoki.github.io/iphone-outdoor-compass/)",
-  },
+const response = await fetchWithRetry(sourceUrl, {
+  attempts: 3,
+  timeoutMs: 15_000,
+  retryDelaysMs: [5_000, 15_000],
 });
-
-if (!response.ok) {
-  throw new Error(`Failed to fetch event page: HTTP ${response.status}`);
-}
 
 const html = await response.text();
 const items = parseHigashiruEvents(html).slice(0, maxItems);
@@ -33,6 +29,74 @@ const feed = {
 await mkdir(new URL("../data/", import.meta.url), { recursive: true });
 await writeFile(outputPath, `${JSON.stringify(feed, null, 2)}\n`);
 console.log(`Wrote ${items.length} events to ${outputPath.pathname}`);
+
+async function fetchWithRetry(url, { attempts, timeoutMs, retryDelaysMs }) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    console.log(`Fetching event page (attempt ${attempt}/${attempts})`);
+
+    let response;
+    try {
+      response = await fetch(url, {
+        headers: {
+          "User-Agent": "iphone-outdoor-compass/1.0 (+https://hokutoki.github.io/iphone-outdoor-compass/)",
+        },
+        signal: AbortSignal.timeout(timeoutMs),
+      });
+    } catch (error) {
+      lastError = new Error(
+        `Failed to fetch event page on attempt ${attempt}/${attempts}: ${formatError(error)}`,
+        { cause: error },
+      );
+
+      if (attempt === attempts) {
+        throw lastError;
+      }
+
+      console.warn(lastError.message);
+    }
+
+    if (response) {
+      if (response.ok) {
+        console.log(`Fetched event page: HTTP ${response.status}`);
+        return response;
+      }
+
+      lastError = new Error(
+        `Failed to fetch event page on attempt ${attempt}/${attempts}: HTTP ${response.status} ${response.statusText}`.trim(),
+      );
+
+      if (!isRetryableStatus(response.status) || attempt === attempts) {
+        throw lastError;
+      }
+
+      await response.body?.cancel();
+      console.warn(lastError.message);
+    }
+
+    const delayMs = retryDelaysMs[attempt - 1] ?? retryDelaysMs.at(-1) ?? 0;
+    console.log(`Retrying in ${delayMs / 1000} seconds`);
+    await delay(delayMs);
+  }
+
+  throw lastError ?? new Error("Failed to fetch event page");
+}
+
+function isRetryableStatus(status) {
+  return status === 403 || status === 429 || status >= 500;
+}
+
+function formatError(error) {
+  if (error instanceof Error) {
+    return `${error.name}: ${error.message}`;
+  }
+  return String(error);
+}
+
+function delay(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
 
 function parseHigashiruEvents(htmlText) {
   const blocks = htmlText.match(/<a href="https:\/\/higashihiroshima-kanko\.jp\/event\/[^"]+" class="c-post__event">[\s\S]*?<\/a>/g) || [];
