@@ -3,7 +3,7 @@
   "version": 1,
   "source": "東広島おでかけ観光サイト「ヒガシル」",
   "sourceUrl": "https://higashihiroshima-kanko.jp/event/",
-  "fetchedAt": "2026-09-18T22:36:16.868Z",
+  "fetchedAt": "2026-09-19T22:19:55.154Z",
   "items": [
     {
       "id": "higashihiroshima-art-horio",
@@ -145,7 +145,7 @@
       "endDate": "2026-09-22",
       "area": "中央部 / 西条",
       "location": "西条中央公園",
-      "status": "開催間近",
+      "status": "開催中",
       "tags": [
         "#祭り"
       ],
